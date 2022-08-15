@@ -7,13 +7,11 @@ Group 11 Members
 * Ryan Spurlock
 * Teresa Wu
 
-One stop shop for all your traveling info and needs.
+One stop shop for all your traveling info and booking needs.
 
 ## Intended market
 
-People who enjoy traveling.
-
-^EXPAND HERE^
+People who enjoy traveling or would like to explore a new local place. For Travelers who are already at their destination and could receive more information about their current location.
 
 ## Functionality
 
