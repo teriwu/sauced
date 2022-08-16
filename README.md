@@ -34,3 +34,6 @@ People who enjoy traveling or would like to explore a new local place. For Trave
 ## API Sources
 * Rapid API https://rapidapi.com/blog/best-travel-apis-guide/
 * https://openweathermap.org/current#geo
+
+## Notes
+* Pictures, such as logos, are located in docs/wireframes/
