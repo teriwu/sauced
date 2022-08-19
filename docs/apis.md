@@ -14,6 +14,8 @@
 * **Method**: `GET`
 * **Path**: /api/restaurants
 
+![ER Diagram](wireframes/ERD.png)
+
 Output:
 
 ```json
