@@ -7,11 +7,11 @@ Group 11 Members
 * Ryan Spurlock
 * Teresa Wu
 
-One stop shop for all your traveling info and booking needs.
+One stop shop for all your restaurant info
 
 ## Intended market
 
-People who enjoy traveling or would like to explore a new local place. For Travelers who are already at their destination and could receive more information about their current location.
+People who enjoy discovering new and exciting restaurants at a specific location. 
 
 ## Functionality
 
@@ -26,6 +26,7 @@ People who enjoy traveling or would like to explore a new local place. For Trave
 * Users can search ("GET") locations
     * **IF** there is an API for it
     * **ELSE** make the developers make the locations
+* Users can write/read reviews on a restaurant
 
 ## API Sources
 
