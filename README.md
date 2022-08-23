@@ -13,13 +13,16 @@ One stop shop for all your restaurant info
 
 People who enjoy discovering new and exciting restaurants at a specific location. 
 
+person wants to eat right now and wants food in their location
+person wants to pick a location to plan a resturant visit
+
 ## Functionality
 
-* Create points of interest (each of these are a **microservice**)
-    * Locations (root)
-    * Restaurants (does not need to take reservations)
+* Create points of interest (each of these are a **microservice**) (!!expand on this!!)
+    * Locations (root) (!!is there a set default location?!!)
+    * Restaurants (does not need to take reservations) (!!categorory of resturant!!)
         * Provide links 
-    * Accounts (to keep track of favorite places)
+    * Accounts (to keep track of favorite places) (!!owner vs reviewer!!)
         * People signed in can create a review ("POST")
 * Users can view the details of each restaurants
     * Restaurants (provide info about restaurant) - cuisine type, pricing(?), about
@@ -27,6 +30,7 @@ People who enjoy discovering new and exciting restaurants at a specific location
     * **IF** there is an API for it
     * **ELSE** make the developers make the locations
 * Users can write/read reviews on a restaurant
+* search bar for locating food(!!specify how the searach would work (location(zip etc...), near by, tags(types of food), etc)!!)
 
 ## API Sources
 
