@@ -1,0 +1,3 @@
+CREATE USER sauce_user WITH LOGIN PASSWORD 'abcd';
+
+CREATE DATABASE sauce_db WITH OWNER sauce_user;
