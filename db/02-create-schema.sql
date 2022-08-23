@@ -30,6 +30,21 @@
 --     canon BOOLEAN DEFAULT true
 -- );
 
+CREATE TABLE location (
+    address TEXT NOT NULL,
+    city TEXT NOT NULL,
+    zip_code INTEGER NOT NULL,
+    country TEXT NOT NULL,
+    state TEXT NOT NULL,
+);
+
+CREATE TABLE pictures (
+    url VARCHAR DEFAULT "", 
+);
+
+
+
+
 CREATE TABLE resaurants (
     id SERIAL NOT NULL PRIMARY KEY,
     price TEXT NOT NULL,
@@ -37,8 +52,9 @@ CREATE TABLE resaurants (
     rating FLOAT DEFAULT 0,
     name TEXT NOT NULL,
     phone TEXT NOT NULL,
-    location TEXT NOT NULL REFERENCES locations(id) ON DELETE CASCADE
-    category TEXT NOT NULL REFERENCES categories(id) ON DELETE CASCADE
-    hour TEXT NOT NULL REFERENCES hours(id) ON DELETE CASCADE
-    picture TEXT NOT NULL REFERENCES pictures(id) ON DELETE CASCADE
-)
+    location TEXT NOT NULL REFERENCES locations(id) ON DELETE CASCADE,
+    category TEXT NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
+    hour TEXT NOT NULL REFERENCES hours(id) ON DELETE CASCADE,
+    picture TEXT NOT NULL REFERENCES pictures(id) ON DELETE CASCADE,
+);
+
