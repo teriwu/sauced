@@ -1,5 +1,7 @@
 \connect sauce_db
 
+-- create limitations
+
 CREATE TABLE locations (
     id SERIAL NOT NULL PRIMARY KEY,
     address TEXT NOT NULL,
@@ -28,10 +30,9 @@ CREATE TABLE categories (
     alias TEXT NOT NULL
 );
 
-CREATE TABLE resaurants (
+CREATE TABLE restaurants (
     id SERIAL NOT NULL PRIMARY KEY,
     price TEXT NOT NULL,
-    alias TEXT NOT NULL,
     rating FLOAT DEFAULT 0,
     name TEXT NOT NULL,
     phone TEXT NOT NULL,
@@ -39,4 +40,23 @@ CREATE TABLE resaurants (
     category_id TEXT NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
     hour_id TEXT NOT NULL REFERENCES hours(id) ON DELETE CASCADE,
     picture_id TEXT NOT NULL REFERENCES pictures(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE users (
+    id SERIAL NOT NULL PRIMARY KEY,
+    password VARCHAR NOT NULL,
+    first TEXT NOT NULL, 
+    last TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    username TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE review (
+    id SERIAL NOT NULL PRIMARY KEY, 
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    reviewer_id INTEGER REFERENCES users("id") ON DELETE CASCADE,
+    rating INTEGER NOT NULL check(rating = 1 or rating = 2 or rating = 3 or rating = 4 or rating = 5),
+    restaurant_id INTEGER NOT NULL REFERENCES restaurants("id") ON DELETE CASCADE
 );
