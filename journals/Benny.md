@@ -1,6 +1,6 @@
 ## Tuesday, August 23, 2022
 ---
-* 
+* Edited and Updated project functionality in the README after receiving instructor feedback.
 
 ## Monday, August 22, 2022
 ---
