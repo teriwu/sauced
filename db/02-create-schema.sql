@@ -1,6 +1,8 @@
 \connect sauce_db
 
--- create limitations
+-----------------------|
+-- create limitations  |
+-----------------------|
 
 CREATE TABLE locations (
     id SERIAL NOT NULL PRIMARY KEY,
