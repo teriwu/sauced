@@ -1,6 +1,9 @@
 ## Tuesday, August 23, 2022
 
-* 
+We worked on:
+* Updated our functionality
+* Started our schema
+* Created gitlab-ci.yml
 
 ## Monday, August 22, 2022
 
@@ -15,3 +18,5 @@ Still waiting on SPEC feedback... 🙃
 We worked on:
 * Worked on modeling in Excalidraw
 * Decided on Yelp clone and found API
+
+
