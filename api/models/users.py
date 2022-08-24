@@ -16,7 +16,7 @@ class UserOut(BaseModel):
     id: int
     first: str
     last: str
-    email: str
+    email: EmailStr
     username: str
 
 
