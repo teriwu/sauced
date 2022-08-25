@@ -1,0 +1,9 @@
+/*
+    This file creates a setting for your whole project
+    will basically make sure that all end of line characters
+    are line feed (LF)
+    which is the "\n" \ is an escape sequence
+    the n can be thought of as a new line, but it's a line feed
+*/
+
+{"files.eol": "\n"}
