@@ -9,7 +9,7 @@ from models.restaurants import(
 
 router = APIRouter()
 
-@router.get("/api/restaurants", response_model=RestaurantOut)
+@router.get("/api/restaurants", response_model=RestaurantOut, tags=["Restaurants"])
 def restaurants_list(queries: RestaurantQueries = Depends()):
     return {
         "restaurants": queries.get_restaurants(),
