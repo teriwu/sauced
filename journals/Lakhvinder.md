@@ -1,3 +1,6 @@
+## August 24, 2022
+* Worked on setting up back end as a group. Tried to show restaurant data. still work in progress
+
 ## August 23, 2022
 * worked on the scheme of the yelp clone, but after talking with an istructor figured it was not the best approach. We decided to make creating restuarants as a stretch goal.
 

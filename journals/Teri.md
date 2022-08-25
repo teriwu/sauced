@@ -1,3 +1,10 @@
+## Wednesday, August 24, 2022
+
+We worked on:
+* Created [restaurant.py](../api/models/restaurants.py) in ***/api/models***
+    * Created matching [restaurants.py](../api/routers/restaurants.py) view in ***/api/routers***
+    * They are still a work in progress
+
 ## Tuesday, August 23, 2022
 
 We worked on:
