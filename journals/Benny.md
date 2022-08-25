@@ -1,3 +1,9 @@
+## Tuesday, August 24, 2022
+---
+* Added test code to restaurant model
+* Tried to test route to show restaurant data
+* Setting up backend
+
 ## Tuesday, August 23, 2022
 ---
 * Edited and Updated project functionality in the README after receiving instructor feedback.
