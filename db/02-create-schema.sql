@@ -54,7 +54,7 @@ CREATE TABLE users (
     username TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE review (
+CREATE TABLE reviews (
     id SERIAL NOT NULL PRIMARY KEY, 
     title TEXT NOT NULL,
     content TEXT NOT NULL,
