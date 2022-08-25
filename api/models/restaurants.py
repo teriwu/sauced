@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 # from .locations import LocationOut
 # from .categories import CategoryOut
@@ -15,11 +16,11 @@ class RestaurantIn(BaseModel): #POST
 
 
 class RestaurantOut(BaseModel): # GET
-    id: int
-    price: str
-    rating: float
-    name: str
-    phone: str
+    id: Optional[int]
+    # price: str
+    # rating: float
+    # name: str
+    # phone: str
 
 
 
