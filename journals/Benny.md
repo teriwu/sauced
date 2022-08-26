@@ -1,4 +1,9 @@
-## Tuesday, August 24, 2022
+## Thursday, August 25, 2022
+---
+* Updated SQL database and FastAPI endpoints
+* Fixed database schemas  
+
+## Wednesday, August 24, 2022
 ---
 * Added test code to restaurant model
 * Tried to test route to show restaurant data
