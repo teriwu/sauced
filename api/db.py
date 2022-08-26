@@ -102,3 +102,14 @@ class RestaurantQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                 return record
+
+    def delete_restaurant(self, restaurant_id):
+        with pool,connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM restaurants
+                    WHERE id = %s
+                    """
+                    [restaurant_id]
+                )

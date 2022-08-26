@@ -41,3 +41,8 @@ def update_restaurant(
         response.status_code = 404
     else:
         return record
+
+@router.delete("/api/restaurants/{id}", response_model=bool, tags=["Restaurants"])
+def delete_restaurant(restaurant_id: int, queries: RestaurantQueries = Depends()):
+    queries.delete_restaurant(restaurant_id)
+    return True
