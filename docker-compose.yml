@@ -10,7 +10,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_MULTIPLE_DATABASES= # List databases we want
+      - POSTGRES_MULTIPLE_DATABASES=  # List databases we want
       - POSTGRES_PASSWORD=abcd # Formerly test-databases
     ports:
       - 15432:5432
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./api:/app
     environment:
-      DATABASE_URL: postgresql://sauce_user:password@postgres/sauce_db
+      DATABASE_URL: postgresql://sauce_user:abcd@postgres/sauce_db
       WAIT_HOSTS: postgres:5432
   ghi:
     image: node:lts-bullseye

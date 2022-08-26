@@ -1,3 +1,7 @@
-CREATE USER sauce_user WITH LOGIN PASSWORD 'abcd';
+CREATE USER sauce_user WITH SUPERUSER LOGIN PASSWORD 'abcd';
 
 CREATE DATABASE sauce_db WITH OWNER sauce_user;
+
+GRANT ALL PRIVILEGES ON DATABASE sauce_db TO sauce_user;
+
+-- GRANT ALL PRIVILEGES ON TABLE restaurants TO sauce_user;

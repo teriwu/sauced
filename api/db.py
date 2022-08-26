@@ -5,6 +5,7 @@ pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 class RestaurantQueries:
     def get_restaurants(self):
+        print("Got Restaurants")
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
