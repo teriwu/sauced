@@ -1,3 +1,9 @@
+## Thursday, August 25, 2022
+
+We worked on:
+* Creating urls in routers/restaurants.py
+* Created queries for restaurants in routers/db.py
+
 ## Wednesday, August 24, 2022
 
 We worked on:
