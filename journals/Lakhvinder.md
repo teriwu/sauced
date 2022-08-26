@@ -1,4 +1,7 @@
 ## August 24, 2022
+* Today continued to work on the back end of fast api, Did group programming to better understand it. Made update and delete for the fast api. Overall decent amount of work done.
+
+## August 24, 2022
 * Worked on setting up back end as a group. Tried to show restaurant data. still work in progress
 
 ## August 23, 2022
