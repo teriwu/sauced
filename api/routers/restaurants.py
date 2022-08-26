@@ -28,3 +28,16 @@ def get_restaurant(id: int, response: Response, queries: RestaurantQueries = Dep
 @router.post("/api/restaurants", response_model=RestaurantOut, tags=["Restaurants"])
 def create_restaurant(restaurant: RestaurantIn, queries: RestaurantQueries = Depends()):
     return queries.create_restaurant(restaurant)
+
+@router.put("/api/restaurants/{id}", response_model = RestaurantOut, tags =["Resturants"])
+def update_restaurant(
+    restaurant_id: int,
+    restaurant_in: RestaurantIn,
+    response: Response,
+    queries: RestaurantQueries = Depends(),
+):
+    record = queries.update_restaurant(restaurant_id, restaurant_in)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
