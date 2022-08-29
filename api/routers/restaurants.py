@@ -29,7 +29,7 @@ def get_restaurant(id: int, response: Response, queries: RestaurantQueries = Dep
 def create_restaurant(restaurant: RestaurantIn, queries: RestaurantQueries = Depends()):
     return queries.create_restaurant(restaurant)
 
-@router.put("/api/restaurants/{id}", response_model = RestaurantOut, tags =["Resturants"])
+@router.put("/api/restaurants/{id}", response_model = RestaurantOut, tags =["Restaurants"])
 def update_restaurant(
     restaurant_id: int,
     restaurant_in: RestaurantIn,
