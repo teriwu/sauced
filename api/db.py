@@ -104,7 +104,7 @@ class RestaurantQueries:
                 return record
 
     def delete_restaurant(self, restaurant_id):
-        with pool,connection() as conn:
+        with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
