@@ -5,7 +5,7 @@
 -----------------------|
 
 CREATE TABLE public.locations (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL UNIQUE,
     address TEXT NOT NULL,
     city TEXT NOT NULL,
     zip_code INTEGER NOT NULL,
@@ -14,12 +14,12 @@ CREATE TABLE public.locations (
 );
 
 CREATE TABLE public.pictures (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL UNIQUE,
     url VARCHAR DEFAULT ''
 );
 
 CREATE TABLE public.hours (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL UNIQUE,
     is_overnight BOOLEAN DEFAULT 'false',
     "end" INTEGER NOT NULL,
     day INTEGER NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE public.hours (
 );
 
 CREATE TABLE public.categories (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL UNIQUE,
     title TEXT NOT NULL,
     alias TEXT NOT NULL
 );
