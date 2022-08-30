@@ -110,6 +110,6 @@ class RestaurantQueries:
                     """
                     DELETE FROM restaurants
                     WHERE id = %s
-                    """
-                    [restaurant_id]
+                    """,
+                    [restaurant_id],
                 )
