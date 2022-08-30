@@ -13,6 +13,8 @@ class RestaurantIn(BaseModel): #POST
     name: str
     phone: str
 
+    
+
 
 
 class RestaurantOut(BaseModel): # GET
