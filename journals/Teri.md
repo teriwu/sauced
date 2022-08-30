@@ -1,3 +1,10 @@
+## Monday, August 29, 2022
+
+We worked on:
+* Debugging our .sql tables
+* Got GET, POST, PUT to work
+* Working on DELETE
+
 ## Thursday, August 25, 2022
 
 We worked on:
