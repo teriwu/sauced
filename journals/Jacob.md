@@ -1,3 +1,21 @@
+
+## Monday, August 29, 2022
+We worked on:
+* Worked on our .sql tables to see what was wrong
+* Completed the GET, POST, PUT
+* Started working on DELETE
+
+## Thursday, August 25, 2022
+We worked on:
+* Created urls in routers.restaurants.py
+* Created queries
+
+## Wednesday, August 24, 2022
+We worked on:
+* Created restaurant.py
+* Created routers.restaurants.py
+* Trial and error with Fast Api
+
 ## Tuesday, August 23, 2022
 
 We worked on:
@@ -18,5 +36,11 @@ Still waiting on SPEC feedback... 🙃
 We worked on:
 * Worked on modeling in Excalidraw
 * Decided on Yelp clone and found API
+
+
+
+
+
+
 
 
