@@ -4,7 +4,7 @@
 -- create limitations  |
 -----------------------|
 
-CREATE TABLE locations (
+CREATE TABLE public.locations (
     id INTEGER NOT NULL PRIMARY KEY,
     address TEXT NOT NULL,
     city TEXT NOT NULL,
@@ -13,12 +13,12 @@ CREATE TABLE locations (
     state TEXT NOT NULL
 );
 
-CREATE TABLE pictures (
+CREATE TABLE public.pictures (
     id INTEGER NOT NULL PRIMARY KEY,
     url VARCHAR DEFAULT ''
 );
 
-CREATE TABLE hours (
+CREATE TABLE public.hours (
     id INTEGER NOT NULL PRIMARY KEY,
     is_overnight BOOLEAN DEFAULT 'false',
     "end" INTEGER NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE hours (
     "start" INTEGER NOT NULL
 );
 
-CREATE TABLE categories (
+CREATE TABLE public.categories (
     id INTEGER NOT NULL PRIMARY KEY,
     title TEXT NOT NULL,
     alias TEXT NOT NULL
