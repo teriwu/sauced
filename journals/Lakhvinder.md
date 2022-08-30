@@ -1,4 +1,7 @@
 ## August 24, 2022
+* We did group coding today and were able to get most of our restaurants requests to work. We still need to work on our delete.
+
+## August 24, 2022
 * Today continued to work on the back end of fast api, Did group programming to better understand it. Made update and delete for the fast api. Overall decent amount of work done.
 
 ## August 24, 2022
