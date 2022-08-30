@@ -78,7 +78,7 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    UPDATE resturants
+                    UPDATE restaurants
                     SET price = %s
                       , rating = %s
                       , name = %s

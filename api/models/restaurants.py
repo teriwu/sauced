@@ -17,16 +17,17 @@ class RestaurantIn(BaseModel): #POST
 
 class RestaurantOut(BaseModel): # GET
     id: Optional[int]
-    # price: str
-    # rating: float
-    # name: str
-    # phone: str
+    price: str
+    rating: float
+    name: str
+    phone: str
 
 
 
 class RestaurantList(BaseModel):
-    page_count: int
+    # page_count: int
     restaurants: list[RestaurantOut]
 
 
-# Potentially make Delete
+class RestaurantDeleteOperation(BaseModel):
+    result: bool

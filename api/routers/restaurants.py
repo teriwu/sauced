@@ -3,7 +3,8 @@ from db import RestaurantQueries
 from models.restaurants import(
     RestaurantIn,
     RestaurantList,
-    RestaurantOut
+    RestaurantOut,
+    RestaurantDeleteOperation
 )
 
 
@@ -42,7 +43,10 @@ def update_restaurant(
     else:
         return record
 
-@router.delete("/api/restaurants/{id}", response_model=bool, tags=["Restaurants"])
+@router.delete("/api/restaurants/{id}", response_model=RestaurantDeleteOperation, tags=["Restaurants"])
 def delete_restaurant(restaurant_id: int, queries: RestaurantQueries = Depends()):
-    queries.delete_restaurant(restaurant_id)
-    return True
+    try:
+        queries.delete_restaurant(restaurant_id)
+        return {"result": True}
+    except:
+        return {"result": False}

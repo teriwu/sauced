@@ -32,16 +32,16 @@ CREATE TABLE categories (
     alias TEXT NOT NULL
 );
 
-CREATE TABLE restaurants (
-    id INTEGER NOT NULL PRIMARY KEY,
+CREATE TABLE public.restaurants (
+    id SERIAL NOT NULL UNIQUE,
     price TEXT NOT NULL,
     rating FLOAT DEFAULT 0,
     name TEXT NOT NULL,
-    phone TEXT NOT NULL,
-    location_id INTEGER NOT NULL REFERENCES locations(id) ON DELETE CASCADE,
-    category_id INTEGER NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
-    hour_id INTEGER NOT NULL REFERENCES hours(id) ON DELETE CASCADE,
-    picture_id INTEGER NOT NULL REFERENCES pictures(id) ON DELETE CASCADE
+    phone TEXT NOT NULL
+    -- location_id INTEGER NOT NULL REFERENCES locations(id) ON DELETE CASCADE,
+    -- category_id INTEGER NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
+    -- hour_id INTEGER NOT NULL REFERENCES hours(id) ON DELETE CASCADE,
+    -- picture_id INTEGER NOT NULL REFERENCES pictures(id) ON DELETE CASCADE
 );
 
 
