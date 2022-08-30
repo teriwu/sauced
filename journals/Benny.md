@@ -1,3 +1,8 @@
+## Monday, August 29, 2022
+---
+* Got restaurant post, put, get request working
+* Still working on Delete
+
 ## Thursday, August 25, 2022
 ---
 * Updated SQL database and FastAPI endpoints
