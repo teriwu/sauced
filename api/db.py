@@ -113,3 +113,116 @@ class RestaurantQueries:
                     """,
                     [restaurant_id],
                 )
+
+class LocationQueries:
+    def get_locations(self):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, address, city, zip_code, country, state
+                    FROM locations
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+                
+                return results
+
+    def get_location(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, address, city, zip_code, country, state
+                    FROM locations
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record                
+
+    def create_location(self, location):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO locations (
+                        address, city, zip_code, country, state
+                    )
+                    VALUES (%s, %s, %s, %s, %s)
+                    RETURNING id
+                    """,
+                    [
+                        location.address,
+                        location.city,
+                        location.zip_code,
+                        location.country,
+                        location.state,
+                    ],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+    def update_restaurant(self, location, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE locations
+                    SET address = %s
+                      , city = %s
+                      , zip_code = %s
+                      , country = %s
+                      , state = %s
+                    WHERE id = %s
+                    RETURNING address, city, zip_code, country, state
+                    """,
+                    [
+                        data.address,
+                        data.city,
+                        data.zip_code,
+                        data.country,
+                        data.state,
+                        location
+                    ]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+    def delete_location(self, location_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM locations
+                    WHERE id = %s
+                    """,
+                    [location_id],
+                )
