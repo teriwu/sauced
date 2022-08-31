@@ -15,11 +15,11 @@ class RestaurantIn(BaseModel): #POST
 
 
 class RestaurantOut(BaseModel): # GET
-    id: Optional[int]
-    price: Optional[str]
-    rating: Optional[float]
-    name: Optional[str]
-    phone: Optional[str]
+    id: int
+    price: str
+    rating: float
+    name: str
+    phone: str
 
 
 class RestaurantList(BaseModel):
