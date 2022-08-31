@@ -1,3 +1,10 @@
+## Tuesday, August 30, 2022
+
+We worked on:
+* Resolving null in the Terminal when making a POST request
+* Worked on our respective backends
+    * I worked on our Pictures API
+
 ## Monday, August 29, 2022
 
 We worked on:

@@ -1,7 +1,10 @@
-## August 24, 2022
+## August 30, 2022
+* Today we solved our delete issue with our restaurant widget. Also worked and finished the category widget backend stuff.
+
+## August 29, 2022
 * We did group coding today and were able to get most of our restaurants requests to work. We still need to work on our delete.
 
-## August 24, 2022
+## August 25, 2022
 * Today continued to work on the back end of fast api, Did group programming to better understand it. Made update and delete for the fast api. Overall decent amount of work done.
 
 ## August 24, 2022
