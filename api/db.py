@@ -405,8 +405,12 @@ class CategoriesQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                response = {
+                    "id": record["id"],
+                    "title": category.title,
+                    "alias": category.alias,
+                }
+                return response
 
     def update_category(self,category, data):
         with pool.connection() as conn:
