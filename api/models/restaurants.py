@@ -1,10 +1,11 @@
+from unicodedata import category
 from pydantic import BaseModel
 from typing import Optional
 
-# from .locations import LocationOut
-# from .categories import CategoryOut
-# from .hours import HourOut
-# from .pictures import PictureOut
+from .locations import LocationOut
+from .categories import CategoriesOut
+from .hours import HourOut
+from .pictures import PictureOut
 
 
 class RestaurantIn(BaseModel): #POST
@@ -22,6 +23,10 @@ class RestaurantOut(BaseModel): # GET
     rating: float
     name: str
     phone: str
+    # location_id: LocationOut
+    # category_id: CategoriesOut
+    hour_id: HourOut
+    picture_id: PictureOut
 
 
 class RestaurantList(BaseModel):

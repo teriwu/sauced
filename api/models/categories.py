@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
 class CategoriesIn(BaseModel): #POST
@@ -7,9 +6,9 @@ class CategoriesIn(BaseModel): #POST
     alias: str
 
 class CategoriesOut(BaseModel): # GET
-    id: Optional[int]
-    title: Optional[str]
-    alias: Optional[str]
+    id: int
+    title: str
+    alias: str
 
 class CategoriesList(BaseModel):
     # page_count: int

@@ -37,11 +37,11 @@ CREATE TABLE public.restaurants (
     price TEXT NOT NULL,
     rating FLOAT DEFAULT 0,
     name TEXT NOT NULL,
-    phone TEXT NOT NULL
-    -- location_id INTEGER NOT NULL REFERENCES locations(id) ON DELETE CASCADE,
-    -- category_id INTEGER NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
-    -- hour_id INTEGER NOT NULL REFERENCES hours(id) ON DELETE CASCADE,
-    -- picture_id INTEGER NOT NULL REFERENCES pictures(id) ON DELETE CASCADE
+    phone TEXT NOT NULL,
+    -- FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (hour_id) REFERENCES hours(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (picture_id) REFERENCES pictures(id) ON DELETE CASCADE
 );
 
 

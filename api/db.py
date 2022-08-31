@@ -52,7 +52,7 @@ class RestaurantQueries:
                 cur.execute(
                     """
                     INSERT INTO restaurants (
-                        price, rating, name, phone
+                        price, rating, name, phone, 
                     )
                     VALUES (%s, %s, %s, %s)
                     RETURNING id
@@ -189,8 +189,15 @@ class LocationQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                response = {
+                    "id": record["id"],
+                    "address": location.address,
+                    "city": location.city,
+                    "zip_code": location.zip_code,
+                    "country": location.country,
+                    "state": location.state,
+                }
+                return response
 
     def update_restaurant(self, location, data):
         with pool.connection() as conn:
