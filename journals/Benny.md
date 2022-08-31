@@ -1,3 +1,8 @@
+## Tuesday, August 30, 2022
+---
+* Completed location backend database
+* Merged with team members that completed their backend
+
 ## Monday, August 29, 2022
 ---
 * Got restaurant post, put, get request working
