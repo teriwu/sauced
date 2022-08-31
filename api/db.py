@@ -52,7 +52,7 @@ class RestaurantQueries:
                 cur.execute(
                     """
                     INSERT INTO restaurants (
-                        price, rating, name, phone, 
+                        price, rating, name, phone 
                     )
                     VALUES (%s, %s, %s, %s)
                     RETURNING id

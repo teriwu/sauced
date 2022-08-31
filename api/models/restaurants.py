@@ -25,8 +25,8 @@ class RestaurantOut(BaseModel): # GET
     phone: str
     # location_id: LocationOut
     # category_id: CategoriesOut
-    hour_id: HourOut
-    picture_id: PictureOut
+    # hour_id: HourOut
+    # picture_id: PictureOut
 
 
 class RestaurantList(BaseModel):
