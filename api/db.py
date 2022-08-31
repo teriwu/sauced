@@ -3,6 +3,7 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
+
 class RestaurantQueries:
     def get_restaurants(self):
         print("Got Restaurants")
@@ -113,6 +114,7 @@ class RestaurantQueries:
                     """,
                     [restaurant_id],
                 )
+
 
 class LocationQueries:
     def get_locations(self):
@@ -225,4 +227,101 @@ class LocationQueries:
                     WHERE id = %s
                     """,
                     [location_id],
+                )
+
+
+class PictureQueries:
+    def create_picture(self, picture):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO pictures (
+                        url
+                    )
+                    VALUES (%s)
+                    RETURNING id
+                    """,
+                    [picture.url]
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+    def get_pictures(self):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, url
+                    FROM pictures
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_picture(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, url
+                    FROM pictures
+                    WHERE id = %s
+                    """,
+                    [id]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def update_picture(self, picture, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE pictures
+                    SET url = %s
+                    WHERE id = %s
+                    RETURNING id, url
+                    """,
+                    [data.url, picture]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+    def delete_picture(self, picture_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM pictures
+                    WHERE id = %s
+                    """,
+                    [picture_id],
                 )
