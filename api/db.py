@@ -196,7 +196,6 @@ class LocationQueries:
                     "state": location.state,
                 }
                 return response
-                return record
 
     def update_location(self, location, data):
         with pool.connection() as conn:
