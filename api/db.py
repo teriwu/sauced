@@ -242,6 +242,7 @@ class LocationQueries:
                     [location_id],
                 )
 
+
 class PictureQueries:
     def create_picture(self, picture):
         with pool.connection() as conn:
@@ -263,8 +264,12 @@ class PictureQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                response = {
+                    "id": record["id"],
+                    "url": picture.url,
+                }
+                print(response)
+                return response
 
     def get_pictures(self):
         with pool.connection() as conn:
@@ -448,6 +453,7 @@ class CategoriesQueries:
                     """,
                     [category_id],
                 )
+
 
 class HourQueries:
     def get_hours(self):
