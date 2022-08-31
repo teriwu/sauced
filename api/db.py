@@ -70,8 +70,14 @@ class RestaurantQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                response = {
+                    "id": record["id"],
+                    "price": restaurant.price,
+                    "rating": restaurant.rating,
+                    "name": restaurant.name,
+                    "phone": restaurant.phone
+                }
+                return response
 
     def update_restaurant(self,restaurant, data):
         with pool.connection() as conn:
@@ -181,10 +187,17 @@ class LocationQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
+                response = {
+                    "id": record["id"],
+                    "address": location.address,
+                    "city": location.city,
+                    "zip_code": location.zip_code,
+                    "country": location.country,
+                    "state": location.state,
+                }
+                return response
 
-                return record
-
-    def update_restaurant(self, location, data):
+    def update_location(self, location, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
