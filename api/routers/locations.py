@@ -16,7 +16,7 @@ def locations_list(queries: LocationQueries = Depends()):
     }
 
 @router.get("/api/locations/{id}", response_model=LocationOut, tags=["Locations"])
-def get_locations(id: int, response: Response, queries: LocationQueries = Depends()):
+def get_location(id: int, response: Response, queries: LocationQueries = Depends()):
     record = queries.get_location(id)
     if record is None:
         response.status_code = 404
