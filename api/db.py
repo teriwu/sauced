@@ -243,20 +243,12 @@ class LocationQueries:
                 )
 
 
-<<<<<<< HEAD
 class PictureQueries:
     def create_picture(self, picture):
-=======
-
-class CategoriesQueries:
-    def get_categories(self):
-        print("Got Categories")
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-<<<<<<< HEAD
                     INSERT INTO pictures (
                         url
                     )
@@ -282,10 +274,6 @@ class CategoriesQueries:
                     """
                     SELECT id, url
                     FROM pictures
-=======
-                    SELECT id, title, alias
-                    FROM categories
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
                     """
                 )
 
@@ -298,16 +286,11 @@ class CategoriesQueries:
 
                 return results
 
-<<<<<<< HEAD
     def get_picture(self, id):
-=======
-    def get_category(self, id):
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-<<<<<<< HEAD
                     SELECT id, url
                     FROM pictures
                     WHERE id = %s
@@ -315,15 +298,6 @@ class CategoriesQueries:
                     [id]
                 )
 
-=======
-                    SELECT id, title, alias
-                    FROM categories
-                    WHERE id = %s
-                    """,
-                    [id],
-                )
-                
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -333,23 +307,86 @@ class CategoriesQueries:
                 
                 return record
 
-<<<<<<< HEAD
     def update_picture(self, picture, data):
-=======
-    def create_category(self, category):
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-<<<<<<< HEAD
                     UPDATE pictures
                     SET url = %s
                     WHERE id = %s
                     RETURNING id, url
                     """,
                     [data.url, picture]
-=======
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+    def delete_picture(self, picture_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM pictures
+                    WHERE id = %s
+                    """,
+                    [picture_id],
+                )
+
+
+class CategoriesQueries:
+    def get_categories(self):
+        print("Got Categories")
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_category(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def create_category(self, category):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
                     INSERT INTO categories (
                         title, alias
                     )
@@ -387,7 +424,6 @@ class CategoriesQueries:
                         data.alias,
                         category
                     ]
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
                 )
 
                 record = None
@@ -398,26 +434,14 @@ class CategoriesQueries:
                         record[column.name] = row[i]
                 return record
 
-<<<<<<< HEAD
-    def delete_picture(self, picture_id):
-=======
 
     def delete_category(self, category_id):
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-<<<<<<< HEAD
-                    DELETE FROM pictures
-                    WHERE id = %s
-                    """,
-                    [picture_id],
-                )
-=======
                     DELETE FROM categories
                     WHERE id = %s
                     """,
                     [category_id],
                 )
->>>>>>> 45edcdca06f7f98209f84bbc064b35e852a9e54a
