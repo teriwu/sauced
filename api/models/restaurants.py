@@ -1,4 +1,3 @@
-from optparse import Option
 from pydantic import BaseModel
 from typing import Optional
 
@@ -15,14 +14,12 @@ class RestaurantIn(BaseModel): #POST
     phone: str
 
 
-
 class RestaurantOut(BaseModel): # GET
     id: Optional[int]
     price: Optional[str]
     rating: Optional[float]
     name: Optional[str]
     phone: Optional[str]
-
 
 
 class RestaurantList(BaseModel):
