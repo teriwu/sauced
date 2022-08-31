@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.post("/api/pictures", response_model=PictureOut, tags=["Pictures"])
 def create_picture(picture: PictureIn, queries: PictureQueries = Depends()):
-    queries.create_picture(picture)
+    return queries.create_picture(picture)
 
 
 @router.get("/api/pictures", response_model=PictureList, tags=["Pictures"])
