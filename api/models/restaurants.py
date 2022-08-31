@@ -14,14 +14,12 @@ class RestaurantIn(BaseModel): #POST
     phone: str
 
 
-
 class RestaurantOut(BaseModel): # GET
     id: int
     price: str
     rating: float
     name: str
     phone: str
-
 
 
 class RestaurantList(BaseModel):

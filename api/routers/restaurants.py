@@ -7,8 +7,8 @@ from models.restaurants import(
     RestaurantDeleteOperation
 )
 
-
 router = APIRouter()
+
 
 @router.get("/api/restaurants", response_model=RestaurantList, tags=["Restaurants"])
 def restaurants_list(queries: RestaurantQueries = Depends()):
@@ -30,6 +30,7 @@ def get_restaurant(id: int, response: Response, queries: RestaurantQueries = Dep
 def create_restaurant(restaurant: RestaurantIn, queries: RestaurantQueries = Depends()):
     return queries.create_restaurant(restaurant)
 
+
 @router.put("/api/restaurants/{id}", response_model = RestaurantOut, tags =["Restaurants"])
 def update_restaurant(
     restaurant_id: int,
@@ -42,6 +43,7 @@ def update_restaurant(
         response.status_code = 404
     else:
         return record
+
 
 @router.delete("/api/restaurants/{id}", response_model=RestaurantDeleteOperation, tags=["Restaurants"])
 def delete_restaurant(restaurant_id: int, queries: RestaurantQueries = Depends()):
