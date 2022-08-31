@@ -3,6 +3,7 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
+
 class RestaurantQueries:
     def get_restaurants(self):
         print("Got Restaurants")
@@ -70,8 +71,14 @@ class RestaurantQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                response = {
+                    "id": record["id"],
+                    "price": restaurant.price,
+                    "rating": restaurant.rating,
+                    "name": restaurant.name,
+                    "phone": restaurant.phone
+                }
+                return response
 
     def update_restaurant(self,restaurant, data):
         with pool.connection() as conn:
@@ -113,6 +120,7 @@ class RestaurantQueries:
                     """,
                     [restaurant_id],
                 )
+
 
 class LocationQueries:
     def get_locations(self):
@@ -225,6 +233,213 @@ class LocationQueries:
                     WHERE id = %s
                     """,
                     [location_id],
+                )
+
+class PictureQueries:
+    def create_picture(self, picture):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO pictures (
+                        url
+                    )
+                    VALUES (%s)
+                    RETURNING id
+                    """,
+                    [picture.url]
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+    def get_pictures(self):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, url
+                    FROM pictures
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_picture(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, url
+                    FROM pictures
+                    WHERE id = %s
+                    """,
+                    [id]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def update_picture(self, picture, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE pictures
+                    SET url = %s
+                    WHERE id = %s
+                    RETURNING id, url
+                    """,
+                    [data.url, picture]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+    def delete_picture(self, picture_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM pictures
+                    WHERE id = %s
+                    """,
+                    [picture_id],
+                )
+
+
+class CategoriesQueries:
+    def get_categories(self):
+        print("Got Categories")
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_category(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def create_category(self, category):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO categories (
+                        title, alias
+                    )
+                    VALUES (%s, %s)
+                    RETURNING id
+                    """,
+                    [
+                        category.title,
+                        category.alias,
+                    ],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                response = {
+                    "id": record["id"],
+                    "title": category.title,
+                    "alias": category.alias,
+                }
+                return response
+
+    def update_category(self,category, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE categories
+                    SET title = %s
+                      , alias = %s
+                    WHERE id = %s
+                    RETURNING id, title, alias
+                    """,
+                    [
+                        data.title,
+                        data.alias,
+                        category
+                    ]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+
+    def delete_category(self, category_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM categories
+                    WHERE id = %s
+                    """,
+                    [category_id],
                 )
 
 class HourQueries:
