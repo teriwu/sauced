@@ -8,8 +8,8 @@ class CategoriesIn(BaseModel): #POST
 
 class CategoriesOut(BaseModel): # GET
     id: Optional[int]
-    title: str
-    alias: str
+    title: Optional[str]
+    alias: Optional[str]
 
 class CategoriesList(BaseModel):
     # page_count: int

@@ -4,6 +4,7 @@ import os
 
 from routers import (
     restaurants as psql_restaurants,
+    categories as psql_categories,
 )
 
 app = FastAPI()
@@ -23,3 +24,4 @@ app.add_middleware(
 
 # PostgreSQL endpoints
 app.include_router(psql_restaurants.router)
+app.include_router(psql_categories.router)

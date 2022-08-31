@@ -226,3 +226,111 @@ class LocationQueries:
                     """,
                     [location_id],
                 )
+
+
+
+class CategoriesQueries:
+    def get_categories(self):
+        print("Got Categories")
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_category(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, alias
+                    FROM categories
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def create_category(self, category):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO categories (
+                        title, alias
+                    )
+                    VALUES (%s, %s)
+                    RETURNING id
+                    """,
+                    [
+                        category.title,
+                        category.alias,
+                    ],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+    def update_category(self,category, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE categories
+                    SET title = %s
+                      , alias = %s
+                    WHERE id = %s
+                    RETURNING id, title, alias
+                    """,
+                    [
+                        data.title,
+                        data.alias,
+                        category
+                    ]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+
+    def delete_category(self, category_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM categories
+                    WHERE id = %s
+                    """,
+                    [category_id],
+                )
