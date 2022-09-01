@@ -1,3 +1,7 @@
+## Wednesday, August 31, 2022
+
+I worked on creating the initial import of hte frontend using React
+
 ## Tuesday, August 30, 2022
 
 We worked on:
