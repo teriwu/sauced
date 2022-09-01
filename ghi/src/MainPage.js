@@ -1,13 +1,9 @@
-/* Taken from conference-go */
-function MainPage() {
+import React from 'react';
+
+class MainPage extends React.Component {
+  render () {
     return (
       <>
-        <div className="my-5 containerw">
-          <div className="input-group">
-              <input type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-              <button type="button" className="btn btn-outline-secondary">Search</button>
-          </div>
-        </div>
         <div className="px-4 py-5 my-5 text-center">
           <h1 className="display-5 fw-bold">LOST IN THE SAUCE</h1>
           <div className="col-lg-6 mx-auto">
@@ -19,6 +15,7 @@ function MainPage() {
       </>
     );
   }
-  
+}
+
   export default MainPage;
   
