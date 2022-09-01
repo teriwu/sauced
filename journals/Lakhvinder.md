@@ -1,3 +1,6 @@
+## Sept 1, 2022
+* Today as a group we tried to merge our widgets but ran into some road blocks, so we decided to take a pause on in to work a little bit on our front end.
+
 ## August 30, 2022
 * Today we solved our delete issue with our restaurant widget. Also worked and finished the category widget backend stuff.
 
