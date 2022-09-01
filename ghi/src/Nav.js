@@ -18,6 +18,9 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/restaurants/new">New Restaurant</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
+            </li>
           </ul>
         </div>
       </div>
