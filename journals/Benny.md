@@ -1,3 +1,9 @@
+## Wednesday, August 31, 2022
+--
+* Merged and pulled files from teammates on gitlab
+* Have all individual databases working but may be set to change due to conflicts
+* Plan to start on the React front-end tomorrow
+
 ## Tuesday, August 30, 2022
 ---
 * Completed location backend database
