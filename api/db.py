@@ -11,7 +11,7 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone
+                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
                     FROM restaurants
                     """
                 )
@@ -30,7 +30,7 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone
+                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
                     FROM restaurants
                     WHERE id = %s
                     """,
@@ -52,9 +52,9 @@ class RestaurantQueries:
                 cur.execute(
                     """
                     INSERT INTO restaurants (
-                        price, rating, name, phone 
+                        price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
                     )
-                    VALUES (%s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     RETURNING id
                     """,
                     [
@@ -62,6 +62,15 @@ class RestaurantQueries:
                         restaurant.rating,
                         restaurant.name,
                         restaurant.phone,
+                        restaurant.address,
+                        restaurant.city,
+                        restaurant.zip_code,
+                        restaurant.country,
+                        restaurant.state,
+                        restaurant.start_,
+                        restaurant.end_,
+                        restaurant.day,
+                        restaurant.picture,
                     ],
                 )
                 
@@ -76,7 +85,16 @@ class RestaurantQueries:
                     "price": restaurant.price,
                     "rating": restaurant.rating,
                     "name": restaurant.name,
-                    "phone": restaurant.phone
+                    "phone": restaurant.phone,
+                    "address":restaurant.address,
+                    "city":restaurant.city,
+                    "zip_code":restaurant.zip_code,
+                    "country":restaurant.country,
+                    "state":restaurant.state,
+                    "start_":restaurant.start_,
+                    "end_":restaurant.end_,
+                    "day":restaurant.day,
+                    "picture":restaurant.picture,
                 }
                 return response
 
@@ -90,14 +108,32 @@ class RestaurantQueries:
                       , rating = %s
                       , name = %s
                       , phone = %s
+                      , address = %s
+                      , city = %s
+                      , zip_code = %s
+                      , country = %s
+                      , state = %s
+                      , start_ = %s
+                      , end_ = %s
+                      , day = %s
+                      , picture = %s
                     WHERE id = %s
-                    RETURNING id, price, rating, name, phone
+                    RETURNING id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
                     """,
                     [
                         data.price,
                         data.rating,
                         data.name,
                         data.phone,
+                        data.address,
+                        data.city,
+                        data.zip_code,
+                        data.country,
+                        data.state,
+                        data.start_,
+                        data.end_,
+                        data.day,
+                        data.picture,
                         restaurant
                     ]
                 )
@@ -108,6 +144,23 @@ class RestaurantQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
+                # response = {
+                #     "id": record["id"],
+                #     "price": restaurant.price,
+                #     "rating": restaurant.rating,
+                #     "name": restaurant.name,
+                #     "phone": restaurant.phone,
+                #     "address":restaurant.address,
+                #     "city":restaurant.city,
+                #     "zip_code":restaurant.zip_code,
+                #     "country":restaurant.country,
+                #     "state":restaurant.state,
+                #     "start_":restaurant.start_,
+                #     "end_":restaurant.end_,
+                #     "day":restaurant.day,
+                #     "picture":restaurant.picture,
+                # }
+                # return response
                 return record
 
     def delete_restaurant(self, restaurant_id):

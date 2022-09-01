@@ -37,7 +37,16 @@ CREATE TABLE public.restaurants (
     price TEXT NOT NULL,
     rating FLOAT DEFAULT 0,
     name TEXT NOT NULL,
-    phone TEXT NOT NULL
+    phone TEXT NOT NULL,
+    address TEXT NOT NULL,
+    city TEXT NOT NULL,
+    zip_code INTEGER NOT NULL,
+    country TEXT NOT NULL,
+    state TEXT NOT NULL,
+    start_ TEXT NOT NULL,
+    end_ TEXT NOT NULL,
+    day TEXT NOT NULL,
+    picture VARCHAR DEFAULT ''
     -- FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE,
     -- FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
     -- FOREIGN KEY (hour_id) REFERENCES hours(id) ON DELETE CASCADE,
@@ -58,7 +67,8 @@ CREATE TABLE reviews (
     id INTEGER NOT NULL PRIMARY KEY, 
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    reviewer_id INTEGER REFERENCES users("id") ON DELETE CASCADE,
-    rating INTEGER NOT NULL check(rating = 1 or rating = 2 or rating = 3 or rating = 4 or rating = 5),
-    restaurant_id INTEGER NOT NULL REFERENCES restaurants("id") ON DELETE CASCADE
+    date TEXT NOT NULL
+    -- rating INTEGER NOT NULL check(rating = 1 or rating = 2 or rating = 3 or rating = 4 or rating = 5),
+    -- reviewer_id INTEGER REFERENCES users("id") ON DELETE CASCADE,
+    -- restaurant_id INTEGER NOT NULL REFERENCES restaurants("id") ON DELETE CASCADE
 );
