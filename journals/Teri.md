@@ -1,3 +1,9 @@
+## Thursday, September 1, 2022
+
+I worked on:
+* Creating a search bar in the [Nav](/ghi/src/Nav.js)
+    * Created an onChange handler for the input in search bar
+
 ## Wednesday, August 31, 2022
 
 I worked on creating the initial import of hte frontend using React
