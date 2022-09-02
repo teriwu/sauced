@@ -175,6 +175,82 @@ class RestaurantQueries:
                 )
 
 
+class ReviewQueries:
+    def get_reviews(self):
+        print("Got Reviews")
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, content, post_date, rating
+                    FROM reviews
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results    
+
+    def get_review(self, id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, title, content, post_date, rating
+                    FROM reviews
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                
+                return record
+
+    def create_review(self, review):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO reviews (
+                        title, content, rating
+                    )
+                    VALUES (%s, %s, %s)
+                    RETURNING id
+                    """,
+                    [
+                        review.title,
+                        review.content,
+                        review.rating,
+                    ],
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                response = {
+                    "id": record["id"],
+                    "title": review.title,
+                    "content": review.content,
+                    "rating": review.rating,
+                    "post_date": review.post_date,
+                }
+                return response
+
+
 class LocationQueries:
     def get_locations(self):
         with pool.connection() as conn:

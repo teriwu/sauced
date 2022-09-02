@@ -8,6 +8,7 @@ from routers import (
     pictures as psql_pictures,
     categories as psql_categories,
     locations as psql_locations,
+    reviews as psql_reviews,
 )
 
 app = FastAPI()
@@ -31,3 +32,4 @@ app.include_router(psql_hours.router)
 app.include_router(psql_pictures.router)
 app.include_router(psql_categories.router)
 app.include_router(psql_locations.router)
+app.include_router(psql_reviews.router)
