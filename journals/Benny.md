@@ -1,3 +1,8 @@
+## Thursday, September 1, 2022
+--
+* Created Restaurant lists and have it working via React
+* Creating skeleton for data on React before styling with bootstrap later on
+
 ## Wednesday, August 31, 2022
 --
 * Merged and pulled files from teammates on gitlab
