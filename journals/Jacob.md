@@ -1,4 +1,15 @@
 
+## Thursday, September 1, 2022
+* I completed the restaurantform.js
+
+## Wednesday, August 31, 2022
+* Completed the backend and made sure I was able to GET, POST, PUT, DELETE on the fastapi doc.
+
+## Tuesday, August 30, 2022
+We worked on:
+* Fixed a null issue we had. We realized we needed to have a response
+* We all assigned each member a specific backend task to complete
+
 ## Monday, August 29, 2022
 We worked on:
 * Worked on our .sql tables to see what was wrong
