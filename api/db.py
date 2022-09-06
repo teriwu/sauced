@@ -227,6 +227,11 @@ class ReviewQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
+                    for key, value in record.items():
+                        if key == 'post_date':
+                            print("the key is " + key)
+                            record['post_date'] = str(record['post_date'])
+                
                 return record
 
     def create_review(self, review):
@@ -262,6 +267,48 @@ class ReviewQueries:
                 }
                 return response
 
+    def update_review(self,review, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE reviews
+                    SET title = %s
+                      , content = %s
+                      , rating = %s
+                    WHERE id = %s
+                    RETURNING id, title, content, rating, post_date
+                    """,
+                    [
+                        data.title,
+                        data.content,
+                        data.rating,
+                        review
+                    ]
+                )
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    for key, value in record.items():
+                        if key == 'post_date':
+                            print("the key is " + key)
+                            record['post_date'] = str(record['post_date'])
+                return record
+
+
+    def delete_review(self, review_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM reviews
+                    WHERE id = %s
+                    """,
+                    [review_id],
+                )
 
 class LocationQueries:
     def get_locations(self):
