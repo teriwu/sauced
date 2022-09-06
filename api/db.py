@@ -1,7 +1,5 @@
 import os
 from psycopg_pool import ConnectionPool
-from datetime import datetime
-
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
@@ -193,7 +191,11 @@ class ReviewQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                    print(str(record['post_date']))
+                    for key, value in record.items():
+                        if key == 'post_date':
+                            print("the key is " + key)
+                            record['post_date'] = str(record['post_date'])
+                    print(type((record['post_date'])))
                     results.append(record)
                 print(results)
                 # print(results[post_date])
@@ -205,7 +207,7 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-                return results    
+                return results  
 
     def get_review(self, id):
         with pool.connection() as conn:
