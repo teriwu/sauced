@@ -193,7 +193,7 @@ class ReviewQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                    print(record['post_date']=datetime.date(record['post_date']))
+                    print(str(record['post_date']))
                     results.append(record)
                 print(results)
                 # print(results[post_date])
