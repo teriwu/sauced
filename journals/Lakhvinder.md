@@ -1,3 +1,9 @@
+## Sept 6, 2022
+* Today I manage to fix the get request for review and finished the rest of the reviews back end requests. Going to start looking into deployment now.
+
+## Sept 2, 2022
+* Today we had a little time to work and i worked on the reviews portion ogf the back end but ran into a problem with the get request
+
 ## Sept 1, 2022
 * Today as a group we tried to merge our widgets but ran into some road blocks, so we decided to take a pause on in to work a little bit on our front end.
 
