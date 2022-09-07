@@ -1,3 +1,14 @@
+## Tuesday, September 6, 2022
+
+No journal for yesterday (Labor Day)
+
+* Trying to make navbar from homepage work with input and filter results in the restaurants list page (frontend)
+
+## Friday, September 2, 2022
+
+* Had only one hour to work on module project due to mandatory fun
+    * Researched search inputs
+
 ## Thursday, September 1, 2022
 
 I worked on:
