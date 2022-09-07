@@ -10,7 +10,7 @@ from .pictures import PictureOut
 
 class RestaurantIn(BaseModel): #POST
     price: str
-    rating: float
+    rating: Optional[float]
     name: str
     phone: str
     address: str
@@ -29,7 +29,7 @@ class RestaurantIn(BaseModel): #POST
 class RestaurantOut(BaseModel): # GET
     id: int
     price: str
-    rating: float
+    rating: Optional[float]
     name: str
     phone: str
     address: str
