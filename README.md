@@ -29,6 +29,13 @@ People who enjoy discovering new and exciting restaurants at a specific location
 * search bar for locating restaurants
     * users can search by location(zip code, city, *near by, tags)
 
+## Getting Started
+```
+docker volume create postgres-data
+docker-compose build
+docker-compose up
+```
+
 ## API Sources
 
 * Multiple sources
