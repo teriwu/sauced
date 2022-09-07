@@ -37,7 +37,7 @@ class RestaurantList extends React.Component {
                     {this.state.restaurants.map(restaurant => {
                         return (
                             <tr key={restaurant.id}>
-                                <td><img src="https://via.placeholder.com/150" alt="restaurant img"></img>{restaurant.picture}</td>
+                                <td><img src={restaurant.picture} height="150" width="150"/></td>
                                 <td>{ restaurant.name }</td>
                                 <td>{ restaurant.city }</td>
                                 <td>{ restaurant.price }</td>
