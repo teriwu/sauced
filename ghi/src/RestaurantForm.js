@@ -5,7 +5,6 @@ class RestaurantForm extends React.Component {
         super(props)
         this.state = {
             price: '',
-            rating: '',
             name: '',
             phone:'',
             address: '',
@@ -19,7 +18,6 @@ class RestaurantForm extends React.Component {
             picture: '',
         }
         this.handlePriceChange = this.handlePriceChange.bind(this)
-        this.handleRatingChange = this.handleRatingChange.bind(this)
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handlePhoneChange = this.handlePhoneChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
@@ -42,6 +40,7 @@ class RestaurantForm extends React.Component {
         event.preventDefault();
         const data= {...this.state};
         const restaurantUrl = 'http://localhost:8000/api/restaurants/';
+        console.log(data, "adfasdfasd")
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -50,12 +49,12 @@ class RestaurantForm extends React.Component {
             },
 
         };
+        
         const response = await fetch(restaurantUrl, fetchConfig);
         if (response.ok) {
             const newRestaurant = await response.json();
             const cleared = {
                 price: '',
-                rating: '',
                 name: '',
                 phone: '',
                 address: '',
@@ -76,10 +75,6 @@ class RestaurantForm extends React.Component {
     handlePriceChange(event) {
         const value = event.target.value;
         this.setState({price: value})
-    }
-    handleRatingChange(event) {
-        const value = event.target.value;
-        this.setState({rating: value})
     }
     handleNameChange(event) {
         const value = event.target.value;
@@ -138,10 +133,6 @@ class RestaurantForm extends React.Component {
                   <div className="form-floating mb-3">
                     <input onChange={this.handlePriceChange} value={this.state.price} placeholder="Price" required type="text" name="price" id="price" className="form-control" />
                     <label htmlFor="price">Price</label>
-                  </div>
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handleRatingChange} value={this.state.rating} placeholder="Rating" required type="number" name="rating" id="rating" min="1" max="5" className="form-control" />
-                    <label htmlFor="rating">Rating</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />

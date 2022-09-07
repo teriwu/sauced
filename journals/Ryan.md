@@ -1,7 +1,7 @@
 
 
 ## 9/1/22
-* 
+* I began working on the user side of the project. Created models and routers for User.
 
 ## 8/31/22
 * Discussed some table joining options. Planning to discuss with team about a stretch goal that I can focus on as my main contribution to the project.
