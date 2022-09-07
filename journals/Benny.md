@@ -1,3 +1,9 @@
+## Tuesday, September 6, 2022
+--
+* Update Restaurant list to show picture
+* Temporarily using a placeholder until that is complete
+* Changing up front-end goals
+
 ## Thursday, September 1, 2022
 --
 * Created Restaurant lists and have it working via React
