@@ -14,7 +14,7 @@ class ReviewForm extends React.Component {
 
     }
 
-    async handleSubmit(event) {
+    async handleSubmitChange(event) {
         event.preventDefault();
         const data = {...this.state};
         const reviewUrl = 'http://localhost:8000/api/reviews/';
@@ -67,8 +67,8 @@ class ReviewForm extends React.Component {
                     <label htmlFor="title">Title</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleContentChange} value={this.state.content} placeholder="Content" required type="text" name="content" id="content" className="form-control" />
-                    <label htmlFor="content">Content</label>
+                    <textarea className="form-control-lg" rows= "5" cols= "44" onChange={this.handleContentChange} value={this.state.content} required type="text" name="content" id="content"></textarea>
+                    <label htmlFor="content">Leave a Review</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleRatingChange} value={this.state.rating} placeholder="Rating" required type="number" name="rating" id="rating" min="1" max="5" className="form-control" />
@@ -83,4 +83,4 @@ class ReviewForm extends React.Component {
       }
     }
     
-    export default RestaurantForm;
+    export default ReviewForm;
