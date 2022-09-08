@@ -47,6 +47,9 @@ class Nav extends React.Component {
                   <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
                 </li>
                 <li className="nav-item">
+                  <NavLink className="nav-link active" aria-current="page" to="/users/new">Account</NavLink>
+                </li>
+                <li className="nav-item">
                   <div className="input-group">
 
                     <input onChange={this.handleChangeSearch} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
