@@ -10,7 +10,20 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    SELECT id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     FROM restaurants
                     """
                 )
@@ -181,8 +194,28 @@ class ReviewQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, title, content, post_date, rating
-                    FROM reviews
+                    SELECT res.id
+                    , res.price
+                    , res.rating
+                    , res.name
+                    , res.phone
+                    , res.address
+                    , res.city
+                    , res.zip_code
+                    , res.country
+                    , res.state
+                    , res.start_
+                    , res.end_
+                    , res.day
+                    , res.picture
+                    , rev.id
+                    , rev.title
+                    , rev.content
+                    , rev.post_date
+                    , rev.rating         
+                    FROM restaurants res
+                    JOIN reviews rev ON(res.id = rev.restaurant_id)
+
                     """
                 )
 
@@ -240,32 +273,39 @@ class ReviewQueries:
                 cur.execute(
                     """
                     INSERT INTO reviews (
-                        title, content, rating
+                        title, content, rating, restaurant_id
                     )
-                    VALUES (%s, %s, %s)
+                    VALUES (%s, %s, %s, %s)
                     RETURNING id
                     """,
                     [
                         review.title,
                         review.content,
                         review.rating,
+                        review.restaurant_id,
                     ],
                 )
                 
-                record = None
                 row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                response = {
-                    "id": record["id"],
-                    "title": review.title,
-                    "content": review.content,
-                    "rating": review.rating,
-                    "post_date": review.post_date,
-                }
-                return response
+                id = row[0]
+        if id is not None:
+            return self.get_review(id)
+                # record = None
+                # row = cur.fetchone()
+                # if row is not None:
+                #     record = {}
+                #     for i, column in enumerate(cur.description):
+                #         record[column.name] = row[i]
+                # response = {
+                #     "id": record["id"],
+                #     "title": review.title,
+                #     "content": review.content,
+                #     "rating": review.rating,
+                #     "post_date": review.post_date,
+                #     "restaurant_id": review.restaurant_id,
+                # }
+                # print(response)
+                # return response
 
     def update_review(self,review, data):
         with pool.connection() as conn:
