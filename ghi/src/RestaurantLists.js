@@ -31,6 +31,7 @@ class RestaurantList extends React.Component {
                         <th>Location</th>
                         <th>Price</th>
                         <th>Rating</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,7 @@ class RestaurantList extends React.Component {
                                 <td>{ restaurant.city }</td>
                                 <td>{ restaurant.price }</td>
                                 <td>{ restaurant.rating }</td>
+                                <td><Link to="" className="btn btn-info btn-sm px-4 gap-3">Get directions</Link></td>
                             </tr>
                         )
                     })}
