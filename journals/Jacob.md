@@ -1,3 +1,13 @@
+## Wednesday, September 7, 2022
+* I finished the reviewform
+* I fixed the issue that I was having on the restaurant form
+
+## Tuesday, September 6, 2022
+* I worked on the reviewform.js
+* Altered the restaurantform and had a little issue
+
+## Friday, September 2, 2022
+* I started working on the reviewform.js
 
 ## Thursday, September 1, 2022
 * I completed the restaurantform.js

@@ -207,7 +207,7 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-                return results  
+                return results    
 
     def get_review(self, id):
         with pool.connection() as conn:
@@ -232,8 +232,8 @@ class ReviewQueries:
                             print("the key is " + key)
                             record['post_date'] = str(record['post_date'])
                 
-                return record
-
+                return record      
+                
     def create_review(self, review):
         with pool.connection() as conn:
             with conn.cursor() as cur:

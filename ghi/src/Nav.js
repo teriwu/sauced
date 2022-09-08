@@ -46,6 +46,7 @@ class Nav extends React.Component {
                 <li className="nav-item">
                   <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
                 </li>
+                  <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
                 <li className="nav-item">
                   <NavLink className="nav-link active" aria-current="page" to="/users/new">Account</NavLink>
                 </li>
