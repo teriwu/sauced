@@ -63,7 +63,7 @@ CREATE TABLE users (
     username TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE reviews (
+CREATE TABLE public.reviews (
     id SERIAL NOT NULL UNIQUE, 
     title TEXT NOT NULL,
     content TEXT NOT NULL,
