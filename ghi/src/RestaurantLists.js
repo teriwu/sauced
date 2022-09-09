@@ -31,17 +31,21 @@ class RestaurantList extends React.Component {
                         <th>Location</th>
                         <th>Price</th>
                         <th>Rating</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {this.state.restaurants.map(restaurant => {
                         return (
                             <tr key={restaurant.id}>
-                                <td><img src="https://via.placeholder.com/150" alt="restaurant img"></img>{restaurant.picture}</td>
+                                <td><img src={restaurant.picture} height="150" width="150"/></td>
                                 <td>{ restaurant.name }</td>
                                 <td>{ restaurant.city }</td>
                                 <td>{ restaurant.price }</td>
                                 <td>{ restaurant.rating }</td>
+                                <td><Link to="" className="btn btn-info btn-sm px-4 gap-3">Get directions</Link></td>
+                                <td><Link to="/reviews/new" className="btn btn-info btn-sm px-4 gap-3">Write a Review</Link></td>
                             </tr>
                         )
                     })}

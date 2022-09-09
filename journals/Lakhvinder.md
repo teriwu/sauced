@@ -1,3 +1,6 @@
+## Sept 7, 2022
+* Today i worked on trying to hointhe reviews and restaurant models. Havent finished it yet but still working on it.
+
 ## Sept 6, 2022
 * Today I manage to fix the get request for review and finished the rest of the reviews back end requests. Going to start looking into deployment now.
 
