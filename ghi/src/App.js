@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { MainContext } from './MainContext';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import RestaurantForm from './RestaurantForm';
 import RestaurantList from './RestaurantLists';
-
+import RestaurantForm from './RestaurantForm';
+import ReviewForm from './ReviewForm';
 
 function App() {
 
@@ -30,9 +30,10 @@ function App() {
       <Nav />
       <div className="container">
         <Routes>
-          <Route path="/" element={<MainPage />} />   
-          <Route path="/restaurants/new" element={<RestaurantForm />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/restaurants" element={<RestaurantList />} />
+          <Route path="/restaurants/new" element={<RestaurantForm />} />
+          <Route path="/reviews/new" element={<ReviewForm />} />
         </Routes>
       </div>
     </BrowserRouter>

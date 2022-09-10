@@ -1,3 +1,8 @@
+## Wednesday, September 7, 2022
+--
+* Added images to restaurant list
+* Added features on main page 
+
 ## Tuesday, September 6, 2022
 --
 * Update Restaurant list to show picture

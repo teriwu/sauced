@@ -63,13 +63,13 @@ CREATE TABLE users (
     username TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE reviews (
+CREATE TABLE public.reviews (
     id SERIAL NOT NULL UNIQUE, 
     title TEXT NOT NULL,
     content TEXT NOT NULL,
     post_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    rating INTEGER DEFAULT 5
+    rating INTEGER DEFAULT 5,
     -- rating INTEGER NOT NULL check(rating = 1 or rating = 2 or rating = 3 or rating = 4 or rating = 5),
     -- reviewer_id INTEGER REFERENCES users("id") ON DELETE CASCADE,
-    -- restaurant_id INTEGER NOT NULL REFERENCES restaurants("id") ON DELETE CASCADE
+    restaurant_id INTEGER NOT NULL REFERENCES restaurants("id") ON DELETE CASCADE
 );
