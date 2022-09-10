@@ -8,7 +8,6 @@ function RestaurantList() {
 
     return (
         <>
-        {console.log("Hello", dataArr)}
         <h1>Restaurants</h1>
         <table className="table table-striped">
             <thead>
