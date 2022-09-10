@@ -22,6 +22,18 @@ function Nav() {
     navigate("/restaurants");
   }
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      setMatchingResults(matchingResults => ([]));
+      for(let i = 0; i < dataArr.length; i++) {
+        if (dataArr[i].name.toLowerCase() === search.toLowerCase()) {
+          setMatchingResults(matchingResults => [...matchingResults, dataArr[i]])
+        }
+      }
+      navigate("/restaurants");
+    }
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -42,11 +54,11 @@ function Nav() {
                 <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
               </li>
               <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
               </li>
-                  <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
               <li className="nav-item">
                 <div className="input-group">
-                  <input value={search} onChange={e => setSearch(e.target.value)} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
+                  <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
                   <button onClick={handleClick} type="button" className="btn btn-outline-secondary">Search</button>
                 </div>
               </li>
