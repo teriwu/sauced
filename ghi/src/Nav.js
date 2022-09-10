@@ -12,8 +12,10 @@ function Nav() {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    setMatchingResults(matchingResults => ([]));
+    console.log("MATCHING RESULTS:", matchingResults);
     for(let i = 0; i < dataArr.length; i++) {
-      if (dataArr[i].name === search) {
+      if (dataArr[i].name.toLowerCase() === search.toLowerCase()) {
         setMatchingResults(matchingResults => [...matchingResults, dataArr[i]])
       }
     }
