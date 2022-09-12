@@ -31,27 +31,27 @@ def test_get_restaurant_returns_404():
     app.dependency_overrides = {}
 
 
-def test_get_category_returns_200():
-    # ARRANGE
-    app.dependency_overrides[RestaurantQueries] = NormalRestaurantQueries
-    # ACT
-    response = client.get("/api/restaurants/1")
-    d = response.json()
-    # ASSERT
-    assert response.status_code == 200
-    assert d["id"] == 1
-    assert d["price"] == "OUR CATEGORY"
-    assert d["rating"] == 2
-    assert d["name"] == "Carls"
-    assert d["phone"] == "123-456-7980"
-    assert d["address"] == "123 street"
-    assert d["city"] == "Sacramento"
-    assert d["zip_code"] == 2
-    assert d["country"] == "USA"
-    assert d["state"] == "Cali"
-    assert d["start_"] == "1"
-    assert d["end_"] == "2"
-    assert d["day"] == "Wed"
-    assert d["picture"] == ".com"
-    # CLEAN UP
-    app.dependency_overrides = {}
+# def test_get_category_returns_200():
+#     # ARRANGE
+#     app.dependency_overrides[RestaurantQueries] = NormalRestaurantQueries
+#     # ACT
+#     response = client.get("/api/restaurants/1")
+#     d = response.json()
+#     # ASSERT
+#     assert response.status_code == 200
+#     assert d["id"] == 1
+#     assert d["price"] == "OUR CATEGORY"
+#     assert d["rating"] == 2
+#     assert d["name"] == "Carls"
+#     assert d["phone"] == "123-456-7980"
+#     assert d["address"] == "123 street"
+#     assert d["city"] == "Sacramento"
+#     assert d["zip_code"] == 2
+#     assert d["country"] == "USA"
+#     assert d["state"] == "Cali"
+#     assert d["start_"] == "1"
+#     assert d["end_"] == "2"
+#     assert d["day"] == "Wed"
+#     assert d["picture"] == ".com"
+#     # CLEAN UP
+#     app.dependency_overrides = {}
