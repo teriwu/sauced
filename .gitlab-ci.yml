@@ -47,3 +47,11 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
+restaurant-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - cd api
+    - pip install -r requirements.txt
+    - python -m pytest
