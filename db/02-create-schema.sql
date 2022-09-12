@@ -55,7 +55,7 @@ CREATE TABLE public.restaurants (
 
 
 CREATE TABLE users (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     password VARCHAR NOT NULL,
     first TEXT NOT NULL, 
     last TEXT NOT NULL,

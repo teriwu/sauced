@@ -803,15 +803,15 @@ class UserQueries:
                 cur.execute(
                     """
                     INSERT INTO users (
-                        password, first_name, last_name, email, username
+                        password, first, last, email, username
                     )
                     VALUES (%s, %s, %s, %s, %s)
                     RETURNING id
                     """,
                     [
                         user.password,
-                        user.first_name,
-                        user.last_name,
+                        user.first,
+                        user.last,
                         user.email,
                         user.username,
                     ],
@@ -826,8 +826,8 @@ class UserQueries:
                 response = {
                     "id": record["id"],
                     "password": user.password,
-                    "first_name": user.first_name,
-                    "last_name": user.last_name,
+                    "first": user.first,
+                    "last": user.last,
                     "email": user.email,
                     "username": user.username,
                 }
@@ -865,13 +865,13 @@ class UserQueries:
                         record[column.name] = row[i]
                 return record
 
-    def delete_user(self, user_id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    DELETE FROM users
-                    WHERE id = %s
-                    """,
-                    [user_id],
-                )
+#    def delete_user(self, user_id):
+#        with pool.connection() as conn:
+#            with conn.cursor() as cur:
+#                cur.execute(
+#                    """
+#                    DELETE FROM users
+#                    WHERE id = %s
+#                    """,
+#                    [user_id],
+#                )
