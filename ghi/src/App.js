@@ -4,6 +4,7 @@ import Nav from './Nav';
 import RestaurantList from './RestaurantLists';
 import RestaurantForm from './RestaurantForm';
 import ReviewForm from './ReviewForm';
+import Map from './map';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/restaurants" element={<RestaurantList />} />
           <Route path="/restaurants/new" element={<RestaurantForm />} />
           <Route path="/reviews/new" element={<ReviewForm />} />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </div>
     </BrowserRouter>
