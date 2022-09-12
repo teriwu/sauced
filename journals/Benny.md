@@ -7,6 +7,7 @@
 --
 * Started working on Google Maps
 * Got API and trying to add maps onto front-end
+* Create new branch to work on Google Maps
 
 ## Wednesday, September 7, 2022
 --
