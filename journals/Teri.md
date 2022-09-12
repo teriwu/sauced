@@ -1,3 +1,8 @@
+## Wednesday, September 7, 2022 - Friday, September 9, 2022
+
+* Researched React to work on search bar and redirect
+* Search bar successfully renders input from search bar
+
 ## Tuesday, September 6, 2022
 
 No journal for yesterday (Labor Day)
