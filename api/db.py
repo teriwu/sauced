@@ -879,12 +879,8 @@ class HourQueries:
                     WHERE id = %s
                     RETURNING id, is_overnight, end_, day, start_
                     """,
-                    [data.is_overnight
-                    ,data.end_
-                    ,data.day
-                    ,data.start_
-                    ,hour]
-                    )
+                    [data.is_overnight, data.end_, data.day, data.start_, hour],
+                )
 
                 record = None
                 row = cur.fetchone()
