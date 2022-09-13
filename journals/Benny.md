@@ -1,3 +1,9 @@
+## Monday, September 12, 2022
+--
+* Added input box and filled it with data
+* Autocomplete feature when typing in a map destination
+* Added a marker and can reset map positioning
+
 ## Friday, September 9, 2022
 --
 * Got Google Maps to load on front-end
