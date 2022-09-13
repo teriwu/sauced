@@ -16,8 +16,6 @@ lint-job:
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
-  variables:
-    - DATABASE_URL: postgresql://sauce_user:abcd@postgres/sauce_db
   script:
     - cd ghi
     - npm install
