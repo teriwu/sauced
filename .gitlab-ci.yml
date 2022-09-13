@@ -11,13 +11,13 @@ lint-job:
     - pip install flake8
     - flake8 api/db.py
 
-# build-front-end-job:
-#   stage: build
-#   image: node:lts-bullseye
-#   script:
-#     - cd ghi
-#     - npm install
-#     - npm run build
+build-front-end-job:
+  stage: build
+  image: node:lts-bullseye
+  script:
+    - cd ghi
+    - npm install
+    - npm run build
 
 # restaurant-unit-test-job:
 #   image: python:3-bullseye
