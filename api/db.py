@@ -297,7 +297,6 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-
     def get_review(self, id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -881,11 +880,11 @@ class HourQueries:
                     RETURNING id, is_overnight, end_, day, start_
                     """,
                     [data.is_overnight
-                    , data.end_
-                    , data.day
-                    , data.start_
-                    , hour],
-                )
+                    ,data.end_
+                    ,data.day
+                    ,data.start_
+                    ,hour]
+                    )
 
                 record = None
                 row = cur.fetchone()
