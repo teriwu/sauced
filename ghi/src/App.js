@@ -43,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/restaurants" element={<RestaurantList />} />
+            <Route path="/restaurants" element={<RestaurantList setRestaurant={setRestaurant} />} />
             <Route path="/restaurants/new" element={<RestaurantForm />} />
             <Route path="/reviews/new" element={<ReviewForm />} />
             <Route path="/users/new" element={<UserForm />} />
