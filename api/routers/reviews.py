@@ -27,11 +27,11 @@ def get_review(
     id: int,
     response: Response,
     queries: ReviewQueries = Depends()):
-        record = queries.get_review(id)
-        if record is None:
-            response.status_code = 404
-        else:
-            return record
+    record = queries.get_review(id)
+    if record is None:
+        response.status_code = 404
+    else:
+        return record
 
 
 @router.post(
