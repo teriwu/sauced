@@ -4,7 +4,7 @@ import os
 
 from routers import (
     restaurants as psql_restaurants,
-    #hours as psql_hours,
+    # hours as psql_hours,
     pictures as psql_pictures,
     categories as psql_categories,
     locations as psql_locations,
@@ -28,7 +28,7 @@ app.add_middleware(
 
 # PostgreSQL endpoints
 app.include_router(psql_restaurants.router)
-#app.include_router(psql_hours.router)
+# app.include_router(psql_hours.router)
 app.include_router(psql_pictures.router)
 app.include_router(psql_categories.router)
 app.include_router(psql_locations.router)
