@@ -43,7 +43,20 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    SELECT id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     FROM restaurants
                     WHERE id = %s
                     """,
@@ -65,9 +78,33 @@ class RestaurantQueries:
                 cur.execute(
                     """
                     INSERT INTO restaurants (
-                        price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                        price
+                        , rating
+                        , name
+                        , phone
+                        , address
+                        , city
+                        , zip_code
+                        , country
+                        , state
+                        , start_
+                        , end_
+                        , day
+                        , picture
                     )
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    VALUES (%s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s)
                     RETURNING id
                     """,
                     [
