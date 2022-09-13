@@ -16,6 +16,7 @@ function App() {
   const [currentRestaurant, setRestaurant] = useState({});
   
 
+  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/restaurants")
     .then(res => res.json())
@@ -29,7 +30,7 @@ function App() {
     <MainContext.Provider value ={{
       matchingResults, setMatchingResults,
       dataArr, setDataArr,
-      currentRestaurant, setRestaurant
+      currentRestaurant, setRestaurant,
     }}>
     <BrowserRouter>
       <Nav />
