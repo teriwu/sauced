@@ -60,7 +60,8 @@ CREATE TABLE users (
     first TEXT NOT NULL, 
     last TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    username TEXT NOT NULL UNIQUE
+    username TEXT NOT NULL UNIQUE,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE public.reviews (

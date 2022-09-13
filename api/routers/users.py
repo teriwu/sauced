@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, Response, status
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, Depends, Response #, status
+# from fastapi.middleware.cors import CORSMiddleware
 from db import UserQueries
 from models.users import UserIn, UserOut # UserList, UserDeleteOperation
 
@@ -34,6 +34,10 @@ def get_user(id: int, response: Response, queries: UserQueries = Depends()):
 @router.post("/api/users", response_model=UserIn, tags=["Users"])
 def create_user(user: UserIn, queries: UserQueries = Depends()):
     return queries.create_user(user)
+
+@router.post("/api/users/login", response_model=UserIn, tags=["Users"])
+def login(user: UserIn, queries: UserQueries = Depends()):
+    return queries.login(user)
 
 
 @router.put("/api/users/{id}", response_model=UserOut, tags=["Users"])

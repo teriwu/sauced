@@ -38,7 +38,7 @@ function App() {
           <Route path="/users/new" element={<UserForm />} />
           <Route path="/restaurants/new" element={<RestaurantForm />} />
           <Route path="/reviews/new" element={<ReviewForm />} />
-          <Route path="/api/users/{id}" element={<LogIn />} />
+          <Route path="/api/users/login" element={<LogIn />} />
         </Routes>
       </div>
     </BrowserRouter>

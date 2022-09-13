@@ -947,6 +947,27 @@ class UserQueries:
                 }
                 return response
 
+    def login(self, user, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, password, first_name, last_name, email, username FROM users
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+
     def update_user(self, user, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:

@@ -66,7 +66,7 @@ function Nav() {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/api/users/{id}">Log In</NavLink>
+                <NavLink className="nav-link active" aria-current="page" to="/api/users/login">Log In</NavLink>
               </li>
             </ul>
           </div>
