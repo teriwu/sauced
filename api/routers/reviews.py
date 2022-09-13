@@ -19,8 +19,7 @@ def reviews_list(queries: ReviewQueries = Depends()):
 @router.get(
     "/api/reviews/{id}",
     response_model=ReviewOut,
-    tags=["Reviews"]
-    )
+    tags=["Reviews"])
 def get_review(id: int, response: Response, queries: ReviewQueries = Depends()):
     record = queries.get_review(id)
     if record is None:
@@ -32,8 +31,7 @@ def get_review(id: int, response: Response, queries: ReviewQueries = Depends()):
 @router.post(
     "/api/reviews",
     response_model=ReviewOut,
-    tags=["Reviews"]
-    )
+    tags=["Reviews"])
 def create_review(review: ReviewIn, queries: ReviewQueries = Depends()):
     return queries.create_review(review)
 
@@ -41,8 +39,7 @@ def create_review(review: ReviewIn, queries: ReviewQueries = Depends()):
 @router.put(
     "/api/reviews/{id}",
     response_model=ReviewOut,
-    tags=["Reviews"]
-    )
+    tags=["Reviews"])
 def update_review(
     review_id: int,
     review_in: ReviewIn,
@@ -59,8 +56,7 @@ def update_review(
 @router.delete(
     "/api/reviews/{id}",
     response_model=ReviewDeleteOperation,
-    tags=["Reviews"]
-    )
+    tags=["Reviews"])
 def delete_review(review_id: int, queries: ReviewQueries = Depends()):
     try:
         queries.delete_review(review_id)
