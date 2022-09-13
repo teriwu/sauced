@@ -4,8 +4,7 @@ from models.reviews import (
     ReviewIn,
     ReviewOut,
     ReviewList,
-    ReviewDeleteOperation
-    )
+    ReviewDeleteOperation)
 
 router = APIRouter()
 
@@ -14,7 +13,7 @@ router = APIRouter()
     "/api/reviews",
     response_model=ReviewList,
     tags=["Reviews"]
-    )
+)
 def reviews_list(queries: ReviewQueries = Depends()):
     return {
         "reviews": queries.get_reviews(),
@@ -25,7 +24,10 @@ def reviews_list(queries: ReviewQueries = Depends()):
     "/api/reviews/{id}",
     response_model=ReviewOut,
     tags=["Reviews"])
-def get_review(id: int, response: Response, queries: ReviewQueries = Depends()):
+def get_review(
+    id: int,
+    response: Response,
+    queries: ReviewQueries = Depends()):
     record = queries.get_review(id)
     if record is None:
         response.status_code = 404
