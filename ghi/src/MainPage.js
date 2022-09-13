@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-class MainPage extends React.Component {
-  render () {
+const MainPage = () => {
+  
     return (
       <>
         <div className='container'>
@@ -22,7 +22,7 @@ class MainPage extends React.Component {
         </div>   
       </>
     );
-  }
+  
 }
 
   export default MainPage;
