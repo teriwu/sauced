@@ -11,7 +11,7 @@ import {
   Text,
   } from '@chakra-ui/react'
 import { GoogleMap, useJsApiLoader, DirectionsRenderer, Marker, Autocomplete } from "@react-google-maps/api";
-import { FaLocationArrow, FaTimes } from 'react-icons/fa'
+import { FaLocationArrow } from 'react-icons/fa'
 import { useState, useRef } from "react";
 
 const center = {
@@ -26,8 +26,44 @@ function Map() {
     })
 
     const [map, setMap] = React.useState( /** @type google.maps.Map */ (null))
+    const [directionsResponse, setDirectionsResponse] = useState('')
+    const [distance, setDistance] = useState('')
+    const [duration, setDuration] = useState('')
 
+    /** @type React.MutableRefObject<HTMLInputElement> */
+    const startRef = useRef()
+    /** @type React.MutableRefObject<HTMLInputElement> */
+    const endRef = useRef()
 
+    
+    async function calculateRoute() {
+      if (startRef.current.value === "" || endRef.current.value === "") {
+        return
+      }
+      document.getElementById("mode").addEventListener("change", () => {
+        calculateRoute(directionsService);
+      });
+      // eslint-disable-next-line no-undef
+      const directionsService = new google.maps.DirectionsService()
+      const selectedMode = document.getElementById("mode").value
+      const results = await directionsService.route({
+        origin: startRef.current.value,
+        destination: endRef.current.value,
+        // eslint-disable-next-line no-undef
+        travelMode: google.maps.TravelMode[selectedMode],
+      })
+      setDirectionsResponse(results)
+      setDistance(results.routes[0].legs[0].distance.text)
+      setDuration(results.routes[0].legs[0].duration.text)
+    };
+
+    function clearRoute() {
+      setDirectionsResponse(null)
+      setDistance('')
+      setDuration('')
+      startRef.current.value = ''
+      endRef.current.value = ''
+    }
 
     return isLoaded ? (
       <Flex
@@ -49,7 +85,7 @@ function Map() {
             onLoad={map => setMap(map)}
           >
             <Marker position={center} />
-            
+            {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
           </GoogleMap>
         </Box>
         <Box
@@ -64,30 +100,43 @@ function Map() {
           <HStack>
             <Box flexGrow={1}>
               <Autocomplete>
-                <Input type='text' placeholder='Start' />
+                <Input type='text' placeholder='Start' ref={startRef}/>
               </Autocomplete>
             </Box>
             <Box flexGrow={1}>
               <Autocomplete>
-                <Input type='text' placeholder='End' />
+                <Input type='text' placeholder='End' ref={endRef}/>
               </Autocomplete>
             </Box>
             <ButtonGroup>
-              <Button bgColor={'skyblue'} type="submit">
+              <Button bgColor={'skyblue'} type="submit" onClick={calculateRoute}>
                 Get directions
               </Button>
-              <Button bgColor={'red.500'} type="submit">
+              <Button bgColor={'red.500'} type="submit" onClick={clearRoute}>
                 Cancel
               </Button>
             </ButtonGroup>
           </HStack>
-          <HStack spacing={3} mt={3} justifyContent='space-between'>
-            <text>Distance: </text>
-            <text>Duration: </text>
+          <HStack spacing={3} mt={1} justifyContent='space-between'>
+            <text>Distance: {distance}</text>
+            <text>Duration: {duration}</text>
             <IconButton 
             icon={<FaLocationArrow />} 
             onClick={() => {map.panTo(center); map.setZoom(10)}}
             />
+          </HStack>
+          <HStack mt={1}>
+            <button id="mode" value="WALKING">Walking</button>
+            <button id="mode" value="DRIVING">Driving</button>
+            <button id="mode" value="BICYCLING">Bicycling</button>
+            <button id="mode" value="TRANSIT">Transit</button>
+            {/* <select class="form-control" id="mode">
+              <option value="">Select Mode</option>
+              <option value="WALKING">Walking</option>
+              <option value="DRIVING">Driving</option>
+              <option value="BICYCLING">Bicycling</option>
+              <option value="TRANSIT">Transit</option>
+            </select> */}
           </HStack>
         </Box>
       </Flex>
