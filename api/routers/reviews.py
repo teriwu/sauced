@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Depends, Response
 from db import ReviewQueries
-from models.reviews import ReviewIn, ReviewOut, ReviewList, ReviewDeleteOperation
+from models.reviews import (
+    ReviewIn,
+    ReviewOut,
+    ReviewList,
+    ReviewDeleteOperation
+    )
 
 router = APIRouter()
 
