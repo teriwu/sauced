@@ -793,110 +793,110 @@ class CategoriesQueries:
                 )
 
 
-class HourQueries:
-    def get_hours(self):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT id, is_overnight, end_, day, start_
-                    FROM hours
-                    """,
-                )
+# class HourQueries:
+#     def get_hours(self):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     SELECT id, is_overnight, end_, day, start_
+#                     FROM hours
+#                     """,
+#                 )
 
-                results = []
-                for row in cur.fetchall():
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    results.append(record)
-                return results
+#                 results = []
+#                 for row in cur.fetchall():
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                     results.append(record)
+#                 return results
 
-    def get_hour(self, id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT id, is_overnight, end_, day, start_
-                    FROM hours
-                    WHERE id = %s
-                    """,
-                    [id],
-                )
+#     def get_hour(self, id):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     SELECT id, is_overnight, end_, day, start_
+#                     FROM hours
+#                     WHERE id = %s
+#                     """,
+#                     [id],
+#                 )
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                return record
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                 return record
 
-    def create_hour(self, hour):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO hours (
-                        is_overnight, end_, day, start_
-                    )
-                    VALUES (%s, %s, %s, %s)
-                    RETURNING id
-                    """,
-                    [
-                        hour.is_overnight,
-                        hour.end_,
-                        hour.day,
-                        hour.start_,
-                    ],
-                )
+#     def create_hour(self, hour):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     INSERT INTO hours (
+#                         is_overnight, end_, day, start_
+#                     )
+#                     VALUES (%s, %s, %s, %s)
+#                     RETURNING id
+#                     """,
+#                     [
+#                         hour.is_overnight,
+#                         hour.end_,
+#                         hour.day,
+#                         hour.start_,
+#                     ],
+#                 )
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    response = {
-                        "id": record["id"],
-                        "is_overnight": hour.is_overnight,
-                        "end_": hour.end_,
-                        "day": hour.day,
-                        "start_": hour.start_,
-                    }
-                return response
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                     response = {
+#                         "id": record["id"],
+#                         "is_overnight": hour.is_overnight,
+#                         "end_": hour.end_,
+#                         "day": hour.day,
+#                         "start_": hour.start_,
+#                     }
+#                 return response
 
-    def update_hour(self, hour, data):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    UPDATE hours
-                    SET is_overnight = %s
-                    , end_ = %s
-                    , day = %s
-                    , start_ = %s
-                    WHERE id = %s
-                    RETURNING id, is_overnight, end_, day, start_
-                    """,
-                    [data.is_overnight, data.end_, data.day, data.start_, hour],
-                )
+#     def update_hour(self, hour, data):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     UPDATE hours
+#                     SET is_overnight = %s
+#                     , end_ = %s
+#                     , day = %s
+#                     , start_ = %s
+#                     WHERE id = %s
+#                     RETURNING id, is_overnight, end_, day, start_
+#                     """,
+#                     [data.is_overnight, data.end_, data.day, data.start_, hour],
+#                 )
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                return record
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                 return record
 
-    def delete_hour(self, hour_id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    DELETE FROM hours
-                    WHERE id = %s
-                    """,
-                    [hour_id],
-                )
+#     def delete_hour(self, hour_id):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     DELETE FROM hours
+#                     WHERE id = %s
+#                     """,
+#                     [hour_id],
+#                 )
