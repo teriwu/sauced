@@ -53,6 +53,7 @@ class RestaurantForm extends React.Component {
         const response = await fetch(restaurantUrl, fetchConfig);
         if (response.ok) {
             const newRestaurant = await response.json();
+            console.log(newRestaurant)
             const cleared = {
                 price: '',
                 name: '',
