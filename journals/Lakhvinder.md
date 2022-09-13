@@ -1,5 +1,14 @@
+## Sept 12, 2022
+* Today I started working on deployment by using the CI/CD cookbook. Wasnt able to fully deploy yet.
+
+## Sept 9, 2022
+* Today I worked on the reviews join and was able to pull restaurant info from the reviews.
+
+## Sept 8, 2022
+* Today I continued troubleshooting the join between the restaurants and reviews. Ran into some road blocks.
+
 ## Sept 7, 2022
-* Today i worked on trying to hointhe reviews and restaurant models. Havent finished it yet but still working on it.
+* Today I worked on trying to join the reviews and restaurant models. Havent finished it yet but still working on it.
 
 ## Sept 6, 2022
 * Today I manage to fix the get request for review and finished the rest of the reviews back end requests. Going to start looking into deployment now.
