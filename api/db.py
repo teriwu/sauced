@@ -263,7 +263,7 @@ class ReviewQueries:
                     , rev.title
                     , rev.content
                     , rev.post_date
-                    , rev.rating         
+                    , rev.rating
                     FROM restaurants res
                     JOIN reviews rev ON(res.id = rev.restaurant_id)
 
@@ -297,7 +297,6 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-                return results
 
     def get_review(self, id):
         with pool.connection() as conn:
@@ -322,17 +321,15 @@ class ReviewQueries:
                     , rev.title
                     , rev.content
                     , rev.post_date
-                    , rev.rating         
+                    , rev.rating
                     FROM restaurants res
                     JOIN reviews rev ON(res.id = rev.restaurant_id)
                     WHERE rev.id = %s
                     """,
                     [id],
                 )
-                ### Testing ###
                 row = cur.fetchone()
                 return self.review_record_to_dict(row, cur.description)
-                ###         ###
                 # record = None
                 # row = cur.fetchone()
                 # if row is not None:
@@ -883,7 +880,11 @@ class HourQueries:
                     WHERE id = %s
                     RETURNING id, is_overnight, end_, day, start_
                     """,
-                    [data.is_overnight, data.end_, data.day, data.start_, hour],
+                    [data.is_overnight
+                    , data.end_
+                    , data.day
+                    , data.start_
+                    , hour],
                 )
 
                 record = None
