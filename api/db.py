@@ -168,7 +168,20 @@ class RestaurantQueries:
                       , day = %s
                       , picture = %s
                     WHERE id = %s
-                    RETURNING id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    RETURNING id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     """,
                     [
                         data.price,
