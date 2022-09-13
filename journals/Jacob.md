@@ -1,3 +1,12 @@
+## Monday, September 12, 2022
+* Finally got my detail page connecting to the list page and app.
+
+## Friday, September 9, 2022
+* Had issues with my detail page so took all day figuring out how to fix the issue.
+
+## Thursday, September 8, 2022
+* I started the detail page
+
 ## Wednesday, September 7, 2022
 * I finished the reviewform
 * I fixed the issue that I was having on the restaurant form

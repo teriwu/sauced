@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { MainContext } from './MainContext';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import RestaurantList from './RestaurantLists';
 import RestaurantForm from './RestaurantForm';
+import RestaurantList from './RestaurantLists';
 import ReviewForm from './ReviewForm';
 import Footer from './Footer';
 import Credits from './Credits';
@@ -17,6 +17,9 @@ function App() {
 
   const [matchingResults, setMatchingResults] = useState([]);
   const [dataArr, setDataArr] = useState([]);
+  const [currentRestaurant, setRestaurant] = useState({});
+  
+
   
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/restaurants")
@@ -30,7 +33,8 @@ function App() {
   return (
     <MainContext.Provider value ={{
       matchingResults, setMatchingResults,
-      dataArr, setDataArr
+      dataArr, setDataArr,
+      currentRestaurant, setRestaurant,
     }}>
     <BrowserRouter>
       <div className="cover-container d-flex w-100 h-100 mx-auto flex-column">
