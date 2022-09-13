@@ -8,12 +8,18 @@ import UserForm from './UserForm';
 import LogIn from './LogIn';
 
 import RestaurantForm from './RestaurantForm';
+import RestaurantList from './RestaurantLists';
 import ReviewForm from './ReviewForm';
+import RestaurantDetail from './RestaurantDetail';
+
 
 function App() {
 
   const [matchingResults, setMatchingResults] = useState([]);
   const [dataArr, setDataArr] = useState([]);
+  const [currentRestaurant, setRestaurant] = useState({});
+  
+
   
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/restaurants")
@@ -27,18 +33,20 @@ function App() {
   return (
     <MainContext.Provider value ={{
       matchingResults, setMatchingResults,
-      dataArr, setDataArr
+      dataArr, setDataArr,
+      currentRestaurant, setRestaurant,
     }}>
     <BrowserRouter>
       <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/restaurants" element={<RestaurantList />} />
           <Route path="/users/new" element={<UserForm />} />
           <Route path="/restaurants/new" element={<RestaurantForm />} />
+          <Route path="/restaurants" element={<RestaurantList setRestaurant={setRestaurant} />} />
           <Route path="/reviews/new" element={<ReviewForm />} />
           <Route path="/api/users/login" element={<LogIn />} />
+          <Route path="/restaurants/detail" element={<RestaurantDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
