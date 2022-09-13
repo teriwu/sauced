@@ -54,5 +54,5 @@ def delete_review(review_id: int, queries: ReviewQueries = Depends()):
     try:
         queries.delete_review(review_id)
         return {"result": True}
-    except ValueError:
+    except Exception:
         return {"result": False}
