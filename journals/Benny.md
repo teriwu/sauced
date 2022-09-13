@@ -1,3 +1,14 @@
+## Friday, September 9, 2022
+--
+* Got Google Maps to load on front-end
+* Trying to figure out how to style map and add features to access a destination
+
+## Thursday, September 8, 2022
+--
+* Started working on Google Maps
+* Got API and trying to add maps onto front-end
+* Create new branch to work on Google Maps
+
 ## Wednesday, September 7, 2022
 --
 * Added images to restaurant list
