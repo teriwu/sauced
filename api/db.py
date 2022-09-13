@@ -1,5 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
+
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
@@ -48,14 +49,14 @@ class RestaurantQueries:
                     """,
                     [id],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def create_restaurant(self, restaurant):
@@ -85,7 +86,7 @@ class RestaurantQueries:
                         restaurant.picture,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -98,19 +99,19 @@ class RestaurantQueries:
                     "rating": restaurant.rating,
                     "name": restaurant.name,
                     "phone": restaurant.phone,
-                    "address":restaurant.address,
-                    "city":restaurant.city,
-                    "zip_code":restaurant.zip_code,
-                    "country":restaurant.country,
-                    "state":restaurant.state,
-                    "start_":restaurant.start_,
-                    "end_":restaurant.end_,
-                    "day":restaurant.day,
-                    "picture":restaurant.picture,
+                    "address": restaurant.address,
+                    "city": restaurant.city,
+                    "zip_code": restaurant.zip_code,
+                    "country": restaurant.country,
+                    "state": restaurant.state,
+                    "start_": restaurant.start_,
+                    "end_": restaurant.end_,
+                    "day": restaurant.day,
+                    "picture": restaurant.picture,
                 }
                 return response
 
-    def update_restaurant(self,restaurant, data):
+    def update_restaurant(self, restaurant, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -146,8 +147,8 @@ class RestaurantQueries:
                         data.end_,
                         data.day,
                         data.picture,
-                        restaurant
-                    ]
+                        restaurant,
+                    ],
                 )
 
                 record = None
@@ -246,7 +247,7 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-                return results    
+                return results
 
     def get_review(self, id):
         with pool.connection() as conn:
@@ -292,8 +293,7 @@ class ReviewQueries:
                 #         if key == 'post_date':
                 #             print("the key is " + key)
                 #             record['post_date'] = str(record['post_date'])
-                 
-                
+
     def create_review(self, review):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -312,29 +312,29 @@ class ReviewQueries:
                         review.restaurant_id,
                     ],
                 )
-                
+
                 row = cur.fetchone()
                 id = row[0]
         if id is not None:
             return self.get_review(id)
-                # record = None
-                # row = cur.fetchone()
-                # if row is not None:
-                #     record = {}
-                #     for i, column in enumerate(cur.description):
-                #         record[column.name] = row[i]
-                # response = {
-                #     "id": record["id"],
-                #     "title": review.title,
-                #     "content": review.content,
-                #     "rating": review.rating,
-                #     "post_date": review.post_date,
-                #     "restaurant_id": review.restaurant_id,
-                # }
-                # print(response)
-                # return response
+            # record = None
+            # row = cur.fetchone()
+            # if row is not None:
+            #     record = {}
+            #     for i, column in enumerate(cur.description):
+            #         record[column.name] = row[i]
+            # response = {
+            #     "id": record["id"],
+            #     "title": review.title,
+            #     "content": review.content,
+            #     "rating": review.rating,
+            #     "post_date": review.post_date,
+            #     "restaurant_id": review.restaurant_id,
+            # }
+            # print(response)
+            # return response
 
-    def update_review(self,review, data):
+    def update_review(self, review, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -346,12 +346,7 @@ class ReviewQueries:
                     WHERE id = %s
                     RETURNING id, title, content, rating, post_date
                     """,
-                    [
-                        data.title,
-                        data.content,
-                        data.rating,
-                        review
-                    ]
+                    [data.title, data.content, data.rating, review],
                 )
                 record = None
                 row = cur.fetchone()
@@ -360,11 +355,10 @@ class ReviewQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     for key, value in record.items():
-                        if key == 'post_date':
+                        if key == "post_date":
                             print("the key is " + key)
-                            record['post_date'] = str(record['post_date'])
+                            record["post_date"] = str(record["post_date"])
                 return record
-
 
     def delete_review(self, review_id):
         with pool.connection() as conn:
@@ -393,11 +387,11 @@ class ReviewQueries:
                     review[column.name] = row[i]
 
                     for key, value in review.items():
-                        if key == 'post_date':
-                            #print("the key is " + key)
-                            review['post_date'] = str(review['post_date'])
-            #print(review)
-            #review["id"] = review["review_id"]
+                        if key == "post_date":
+                            # print("the key is " + key)
+                            review["post_date"] = str(review["post_date"])
+            # print(review)
+            # review["id"] = review["review_id"]
             restaurant = {}
             restaurant_fields = [
                 "id",
@@ -418,11 +412,12 @@ class ReviewQueries:
             for i, column in enumerate(description):
                 if column.name in restaurant_fields:
                     restaurant[column.name] = row[i]
-            #restaurant["id"] = restaurant["res_id"]
-            #print(restaurant)
+            # restaurant["id"] = restaurant["res_id"]
+            # print(restaurant)
             review["restaurant"] = restaurant
-            #print(restaurant)
-        return review   
+            # print(restaurant)
+        return review
+
 
 class LocationQueries:
     def get_locations(self):
@@ -441,7 +436,7 @@ class LocationQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     results.append(record)
-                
+
                 return results
 
     def get_location(self, id):
@@ -462,8 +457,8 @@ class LocationQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
-                return record                
+
+                return record
 
     def create_location(self, location):
         with pool.connection() as conn:
@@ -484,7 +479,7 @@ class LocationQueries:
                         location.state,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -521,8 +516,8 @@ class LocationQueries:
                         data.zip_code,
                         data.country,
                         data.state,
-                        location
-                    ]
+                        location,
+                    ],
                 )
 
                 record = None
@@ -557,9 +552,9 @@ class PictureQueries:
                     VALUES (%s)
                     RETURNING id
                     """,
-                    [picture.url]
+                    [picture.url],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -601,7 +596,7 @@ class PictureQueries:
                     FROM pictures
                     WHERE id = %s
                     """,
-                    [id]
+                    [id],
                 )
 
                 record = None
@@ -610,7 +605,7 @@ class PictureQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def update_picture(self, picture, data):
@@ -623,7 +618,7 @@ class PictureQueries:
                     WHERE id = %s
                     RETURNING id, url
                     """,
-                    [data.url, picture]
+                    [data.url, picture],
                 )
 
                 record = None
@@ -678,14 +673,14 @@ class CategoriesQueries:
                     """,
                     [id],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def create_category(self, category):
@@ -704,7 +699,7 @@ class CategoriesQueries:
                         category.alias,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -718,7 +713,7 @@ class CategoriesQueries:
                 }
                 return response
 
-    def update_category(self,category, data):
+    def update_category(self, category, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -729,11 +724,7 @@ class CategoriesQueries:
                     WHERE id = %s
                     RETURNING id, title, alias
                     """,
-                    [
-                        data.title,
-                        data.alias,
-                        category
-                    ]
+                    [data.title, data.alias, category],
                 )
 
                 record = None
@@ -743,7 +734,6 @@ class CategoriesQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                 return record
-
 
     def delete_category(self, category_id):
         with pool.connection() as conn:
@@ -775,6 +765,7 @@ class HourQueries:
                         record[column.name] = row[i]
                     results.append(record)
                 return results
+
     def get_hour(self, id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -842,14 +833,7 @@ class HourQueries:
                     WHERE id = %s
                     RETURNING id, is_overnight, end_, day, start_
                     """,
-                    [
-                        data.is_overnight,
-                        data.end_,
-                        data.day,
-                        data.start_,
-                        hour
-
-                    ]
+                    [data.is_overnight, data.end_, data.day, data.start_, hour],
                 )
 
                 record = None

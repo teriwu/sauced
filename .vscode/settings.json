@@ -6,4 +6,7 @@
     the n can be thought of as a new line, but it's a line feed
 */
 
-{"files.eol": "\n"}
+{
+    "files.eol": "\n",
+    "python.formatting.provider": "black"
+}
