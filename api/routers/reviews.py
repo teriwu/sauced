@@ -12,8 +12,7 @@ router = APIRouter()
 @router.get(
     "/api/reviews",
     response_model=ReviewList,
-    tags=["Reviews"]
-)
+    tags=["Reviews"])
 def reviews_list(queries: ReviewQueries = Depends()):
     return {
         "reviews": queries.get_reviews(),
@@ -51,8 +50,7 @@ def update_review(
     review_id: int,
     review_in: ReviewIn,
     response: Response,
-    queries: ReviewQueries = Depends(),
-):
+    queries: ReviewQueries = Depends(),):
     record = queries.update_review(review_id, review_in)
     if record is None:
         response.status_code = 404
