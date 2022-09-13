@@ -1,6 +1,8 @@
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, Response
 from db import ReviewQueries
-from models.reviews import ReviewIn, ReviewOut, ReviewList, ReviewDeleteOperation
+from models.reviews import (
+    ReviewIn, ReviewOut, ReviewList, ReviewDeleteOperation
+    )
 
 router = APIRouter()
 
@@ -12,7 +14,11 @@ def reviews_list(queries: ReviewQueries = Depends()):
     }
 
 
-@router.get("/api/reviews/{id}", response_model=ReviewOut, tags=["Reviews"])
+@router.get(
+    "/api/reviews/{id}"
+    , response_model=ReviewOut
+    , tags=["Reviews"]
+    )
 def get_review(id: int, response: Response, queries: ReviewQueries = Depends()):
     record = queries.get_review(id)
     if record is None:
@@ -41,8 +47,10 @@ def update_review(
 
 
 @router.delete(
-    "/api/reviews/{id}", response_model=ReviewDeleteOperation, tags=["Reviews"]
-)
+    "/api/reviews/{id}"
+    , response_model=ReviewDeleteOperation
+    , tags=["Reviews"]
+    )
 def delete_review(review_id: int, queries: ReviewQueries = Depends()):
     try:
         queries.delete_review(review_id)
