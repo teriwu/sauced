@@ -9,7 +9,7 @@ lint-job:
   stage: test
   script:
     - pip install flake8
-    - flake8 api/models api/routers
+    - flake8 api/models/reviews.py api/routers/reviews.py
 
 # build-front-end-job:
 #   stage: build
