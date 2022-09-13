@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import RestaurantList from './RestaurantLists';
 import UserForm from './UserForm';
+import LogIn from './LogIn';
 
 import RestaurantForm from './RestaurantForm';
 import ReviewForm from './ReviewForm';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/users/new" element={<UserForm />} />
           <Route path="/restaurants/new" element={<RestaurantForm />} />
           <Route path="/reviews/new" element={<ReviewForm />} />
+          <Route path="/api/users/{id}" element={<LogIn />} />
         </Routes>
       </div>
     </BrowserRouter>

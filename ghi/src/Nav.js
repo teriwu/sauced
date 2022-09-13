@@ -55,13 +55,18 @@ function Nav() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
-                <NavLink className="nav-link active" aria-current="page" to="/users/new">Account</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/users/new">Create Account</NavLink>
               </li>
               <li className="nav-item">
                 <div className="input-group">
                   <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
                   <button onClick={handleClick} type="button" className="btn btn-outline-secondary">Search</button>
                 </div>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/api/users/{id}">Log In</NavLink>
               </li>
             </ul>
           </div>
