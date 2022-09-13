@@ -1,3 +1,8 @@
+## Monday, September 12, 2022
+
+* Worked with Jacob on Restaurants Detail View
+    * Thank you Phil for helping us get the ${id}s working
+
 ## Wednesday, September 7, 2022 - Friday, September 9, 2022
 
 * Researched React to work on search bar and redirect
