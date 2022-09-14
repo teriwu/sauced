@@ -1,27 +1,22 @@
-import React from "react";
+import { useState, useEffect, useContext } from 'react';
+import { MainContext } from './MainContext';
 import { Link } from 'react-router-dom';
 
-class RestaurantList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            restaurants: []
-        }
-    }
 
-    async componentDidMount() {
-        const response = await fetch('http://127.0.0.1:8000/api/restaurants')
-        if (response.ok) {
-            const data = await response.json()
-            this.setState({
-                restaurants: data.restaurants
-            })
-        }
+function RestaurantList({setRestaurant}) {
+    const { matchingResults, dataArr } = useContext(MainContext);
+    const [pageLoaded, setPageLoaded] = useState(false);
+    const handleRefresh = () => {
+        window.location.reload(); 
     }
-
-    render () {
-        return (
-            <>
+    useEffect(() => {
+        pageLoaded !== false ? handleRefresh() 
+        : setPageLoaded(true)
+        setPageLoaded(false)
+    }, [])
+    return (
+        <>
+        <div className="container mt-5">
             <h1>Restaurants</h1>
             <table className="table table-striped">
                 <thead>
@@ -46,12 +41,12 @@ class RestaurantList extends React.Component {
                                 <td><Link to="/reviews/new" className="btn btn-info btn-sm px-4 gap-3">Write a Review</Link></td>
                             </tr>
                         )
-                    })}
+                        })
+                    }
                 </tbody>
             </table>
-            </>
-        )
-    }
+        </div>
+        </>
+    )
 }
-
 export default RestaurantList
