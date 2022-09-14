@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from models.restaurants import RestaurantOut
 
+
 class ReviewIn(BaseModel):
     title: str
     content: str
@@ -16,11 +17,11 @@ class ReviewOut(BaseModel):
     post_date: str
     rating: int
     restaurant: RestaurantOut
-    
 
 
 class ReviewList(BaseModel):
     reviews: list[ReviewOut]
+
 
 class ReviewDeleteOperation(BaseModel):
     result: bool
