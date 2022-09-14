@@ -1,3 +1,9 @@
+## Tuesday, September 13, 2022
+
+I worked on:
+* Alignment CSS for [Nav.js](/ghi/src/Nav.js) and [Footer.js](/ghi/src/Footer.js)
+* Created a Credits page/ about page
+
 ## Monday, September 12, 2022
 
 * Worked with Jacob on Restaurants Detail View
