@@ -9,11 +9,13 @@ function RestaurantList() {
     const handleRefresh = () => {
         window.location.reload(); 
     }
+    
     useEffect(() => {
         pageLoaded !== false ? handleRefresh() 
         : setPageLoaded(true)
         setPageLoaded(false)
     }, [])
+
     return (
         <>
         <div className="container mt-5">
@@ -72,4 +74,4 @@ function RestaurantList() {
     )
 }
 
-export default RestaurantList
+export default RestaurantList;
