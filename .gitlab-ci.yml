@@ -5,7 +5,7 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 variables:
-  - DATABASE_URL: ""
+  DATABASE_URL: ""
 
 lint-job:
   image: python:3-bullseye
