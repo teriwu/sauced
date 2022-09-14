@@ -12,7 +12,7 @@ function RestaurantDetail(){
             <h1>{currentRestaurant.name}</h1>
             <h4> Rating {currentRestaurant.rating}</h4>
             <h6> Price:{currentRestaurant.price}</h6>
-            <img src={currentRestaurant.picture}  width="150"/>
+            <img src={currentRestaurant.picture} alt="restaurantimage" width="150"/>
             <table className="table table-striped">
                 <thead>
                     <tr>
