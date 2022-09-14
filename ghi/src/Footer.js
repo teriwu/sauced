@@ -10,19 +10,19 @@ function Footer() {
         </div>
         <div>
           <a href="/" className="me-4 text-reset">
-            <i class="bi bi-facebook"></i>
+            <i className="bi bi-facebook"></i>
           </a>
           <a href="/" className="me-4 text-reset">
-            <i class="bi bi-twitter"></i>
+            <i className="bi bi-twitter"></i>
           </a>
           <a href="/" className="me-4 text-reset">
-            <i class="bi bi-google"></i>
+            <i className="bi bi-google"></i>
           </a>
           <a href="/" className="me-4 text-reset">
-            <i class="bi bi-instagram"></i>
+            <i className="bi bi-instagram"></i>
           </a>
           <a href="/" className="me-4 text-reset">
-            <i class="bi bi-linkedin"></i>
+            <i className="bi bi-linkedin"></i>
           </a>
         </div>
       </section>
@@ -83,10 +83,10 @@ function Footer() {
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="bi bi-house-door-fill"></i> New York, NY 10012, US</p>
-              <p><i class="bi bi-envelope-fill"></i> info@lostinthesauce.com</p>
-              <p><i class="bi bi-telephone-fill"></i> + 01 234 567 88</p>
-              <p><i class="bi bi-printer-fill"></i> + 01 234 567 89</p>
+              <p><i className="bi bi-house-door-fill"></i> New York, NY 10012, US</p>
+              <p><i className="bi bi-envelope-fill"></i> info@lostinthesauce.com</p>
+              <p><i className="bi bi-telephone-fill"></i> + 01 234 567 88</p>
+              <p><i className="bi bi-printer-fill"></i> + 01 234 567 89</p>
             </div>
 
           </div>

@@ -5,7 +5,7 @@ const Credits = () => {
       <h1 className="text-center my-5">LOST IN THE SAUCE</h1>
         <div className="row text-center">
           <div className="col-md-6">
-            <img className="" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.png" width="250px" />
+            <img className="" src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting.png" alt="ladyimage" width="250px" />
             <h3 className="text-center">Maja Miletich</h3>
           </div>
           <div className="col-md-6">

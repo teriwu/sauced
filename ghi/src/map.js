@@ -5,13 +5,12 @@ import {
   ButtonGroup,
   Flex,
   HStack,
-  Icon,
   IconButton,
   Input,
   Text,
   } from '@chakra-ui/react'
 import { GoogleMap, useJsApiLoader, DirectionsRenderer, Marker, Autocomplete } from "@react-google-maps/api";
-import { FaLocationArrow, FaBusAlt, FaWalking, FaCar, FaBiking } from 'react-icons/fa'
+import { FaLocationArrow } from 'react-icons/fa'
 import { useState, useRef } from "react";
 
 const center = {

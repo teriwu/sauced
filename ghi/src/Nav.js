@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { MainContext } from './MainContext';
 
@@ -7,7 +7,6 @@ function Nav() {
   const [search, setSearch] = useState("");
   const {matchingResults, setMatchingResults} = useContext(MainContext);
   const {dataArr} = useContext(MainContext);
-  const [clicked, setClicked] = useState(false)
   
   const navigate = useNavigate();
 
@@ -32,15 +31,6 @@ function Nav() {
       }
       navigate("/restaurants");
     }
-  }
-
-  const delay = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
-  
-  const handleRefresh = async event => {
-    await delay(500);
-    window.location.reload(); 
   }
 
   return (
