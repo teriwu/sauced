@@ -1,3 +1,9 @@
+## Tuesday, September 13, 2022
+--
+* Added Travel time and Distance calculation
+* Can cancel route to clear inputs
+* Working on trying to convert travel mode selections into icons
+
 ## Monday, September 12, 2022
 --
 * Added input box and filled it with data
