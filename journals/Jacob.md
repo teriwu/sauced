@@ -1,5 +1,5 @@
 ## Monday, September 12, 2022
-* Finally got my detail page connecting to the list page and app.
+* Finally Teri and I were able to get the detail page to connect to the list page and app.
 
 ## Friday, September 9, 2022
 * Had issues with my detail page so took all day figuring out how to fix the issue.

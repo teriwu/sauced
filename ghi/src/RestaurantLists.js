@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { MainContext } from './MainContext';
 import { Link } from 'react-router-dom';
+
+
 function RestaurantList({setRestaurant}) {
     const { matchingResults, dataArr } = useContext(MainContext);
     const [pageLoaded, setPageLoaded] = useState(false);
