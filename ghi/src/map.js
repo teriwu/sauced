@@ -11,12 +11,12 @@ import {
   Text,
   } from '@chakra-ui/react'
 import { GoogleMap, useJsApiLoader, DirectionsRenderer, Marker, Autocomplete } from "@react-google-maps/api";
-import { FaLocationArrow } from 'react-icons/fa'
+import { FaLocationArrow, FaBusAlt, FaWalking, FaCar, FaBiking } from 'react-icons/fa'
 import { useState, useRef } from "react";
 
 const center = {
-    lat: 37.8185,
-    lng: -122.4738,
+    lat: 37.820132,
+    lng: -122.478137,
 };
 
 function Map() {
@@ -118,25 +118,25 @@ function Map() {
             </ButtonGroup>
           </HStack>
           <HStack spacing={3} mt={1} justifyContent='space-between'>
-            <text>Distance: {distance}</text>
-            <text>Duration: {duration}</text>
+            <Text>Distance: {distance}</Text>
+            <Text>Duration: {duration}</Text>
             <IconButton 
             icon={<FaLocationArrow />} 
             onClick={() => {map.panTo(center); map.setZoom(10)}}
             />
           </HStack>
           <HStack mt={1}>
-            <button id="mode" value="WALKING">Walking</button>
+            {/* <Iconbutton icon={<FaWalking />} id="mode" value="WALKING"/>
             <button id="mode" value="DRIVING">Driving</button>
             <button id="mode" value="BICYCLING">Bicycling</button>
-            <button id="mode" value="TRANSIT">Transit</button>
-            {/* <select class="form-control" id="mode">
+            <button id="mode" value="TRANSIT">Transit</button> */}
+            <select class="form-control" id="mode">
               <option value="">Select Mode</option>
               <option value="WALKING">Walking</option>
               <option value="DRIVING">Driving</option>
               <option value="BICYCLING">Bicycling</option>
               <option value="TRANSIT">Transit</option>
-            </select> */}
+            </select>
           </HStack>
         </Box>
       </Flex>
