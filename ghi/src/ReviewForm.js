@@ -3,10 +3,14 @@ class ReviewForm extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
+            restaurant_id: '',
+            restaurant_ids: [],
+            restaurants: [],
             title: '',
             content: '',
             rating: '',
         }
+        this.handleRestaurantIdChange = this.handleRestaurantIdChange.bind(this)
         this.handleTitleChange = this.handleTitleChange.bind(this)
         this.handleContentChange = this.handleContentChange.bind(this)
         this.handleRatingChange = this.handleRatingChange.bind(this)
@@ -28,6 +32,7 @@ class ReviewForm extends React.Component {
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok){
             const newReview = await response.json();
+            console.log(newReview);
             const cleared = {
                 title: '',
                 content: '',
@@ -35,6 +40,10 @@ class ReviewForm extends React.Component {
             };
             this.setState(cleared);
         }
+    }
+    handleRestaurantIdChange(event) {
+      const value = event.target.value;
+      this.setState({restaurant_id: value})
     }
 
     handleTitleChange(event) {
@@ -49,19 +58,42 @@ class ReviewForm extends React.Component {
         const value = event.target.value;
         this.setState({rating: value})
     }
-            
-        
-        
-        
-        
 
+    async componentDidMount(){
+      const restaurantUrl = 'http://localhost:8000/api/restaurants/'
+      const response = await fetch(restaurantUrl)
+
+      if(response.ok) {
+        const data_restaurant = await response.json();
+        console.log(data_restaurant, "ggggg")
+        this.setState({restaurants: data_restaurant.restaurants})
+      }
+    }
+   
+   
+        
+        
+    
     render() {
-        return (
-          <div className="row">
+      return (
+        <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
                 <h1>Create a Review</h1>
                 <form onSubmit={this.handleSubmit} id="create-review-form">
+                <div className="mb-3">
+                                <select onChange={this.handleRestaurantIdChange} value={this.state.restaurant_id} required name="restaurant_id" id="restaurant_id" className="form-select">
+                                <option value="">Choose a restaurant</option>
+                                {this.state.restaurants.map(restaurant => {
+                                    return (
+                                        <option key={restaurant.id} value={restaurant.id}>
+                                        {restaurant.name} / {restaurant.address}, {restaurant.city}, {restaurant.state}, {restaurant.zip_code}
+                                        </option>
+                                    )
+                                })}
+                                </select>
+                            </div>
+                  
                   <div className= "mb-3">
                     <input onChange={this.handleTitleChange} value={this.state.price} placeholder="Title" required type="text" name="title" id="title" className="form-control" />
                   </div>

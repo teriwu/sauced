@@ -8,19 +8,25 @@ function RestaurantDetail(){
     
         return (
             <>
-            <h1>Restaurants</h1>
+            <h1>{currentRestaurant.name}</h1>
+            <h4> Rating {currentRestaurant.rating}</h4>
+            <h6>Price:{currentRestaurant.price}</h6>
+            <img src={currentRestaurant.picture}  width="150"/>
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Name</th>
+                        <th>Day</th>
+                        <th>Open</th>
+                        <th>Close</th>
                         
                     </tr>
                 </thead>
                 <tbody>
                     
                         <tr key={currentRestaurant.id}>
-                            <td>{currentRestaurant.name }</td>
+                            <td>{currentRestaurant.day }</td>
+                            <td>{currentRestaurant.start_}</td>
+                            <td>{currentRestaurant.end_}</td>
                             
                         </tr>
                         

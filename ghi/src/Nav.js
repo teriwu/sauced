@@ -34,11 +34,22 @@ function Nav() {
     }
   }
 
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  
+  const handleRefresh = async event => {
+    await delay(500);
+    window.location.reload(); 
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">Sauce</NavLink>
+          <NavLink to="/">
+            <img src="../sauce_nav.png" alt="Sauce" width="50" />
+          </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -51,22 +62,29 @@ function Nav() {
                 <NavLink className="nav-link active" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
+                <a href="/restaurants" className="nav-link active" aria-current="page">Restaurants</a>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
               </li>
+            </ul>
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/users/new">Create Account</NavLink>
               </li>
               <li className="nav-item">
                 <div className="input-group">
                   <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-                  <button onClick={handleClick} type="button" className="btn btn-outline-secondary">Search</button>
+                  <button onClick={handleClick} type="button" className="btn btn-dark">Search</button>
                 </div>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/api/users/login">Log In</NavLink>
+              </li>
+            </ul>
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/credits">Credits</NavLink>
               </li>
             </ul>
           </div>

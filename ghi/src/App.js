@@ -9,6 +9,10 @@ import LogIn from './LogIn';
 import RestaurantForm from './RestaurantForm';
 import RestaurantList from './RestaurantLists';
 import ReviewForm from './ReviewForm';
+import Footer from './Footer';
+import Credits from './Credits';
+import UserForm from './UserForm';
+import LogIn from './LogIn';
 import RestaurantDetail from './RestaurantDetail';
 
 
@@ -36,17 +40,24 @@ function App() {
       currentRestaurant, setRestaurant,
     }}>
     <BrowserRouter>
-      <Nav />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/users/new" element={<UserForm />} />
-          <Route path="/restaurants/new" element={<RestaurantForm />} />
-          <Route path="/restaurants" element={<RestaurantList setRestaurant={setRestaurant} />} />
-          <Route path="/reviews/new" element={<ReviewForm />} />
-          <Route path="/api/users/login" element={<LogIn />} />
-          <Route path="/restaurants/detail" element={<RestaurantDetail />} />
-        </Routes>
+      <div className="cover-container d-flex w-100 h-100 mx-auto flex-column">
+        <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/restaurants" element={<RestaurantList />} />
+            <Route path="/restaurants/detail" element={<RestaurantDetail />} />
+            <Route path="/restaurants" element={<RestaurantList setRestaurant={setRestaurant} />} />
+            <Route path="/restaurants/new" element={<RestaurantForm />} />
+            <Route path="/reviews/new" element={<ReviewForm />} />
+            <Route path="/users/new" element={<UserForm />} />
+            <Route path="/api/users/login" element={<LogIn />} />
+            <Route path="/credits" element={<Credits />} />
+          </Routes>
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
     </MainContext.Provider>
