@@ -21,8 +21,6 @@ function App() {
   const [dataArr, setDataArr] = useState([]);
   const [currentRestaurant, setRestaurant] = useState({});
   
-
-  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/restaurants")
     .then(res => res.json())
@@ -51,8 +49,9 @@ function App() {
             <Route path="/reviews/new" element={<ReviewForm />} />
             <Route path="/users/new" element={<UserForm />} />
             <Route path="/api/users/login" element={<LogIn />} />
-            <Route path="/credits" element={<Credits />} />
             <Route path="/map" element={<Map />} />
+            <Route path="/credits" element={<Credits />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
         <Footer />
