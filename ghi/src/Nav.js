@@ -1,68 +1,91 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { MainContext } from './MainContext';
 
 
-/* Taken from conference-go */
-class Nav extends React.Component {
+function Nav() {
+  const [search, setSearch] = useState("");
+  const {matchingResults, setMatchingResults} = useContext(MainContext);
+  const {dataArr} = useContext(MainContext);
+  const [clicked, setClicked] = useState(false)
+  
+  const navigate = useNavigate();
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      search: "",
+  const handleClick = () => {
+    setMatchingResults(matchingResults => ([]));
+    console.log("MATCHING RESULTS:", matchingResults);
+    for(let i = 0; i < dataArr.length; i++) {
+      if (dataArr[i].name.toLowerCase() === search.toLowerCase()) {
+        setMatchingResults(matchingResults => [...matchingResults, dataArr[i]])
+      }
     }
-
-    this.handleChangeSearch = this.handleChangeSearch.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
-
+    navigate("/restaurants");
   }
 
-  handleChangeSearch(e) {
-    const value = e.target.value;
-    this.setState({search: value})
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      setMatchingResults(matchingResults => ([]));
+      for(let i = 0; i < dataArr.length; i++) {
+        if (dataArr[i].name.toLowerCase() === search.toLowerCase()) {
+          setMatchingResults(matchingResults => [...matchingResults, dataArr[i]])
+        }
+      }
+      navigate("/restaurants");
+    }
   }
 
-  // async handleSearch() {
-  //   const search = this.state.search;
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  
+  const handleRefresh = async event => {
+    await delay(500);
+    window.location.reload(); 
+  }
 
-  // }
-
-  render () {
-    return (
-      <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-info">
-          <div className="container-fluid">
-            <NavLink className="navbar-brand" to="/">Sauce</NavLink>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
-                </li>
-                  <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
-                <li className="nav-item">
-                  <div className="input-group">
-
-                    <input onChange={this.handleChangeSearch} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-
-                    <button type="button" className="btn btn-outline-secondary">Search</button>
-
-                  </div>
-                </li>
-              </ul>
-            </div>
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-light bg-info">
+        <div className="container-fluid">
+          <NavLink to="/">
+            <img src="../sauce_nav.png" alt="Sauce" width="50" />
+          </NavLink>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
+              </li>
+              <li className="nav-item">
+                <a href="/restaurants" className="nav-link active" aria-current="page">Restaurants</a>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
+              </li>
+            </ul>
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <div className="input-group">
+                  <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
+                  <button onClick={handleClick} type="button" className="btn btn-dark">Search</button>
+                </div>
+              </li>
+            </ul>
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <NavLink className="nav-link active" aria-current="page" to="/credits">Credits</NavLink>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </>
-    )
-  }
+        </div>
+      </nav>
+    </>
+  )
 }
 
 export default Nav;

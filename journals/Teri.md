@@ -1,3 +1,19 @@
+## Tuesday, September 13, 2022
+
+I worked on:
+* Alignment CSS for [Nav.js](/ghi/src/Nav.js) and [Footer.js](/ghi/src/Footer.js)
+* Created a Credits page/ about page
+
+## Monday, September 12, 2022
+
+* Worked with Jacob on Restaurants Detail View
+    * Thank you Phil for helping us get the ${id}s working
+
+## Wednesday, September 7, 2022 - Friday, September 9, 2022
+
+* Researched React to work on search bar and redirect
+* Search bar successfully renders input from search bar
+
 ## Tuesday, September 6, 2022
 
 No journal for yesterday (Labor Day)
