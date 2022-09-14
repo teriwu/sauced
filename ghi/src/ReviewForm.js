@@ -62,17 +62,14 @@ class ReviewForm extends React.Component {
               <div className="shadow p-4 mt-4">
                 <h1>Create a Review</h1>
                 <form onSubmit={this.handleSubmit} id="create-review-form">
-                  <div className="form-floating mb-3">
+                  <div className= "mb-3">
                     <input onChange={this.handleTitleChange} value={this.state.price} placeholder="Title" required type="text" name="title" id="title" className="form-control" />
-                    <label htmlFor="title">Title</label>
                   </div>
-                  <div className="form-floating mb-3">
-                    <textarea className="form-control-lg" rows= "5" cols= "44" onChange={this.handleContentChange} value={this.state.content} required type="text" name="content" id="content"></textarea>
-                    <label htmlFor="content">Leave a Review</label>
+                  <div className="mb-3">
+                    <textarea rows= "5" onChange={this.handleContentChange} value={this.state.content} placeholder="Leave a Review" required type="text" name="content" id="content" className="form-control" />
                   </div>
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handleRatingChange} value={this.state.rating} placeholder="Rating" required type="number" name="rating" id="rating" min="1" max="5" className="form-control" />
-                    <label htmlFor="rating">Rating</label>
+                  <div className="mb-3">
+                    <input onChange={this.handleRatingChange} value={this.state.rating} placeholder="Rating" required type="number" min="1" max="5" name="rating" id="rating" className="form-control" />
                   </div>
                   <button className="btn btn-primary">Create</button>
                 </form>
