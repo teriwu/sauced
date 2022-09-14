@@ -49,6 +49,7 @@ function App() {
             <Route path="/users/new" element={<UserForm />} />
             <Route path="/api/users/login" element={<LogIn />} />
             <Route path="/credits" element={<Credits />} />
+            <Route path="/restaurants/detail" element={<RestaurantDetail />} />
           </Routes>
         </div>
         <div>

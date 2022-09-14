@@ -1,3 +1,7 @@
+## Tuesday, September 13, 2022
+* Started designing the detail page
+* Created a feature on the review form where It lists all the restaurants with their exact addresses.
+
 ## Monday, September 12, 2022
 * Finally Teri and I were able to get the detail page to connect to the list page and app.
 
