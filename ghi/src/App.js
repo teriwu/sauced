@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { MainContext } from './MainContext';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import RestaurantList from './RestaurantLists';
 import UserForm from './UserForm';
 import LogIn from './LogIn';
 
