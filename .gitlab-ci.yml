@@ -77,3 +77,23 @@ deploy-fastapi-api-image-job:  # RENAME THIS
     - docker pull ${CI_REGISTRY_IMAGE}/restaurant_api:latest
     - docker tag ${CI_REGISTRY_IMAGE}/restaurant_api:latest registry.heroku.com/$HEROKU_ACCOUNT_API_APP/web:latest
     - docker push registry.heroku.com/$HEROKU_ACCOUNT_API_APP/web:latest
+
+release-fastapi-api-image-job:  # RENAME THIS
+  stage: deploy
+  image: node:10.17-alpine
+  needs:
+    # CHANGE THIS TO THE JOB NAME FROM THE LAST STEP
+    - deploy-fastapi-api-image-job
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add curl bash
+    - curl https://cli-assets.heroku.com/install.sh | sh
+  script:
+    # EVERYWHERE IT SHOWS HEROKU_SERVICE_APP BELOW, CHANGE
+    # THOSE TO THE VARIABLE NAME YOU CREATED FOR THE CI/CD
+    # SETTINGS (1 PLACE)
+
+    # IF THIS IS FOR A BACKGROUND SERVICE LIKE A POLLER,
+    # CHANGE web TO worker (1 PLACE)
+    - heroku container:release web --app $HEROKU_ACCOUNT_API_APP
