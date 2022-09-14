@@ -32,11 +32,7 @@ class ReviewForm extends React.Component {
         const response = await fetch(reviewUrl, fetchConfig);
         if (response.ok){
             const newReview = await response.json();
-<<<<<<< HEAD
-            console.log(newReview)
-=======
             console.log(newReview);
->>>>>>> main
             const cleared = {
                 title: '',
                 content: '',
