@@ -76,11 +76,6 @@ function Nav() {
                 </div>
               </li>
             </ul>
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/credits">Credits</NavLink>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
