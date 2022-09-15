@@ -46,7 +46,7 @@ function Nav() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a href="/restaurants" className="nav-link active" aria-current="page">Restaurants</a>
+                <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
