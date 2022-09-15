@@ -19,10 +19,16 @@ lint-job:
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
+  variables:
+    PUBLIC_URL: https://lost_in_the_sauce.gitlab.io/mod-3-group-11
   script:
-    - cd ghi
+    - cd ghi  # CHANGE THIS TO THE DIRECTORY THAT HAS package.json
     - npm install
     - npm run build
+    - cp build/index.html build/404.html  # Make this a SPA
+  artifacts:
+    paths:
+      - ghi/build/  # Save all of the files in the build path
 
 restaurant-unit-test-job:
   image: python:3-bullseye
