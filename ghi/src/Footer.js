@@ -76,9 +76,6 @@ function Footer() {
               <p>
                 <Link to="/about" className="text-reset">About</Link>
               </p>
-              <p>
-                <Link to="/credits" className="text-reset">Credits</Link>
-              </p>
             </div>
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0">
