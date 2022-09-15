@@ -53,7 +53,7 @@ function Nav() {
             {/* Left links */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/restaurants" className="nav-link" aria-current="page">Restaurants</NavLink>
+                <NavLink className="nav-link active" aria-current="page" to="/restaurants">Restaurants</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="restaurants/new">New Restaurant</NavLink>

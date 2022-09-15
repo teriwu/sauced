@@ -16,6 +16,8 @@ import About from './About';
 
 
 function App() {
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, '');
 
   const [matchingResults, setMatchingResults] = useState([]);
   const [dataArr, setDataArr] = useState([]);
@@ -36,7 +38,7 @@ function App() {
       dataArr, setDataArr,
       currentRestaurant, setRestaurant,
     }}>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <div id="outer-div" className="d-flex flex-column vh-100 vw-96">
         <Nav />
         <div className="container my-5">
