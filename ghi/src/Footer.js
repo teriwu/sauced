@@ -45,7 +45,7 @@ function Footer() {
               </h6>
               <p>
                 <a href="https://www.linkedin.com/in/bennyhuang97/"
-                target="_blank" className="text-reset">Benny</a>
+                target="_blank" rel="noreferrer" className="text-reset">Benny</a>
               </p>
               <p>
                 <a href="https://www.linkedin.com/in/jkim14/"
