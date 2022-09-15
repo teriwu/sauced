@@ -49,19 +49,19 @@ function Footer() {
               </p>
               <p>
                 <a href="https://www.linkedin.com/in/jkim14/"
-                target="_blank" className="text-reset">Jacob</a>
+                target="_blank" rel="noreferrer" className="text-reset">Jacob</a>
               </p>
               <p>
                 <a href="https://www.linkedin.com/in/lakhvinder-dhanoya-b82695184/"
-                target="_blank" className="text-reset">Lucky</a>
+                target="_blank" rel="noreferrer" className="text-reset">Lucky</a>
               </p>
               <p>
                 <a href="https://www.linkedin.com/in/ryanspurlock/"
-                target="_blank" className="text-reset">Ryan</a>
+                target="_blank" rel="noreferrer" className="text-reset">Ryan</a>
               </p>
               <p>
                 <a href="https://www.linkedin.com/in/teriwu/"
-                target="_blank" className="text-reset">Teri</a>
+                target="_blank" rel="noreferrer" className="text-reset">Teri</a>
               </p>
             </div>
 
@@ -71,7 +71,7 @@ function Footer() {
               </h6>
               <p>
                 <a href="https://gitlab.com/lost-in-the-sauce/mod-3-group-11"
-                target="_blank" className="text-reset">Git</a>
+                target="_blank" rel="noreferrer" className="text-reset">Git</a>
               </p>
               <p>
                 <Link to="/about" className="text-reset">About</Link>
