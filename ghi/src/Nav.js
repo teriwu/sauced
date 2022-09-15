@@ -35,41 +35,51 @@ function Nav() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-info">
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+        {/* Container wrapper */}
         <div className="container-fluid">
-          <NavLink to="/">
-            <img src="../sauce_nav.png" alt="Home" width="50" />
-          </NavLink>
+          {/* Toggle button */}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
+
+          {/* Collapsible wrapper */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            {/* Navbar brand */}
+            <NavLink to="/">
+              <img src="../sauce_nav.png" alt="Home" width="50" />
+            </NavLink>
+            {/* Left links */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a href="/restaurants" className="nav-link active" aria-current="page">Restaurants</a>
+                <NavLink to="/restaurants" className="nav-link" aria-current="page">Restaurants</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
+                <NavLink className="nav-link" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/reviews/new">New Review</NavLink>
+                <NavLink className="nav-link" aria-current="page" to="/reviews/new">New Review</NavLink>
               </li>
             </ul>
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/users/new">Create Account</NavLink>
-              </li>
-              <li className="nav-item">
+          </div>
+          
+          {/* Right elements */}
+          <div className="d-flex">
+            {/* <ul className="navbar-nav ms-auto"> */}
+              {/* <li className="nav-item"> */}
                 <div className="input-group">
                   <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-                  <button onClick={handleClick} type="button" className="btn btn-dark">Search</button>
+                  <button onClick={handleClick} type="button" className="btn btn-outline-light"><i class="bi bi-search"></i></button>
                 </div>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/api/users/login">Log In</NavLink>
-              </li>
-            </ul>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">Testing</ul>
+              {/* </li> */}
+              {/* <li className="nav-item"> */}
+                <NavLink className="nav-link" aria-current="page" to="/users/new">Create Account</NavLink>
+              {/* </li> */}
+              {/* <li className="nav-item"> */}
+                <NavLink className="nav-link" aria-current="page" to="/api/users/login">Log In</NavLink>
+              {/* </li> */}
+            {/* </ul> */}
           </div>
         </div>
       </nav>
