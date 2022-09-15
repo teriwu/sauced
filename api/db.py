@@ -922,15 +922,15 @@ class UserQueries:
 
                 return results
 
-    def get_user(self, id):
+    def get_user(self, username):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
                     SELECT id, password, first_name, last_name, email, username FROM users
-                    WHERE id = %s
+                    WHERE username = %s
                     """,
-                    [id],
+                    [username],
                 )
 
                 record = None
