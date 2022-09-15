@@ -101,7 +101,7 @@ async def get_current_user(
     return user
 
 
-@router.post("/token")
+@app.post("/token")
 async def login_for_access_token(
     response: Response,
     request: Request,
@@ -135,7 +135,7 @@ async def login_for_access_token(
     return token
 
 
-@router.get("/token", response_model=AccessToken)
+@app.get("/token", response_model=AccessToken)
 async def get_token(request: Request):
     if COOKIE_NAME in request.cookies:
         return {"token": request.cookies[COOKIE_NAME]}
