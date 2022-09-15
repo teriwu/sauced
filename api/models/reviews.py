@@ -1,11 +1,13 @@
 from pydantic import BaseModel
-from datetime import datetime
+from models.restaurants import RestaurantOut
+
 
 class ReviewIn(BaseModel):
     title: str
     content: str
     post_date: str
     rating: int
+    restaurant_id: int
 
 
 class ReviewOut(BaseModel):
@@ -14,10 +16,12 @@ class ReviewOut(BaseModel):
     content: str
     post_date: str
     rating: int
+    restaurant: RestaurantOut
 
 
 class ReviewList(BaseModel):
     reviews: list[ReviewOut]
+
 
 class ReviewDeleteOperation(BaseModel):
     result: bool

@@ -1,3 +1,26 @@
+## Tuesday, September 13, 2022
+* Started designing the detail page
+* Created a feature on the review form where It lists all the restaurants with their exact addresses.
+
+## Monday, September 12, 2022
+* Finally Teri and I were able to get the detail page to connect to the list page and app.
+
+## Friday, September 9, 2022
+* Had issues with my detail page so took all day figuring out how to fix the issue.
+
+## Thursday, September 8, 2022
+* I started the detail page
+
+## Wednesday, September 7, 2022
+* I finished the reviewform
+* I fixed the issue that I was having on the restaurant form
+
+## Tuesday, September 6, 2022
+* I worked on the reviewform.js
+* Altered the restaurantform and had a little issue
+
+## Friday, September 2, 2022
+* I started working on the reviewform.js
 
 ## Thursday, September 1, 2022
 * I completed the restaurantform.js

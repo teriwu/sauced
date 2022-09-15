@@ -53,6 +53,7 @@ class RestaurantForm extends React.Component {
         const response = await fetch(restaurantUrl, fetchConfig);
         if (response.ok) {
             const newRestaurant = await response.json();
+            console.log(newRestaurant)
             const cleared = {
                 price: '',
                 name: '',
@@ -163,20 +164,20 @@ class RestaurantForm extends React.Component {
                     <label htmlFor="state">State</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handleStartChange} value={this.state.start_} placeholder="Start" required type="text" name="start_" id="start_" className="form-control" />
-                    <label htmlFor="state">Start</label>
-                  </div>
-                  <div className="form-floating mb-3">
-                    <input onChange={this.handleEndChange} value={this.state.end_} placeholder="End" required type="text" name="end_" id="end_" className="form-control" />
-                    <label htmlFor="end_">End</label>
+                    <input onChange={this.handlePictureChange} value={this.state.picture} placeholder="Picture" required type="text" name="picture" id="picture" className="form-control" />
+                    <label htmlFor="picture">Picture</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleDayChange} value={this.state.day} placeholder="Day" required type="text" name="day" id="day" className="form-control" />
                     <label htmlFor="day">Day</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={this.handlePictureChange} value={this.state.picture} placeholder="Picture" required type="text" name="picture" id="picture" className="form-control" />
-                    <label htmlFor="picture">Picture</label>
+                    <input onChange={this.handleStartChange} value={this.state.start_} placeholder="Start" required type="text" name="start_" id="start_" className="form-control" />
+                    <label htmlFor="state">Start</label>
+                  </div>
+                  <div className="form-floating mb-3">
+                    <input onChange={this.handleEndChange} value={this.state.end_} placeholder="End" required type="text" name="end_" id="end_" className="form-control" />
+                    <label htmlFor="end_">End</label>
                   </div>
                   <button className="btn btn-primary">Create</button>
                 </form>

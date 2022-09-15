@@ -1,3 +1,31 @@
+## Tuesday, September 13, 2022
+--
+* Added Travel time and Distance calculation
+* Can cancel route to clear inputs
+* Working on trying to convert travel mode selections into icons
+
+## Monday, September 12, 2022
+--
+* Added input box and filled it with data
+* Autocomplete feature when typing in a map destination
+* Added a marker and can reset map positioning
+
+## Friday, September 9, 2022
+--
+* Got Google Maps to load on front-end
+* Trying to figure out how to style map and add features to access a destination
+
+## Thursday, September 8, 2022
+--
+* Started working on Google Maps
+* Got API and trying to add maps onto front-end
+* Create new branch to work on Google Maps
+
+## Wednesday, September 7, 2022
+--
+* Added images to restaurant list
+* Added features on main page 
+
 ## Tuesday, September 6, 2022
 --
 * Update Restaurant list to show picture

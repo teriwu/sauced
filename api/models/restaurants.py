@@ -1,14 +1,8 @@
-from unicodedata import category
 from pydantic import BaseModel
 from typing import Optional
 
-from .locations import LocationOut
-from .categories import CategoriesOut
-from .hours import HourOut
-from .pictures import PictureOut
 
-
-class RestaurantIn(BaseModel): #POST
+class RestaurantIn(BaseModel):  # POST
     price: str
     rating: Optional[float]
     name: str
@@ -23,10 +17,8 @@ class RestaurantIn(BaseModel): #POST
     day: str
     picture: str
 
-    
 
-
-class RestaurantOut(BaseModel): # GET
+class RestaurantOut(BaseModel):  # GET
     id: int
     price: str
     rating: Optional[float]
@@ -35,7 +27,7 @@ class RestaurantOut(BaseModel): # GET
     address: str
     city: str
     zip_code: int
-    country:str
+    country: str
     state: str
     start_: str
     end_: str

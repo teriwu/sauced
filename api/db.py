@@ -1,5 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
+
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
@@ -10,7 +11,20 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    SELECT id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     FROM restaurants
                     """
                 )
@@ -29,20 +43,33 @@ class RestaurantQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    SELECT id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     FROM restaurants
                     WHERE id = %s
                     """,
                     [id],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def create_restaurant(self, restaurant):
@@ -51,9 +78,33 @@ class RestaurantQueries:
                 cur.execute(
                     """
                     INSERT INTO restaurants (
-                        price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                        price
+                        , rating
+                        , name
+                        , phone
+                        , address
+                        , city
+                        , zip_code
+                        , country
+                        , state
+                        , start_
+                        , end_
+                        , day
+                        , picture
                     )
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    VALUES (%s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s
+                    , %s)
                     RETURNING id
                     """,
                     [
@@ -72,7 +123,7 @@ class RestaurantQueries:
                         restaurant.picture,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -85,19 +136,19 @@ class RestaurantQueries:
                     "rating": restaurant.rating,
                     "name": restaurant.name,
                     "phone": restaurant.phone,
-                    "address":restaurant.address,
-                    "city":restaurant.city,
-                    "zip_code":restaurant.zip_code,
-                    "country":restaurant.country,
-                    "state":restaurant.state,
-                    "start_":restaurant.start_,
-                    "end_":restaurant.end_,
-                    "day":restaurant.day,
-                    "picture":restaurant.picture,
+                    "address": restaurant.address,
+                    "city": restaurant.city,
+                    "zip_code": restaurant.zip_code,
+                    "country": restaurant.country,
+                    "state": restaurant.state,
+                    "start_": restaurant.start_,
+                    "end_": restaurant.end_,
+                    "day": restaurant.day,
+                    "picture": restaurant.picture,
                 }
                 return response
 
-    def update_restaurant(self,restaurant, data):
+    def update_restaurant(self, restaurant, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -117,7 +168,20 @@ class RestaurantQueries:
                       , day = %s
                       , picture = %s
                     WHERE id = %s
-                    RETURNING id, price, rating, name, phone, address, city, zip_code, country, state, start_, end_, day, picture
+                    RETURNING id
+                    , price
+                    , rating
+                    , name
+                    , phone
+                    , address
+                    , city
+                    , zip_code
+                    , country
+                    , state
+                    , start_
+                    , end_
+                    , day
+                    , picture
                     """,
                     [
                         data.price,
@@ -133,8 +197,8 @@ class RestaurantQueries:
                         data.end_,
                         data.day,
                         data.picture,
-                        restaurant
-                    ]
+                        restaurant,
+                    ],
                 )
 
                 record = None
@@ -181,23 +245,49 @@ class ReviewQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, title, content, post_date, rating
-                    FROM reviews
+                    SELECT res.id
+                    , res.price
+                    , res.rating
+                    , res.name
+                    , res.phone
+                    , res.address
+                    , res.city
+                    , res.zip_code
+                    , res.country
+                    , res.state
+                    , res.start_
+                    , res.end_
+                    , res.day
+                    , res.picture
+                    , rev.id
+                    , rev.title
+                    , rev.content
+                    , rev.post_date
+                    , rev.rating
+                    FROM restaurants res
+                    JOIN reviews rev ON(res.id = rev.restaurant_id)
+
                     """
                 )
 
-                results = []
-                for row in cur.fetchall():
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    for key, value in record.items():
-                        if key == 'post_date':
-                            print("the key is " + key)
-                            record['post_date'] = str(record['post_date'])
-                    print(type((record['post_date'])))
-                    results.append(record)
-                print(results)
+                reviews = []
+                rows = cur.fetchall()
+                for row in rows:
+                    review = self.review_record_to_dict(row, cur.description)
+                    reviews.append(review)
+                return reviews
+                # results = []
+                # for row in cur.fetchall():
+                #     record = {}
+                #     for i, column in enumerate(cur.description):
+                #         record[column.name] = row[i]
+                #     for key, value in record.items():
+                #         if key == 'post_date':
+                #             print("the key is " + key)
+                #             record['post_date'] = str(record['post_date'])
+                #     print(type((record['post_date'])))
+                #     results.append(record)
+                # print(results)
                 # print(results[post_date])
                 # response = {
                 #     "id": results.id,
@@ -207,32 +297,48 @@ class ReviewQueries:
                 #     "post_date": datetime.date(results.post_date),
                 # }
 
-                return results  
-
     def get_review(self, id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, title, content, post_date, rating
-                    FROM reviews
-                    WHERE id = %s
+                    SELECT res.id
+                    , res.price
+                    , res.rating
+                    , res.name
+                    , res.phone
+                    , res.address
+                    , res.city
+                    , res.zip_code
+                    , res.country
+                    , res.state
+                    , res.start_
+                    , res.end_
+                    , res.day
+                    , res.picture
+                    , rev.id
+                    , rev.title
+                    , rev.content
+                    , rev.post_date
+                    , rev.rating
+                    FROM restaurants res
+                    JOIN reviews rev ON(res.id = rev.restaurant_id)
+                    WHERE rev.id = %s
                     """,
                     [id],
                 )
-                
-                record = None
                 row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    for key, value in record.items():
-                        if key == 'post_date':
-                            print("the key is " + key)
-                            record['post_date'] = str(record['post_date'])
-                
-                return record
+                return self.review_record_to_dict(row, cur.description)
+                # record = None
+                # row = cur.fetchone()
+                # if row is not None:
+                #     record = {}
+                #     for i, column in enumerate(cur.description):
+                #         record[column.name] = row[i]
+                #     for key, value in record.items():
+                #         if key == 'post_date':
+                #             print("the key is " + key)
+                #             record['post_date'] = str(record['post_date'])
 
     def create_review(self, review):
         with pool.connection() as conn:
@@ -240,34 +346,41 @@ class ReviewQueries:
                 cur.execute(
                     """
                     INSERT INTO reviews (
-                        title, content, rating
+                        title, content, rating, restaurant_id
                     )
-                    VALUES (%s, %s, %s)
+                    VALUES (%s, %s, %s, %s)
                     RETURNING id
                     """,
                     [
                         review.title,
                         review.content,
                         review.rating,
+                        review.restaurant_id,
                     ],
                 )
-                
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                response = {
-                    "id": record["id"],
-                    "title": review.title,
-                    "content": review.content,
-                    "rating": review.rating,
-                    "post_date": review.post_date,
-                }
-                return response
 
-    def update_review(self,review, data):
+                row = cur.fetchone()
+                id = row[0]
+        if id is not None:
+            return self.get_review(id)
+            # record = None
+            # row = cur.fetchone()
+            # if row is not None:
+            #     record = {}
+            #     for i, column in enumerate(cur.description):
+            #         record[column.name] = row[i]
+            # response = {
+            #     "id": record["id"],
+            #     "title": review.title,
+            #     "content": review.content,
+            #     "rating": review.rating,
+            #     "post_date": review.post_date,
+            #     "restaurant_id": review.restaurant_id,
+            # }
+            # print(response)
+            # return response
+
+    def update_review(self, review, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -279,12 +392,7 @@ class ReviewQueries:
                     WHERE id = %s
                     RETURNING id, title, content, rating, post_date
                     """,
-                    [
-                        data.title,
-                        data.content,
-                        data.rating,
-                        review
-                    ]
+                    [data.title, data.content, data.rating, review],
                 )
                 record = None
                 row = cur.fetchone()
@@ -293,11 +401,10 @@ class ReviewQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     for key, value in record.items():
-                        if key == 'post_date':
+                        if key == "post_date":
                             print("the key is " + key)
-                            record['post_date'] = str(record['post_date'])
+                            record["post_date"] = str(record["post_date"])
                 return record
-
 
     def delete_review(self, review_id):
         with pool.connection() as conn:
@@ -309,6 +416,54 @@ class ReviewQueries:
                     """,
                     [review_id],
                 )
+
+    def review_record_to_dict(self, row, description):
+        review = None
+        if row is not None:
+            review = {}
+            review_fields = [
+                "id",
+                "title",
+                "content",
+                "post_date",
+                "rating",
+            ]
+            for i, column in enumerate(description):
+                if column.name in review_fields:
+                    review[column.name] = row[i]
+
+                    for key, value in review.items():
+                        if key == "post_date":
+                            # print("the key is " + key)
+                            review["post_date"] = str(review["post_date"])
+            # print(review)
+            # review["id"] = review["review_id"]
+            restaurant = {}
+            restaurant_fields = [
+                "id",
+                "price",
+                "rating",
+                "name",
+                "phone",
+                "address",
+                "city",
+                "zip_code",
+                "country",
+                "state",
+                "start_",
+                "end_",
+                "day",
+                "picture",
+            ]
+            for i, column in enumerate(description):
+                if column.name in restaurant_fields:
+                    restaurant[column.name] = row[i]
+            # restaurant["id"] = restaurant["res_id"]
+            # print(restaurant)
+            review["restaurant"] = restaurant
+            # print(restaurant)
+        return review
+
 
 class LocationQueries:
     def get_locations(self):
@@ -327,7 +482,7 @@ class LocationQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     results.append(record)
-                
+
                 return results
 
     def get_location(self, id):
@@ -348,8 +503,8 @@ class LocationQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
-                return record                
+
+                return record
 
     def create_location(self, location):
         with pool.connection() as conn:
@@ -370,7 +525,7 @@ class LocationQueries:
                         location.state,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -407,8 +562,8 @@ class LocationQueries:
                         data.zip_code,
                         data.country,
                         data.state,
-                        location
-                    ]
+                        location,
+                    ],
                 )
 
                 record = None
@@ -443,9 +598,9 @@ class PictureQueries:
                     VALUES (%s)
                     RETURNING id
                     """,
-                    [picture.url]
+                    [picture.url],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -487,7 +642,7 @@ class PictureQueries:
                     FROM pictures
                     WHERE id = %s
                     """,
-                    [id]
+                    [id],
                 )
 
                 record = None
@@ -496,7 +651,7 @@ class PictureQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def update_picture(self, picture, data):
@@ -509,7 +664,7 @@ class PictureQueries:
                     WHERE id = %s
                     RETURNING id, url
                     """,
-                    [data.url, picture]
+                    [data.url, picture],
                 )
 
                 record = None
@@ -564,14 +719,14 @@ class CategoriesQueries:
                     """,
                     [id],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                
+
                 return record
 
     def create_category(self, category):
@@ -590,7 +745,7 @@ class CategoriesQueries:
                         category.alias,
                     ],
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -604,7 +759,7 @@ class CategoriesQueries:
                 }
                 return response
 
-    def update_category(self,category, data):
+    def update_category(self, category, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -615,11 +770,7 @@ class CategoriesQueries:
                     WHERE id = %s
                     RETURNING id, title, alias
                     """,
-                    [
-                        data.title,
-                        data.alias,
-                        category
-                    ]
+                    [data.title, data.alias, category],
                 )
 
                 record = None
@@ -629,7 +780,6 @@ class CategoriesQueries:
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                 return record
-
 
     def delete_category(self, category_id):
         with pool.connection() as conn:
@@ -643,116 +793,111 @@ class CategoriesQueries:
                 )
 
 
-class HourQueries:
-    def get_hours(self):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT id, is_overnight, end_, day, start_
-                    FROM hours
-                    """,
-                )
+# class HourQueries:
+#     def get_hours(self):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     SELECT id, is_overnight, end_, day, start_
+#                     FROM hours
+#                     """,
+#                 )
 
-                results = []
-                for row in cur.fetchall():
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    results.append(record)
-                return results
-    def get_hour(self, id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT id, is_overnight, end_, day, start_
-                    FROM hours
-                    WHERE id = %s
-                    """,
-                    [id],
-                )
+#                 results = []
+#                 for row in cur.fetchall():
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                     results.append(record)
+#                 return results
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                return record
+#     def get_hour(self, id):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     SELECT id, is_overnight, end_, day, start_
+#                     FROM hours
+#                     WHERE id = %s
+#                     """,
+#                     [id],
+#                 )
 
-    def create_hour(self, hour):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO hours (
-                        is_overnight, end_, day, start_
-                    )
-                    VALUES (%s, %s, %s, %s)
-                    RETURNING id
-                    """,
-                    [
-                        hour.is_overnight,
-                        hour.end_,
-                        hour.day,
-                        hour.start_,
-                    ],
-                )
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                 return record
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                    response = {
-                        "id": record["id"],
-                        "is_overnight": hour.is_overnight,
-                        "end_": hour.end_,
-                        "day": hour.day,
-                        "start_": hour.start_,
-                    }
-                return response
+#     def create_hour(self, hour):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     INSERT INTO hours (
+#                         is_overnight, end_, day, start_
+#                     )
+#                     VALUES (%s, %s, %s, %s)
+#                     RETURNING id
+#                     """,
+#                     [
+#                         hour.is_overnight,
+#                         hour.end_,
+#                         hour.day,
+#                         hour.start_,
+#                     ],
+#                 )
 
-    def update_hour(self, hour, data):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    UPDATE hours
-                    SET is_overnight = %s
-                    , end_ = %s
-                    , day = %s
-                    , start_ = %s
-                    WHERE id = %s
-                    RETURNING id, is_overnight, end_, day, start_
-                    """,
-                    [
-                        data.is_overnight,
-                        data.end_,
-                        data.day,
-                        data.start_,
-                        hour
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                     response = {
+#                         "id": record["id"],
+#                         "is_overnight": hour.is_overnight,
+#                         "end_": hour.end_,
+#                         "day": hour.day,
+#                         "start_": hour.start_,
+#                     }
+#                 return response
 
-                    ]
-                )
+#     def update_hour(self, hour, data):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     UPDATE hours
+#                     SET is_overnight = %s
+#                     , end_ = %s
+#                     , day = %s
+#                     , start_ = %s
+#                     WHERE id = %s
+#                     RETURNING id, is_overnight, end_, day, start_
+#                     """,
+#                     [data.is_overnight, data.end_
+# , data.day, data.start_, hour],
+#                 )
 
-                record = None
-                row = cur.fetchone()
-                if row is not None:
-                    record = {}
-                    for i, column in enumerate(cur.description):
-                        record[column.name] = row[i]
-                return record
+#                 record = None
+#                 row = cur.fetchone()
+#                 if row is not None:
+#                     record = {}
+#                     for i, column in enumerate(cur.description):
+#                         record[column.name] = row[i]
+#                 return record
 
-    def delete_hour(self, hour_id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    DELETE FROM hours
-                    WHERE id = %s
-                    """,
-                    [hour_id],
-                )
+#     def delete_hour(self, hour_id):
+#         with pool.connection() as conn:
+#             with conn.cursor() as cur:
+#                 cur.execute(
+#                     """
+#                     DELETE FROM hours
+#                     WHERE id = %s
+#                     """,
+#                     [hour_id],
+#                 )

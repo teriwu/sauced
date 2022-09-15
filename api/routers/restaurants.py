@@ -1,24 +1,28 @@
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, Response
 from db import RestaurantQueries
-from models.restaurants import(
+from models.restaurants import (
     RestaurantIn,
     RestaurantList,
     RestaurantOut,
-    RestaurantDeleteOperation
-)
+    RestaurantDeleteOperation)
 
 router = APIRouter()
 
 
-@router.get("/api/restaurants", response_model=RestaurantList, tags=["Restaurants"])
+@router.get(
+    "/api/restaurants", response_model=RestaurantList, tags=["Restaurants"])
 def restaurants_list(queries: RestaurantQueries = Depends()):
     return {
         "restaurants": queries.get_restaurants(),
     }
 
 
-@router.get("/api/restaurants/{id}", response_model=RestaurantOut, tags=["Restaurants"])
-def get_restaurant(id: int, response: Response, queries: RestaurantQueries = Depends()):
+@router.get(
+    "/api/restaurants/{id}", response_model=RestaurantOut, tags=["Restaurants"]
+)
+def get_restaurant(
+    id: int, response: Response, queries: RestaurantQueries = Depends()
+):
     record = queries.get_restaurant(id)
     if record is None:
         response.status_code = 404
@@ -26,12 +30,17 @@ def get_restaurant(id: int, response: Response, queries: RestaurantQueries = Dep
         return record
 
 
-@router.post("/api/restaurants", response_model=RestaurantOut, tags=["Restaurants"])
-def create_restaurant(restaurant: RestaurantIn, queries: RestaurantQueries = Depends()):
+@router.post(
+    "/api/restaurants", response_model=RestaurantOut, tags=["Restaurants"])
+def create_restaurant(
+    restaurant: RestaurantIn, queries: RestaurantQueries = Depends()
+):
     return queries.create_restaurant(restaurant)
 
 
-@router.put("/api/restaurants/{id}", response_model = RestaurantOut, tags =["Restaurants"])
+@router.put(
+    "/api/restaurants/{id}", response_model=RestaurantOut, tags=["Restaurants"]
+)
 def update_restaurant(
     restaurant_id: int,
     restaurant_in: RestaurantIn,
@@ -45,10 +54,16 @@ def update_restaurant(
         return record
 
 
-@router.delete("/api/restaurants/{id}", response_model=RestaurantDeleteOperation, tags=["Restaurants"])
-def delete_restaurant(restaurant_id: int, queries: RestaurantQueries = Depends()):
+@router.delete(
+    "/api/restaurants/{id}",
+    response_model=RestaurantDeleteOperation,
+    tags=["Restaurants"],
+)
+def delete_restaurant(
+    restaurant_id: int, queries: RestaurantQueries = Depends()
+):
     try:
         queries.delete_restaurant(restaurant_id)
         return {"result": True}
-    except:
+    except Exception:
         return {"result": False}
