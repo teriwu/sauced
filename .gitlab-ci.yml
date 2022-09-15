@@ -20,7 +20,7 @@ build-front-end-job:
   stage: build
   image: node:lts-bullseye
   variables:
-    PUBLIC_URL: https://lost_in_the_sauce.gitlab.io/mod-3-group-11
+    PUBLIC_URL: https://lost-in-the-sauce.gitlab.io/mod-3-group-11
   script:
     - cd ghi  # CHANGE THIS TO THE DIRECTORY THAT HAS package.json
     - npm install
