@@ -23,7 +23,7 @@ function App() {
   const [currentRestaurant, setRestaurant] = useState({});
   
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/restaurants")
+    fetch(`${process.env.REACT_APP_FASTAPI_SERVICE}/api/restaurants`)
     .then(res => res.json())
     .then(data => {
       console.log("DATA:", data)

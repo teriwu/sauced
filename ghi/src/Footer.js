@@ -28,10 +28,10 @@ function Footer() {
       </section>
 
       <section className="">
-        <div className="container text-center text-md-start mt-5">
-          <div className="row mt-3">
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
+        <div className="container text-center text-md-start my-5">
+          <div className="row">
+            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto">
+              <h6 className="text-uppercase fw-bold mb-3">
                 Lost In The Sauce
               </h6>
               <p>
@@ -39,8 +39,8 @@ function Footer() {
               </p>
             </div>
 
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
+              <h6 className="text-uppercase fw-bold mb-3">
                 Products
               </h6>
               <p>
@@ -65,8 +65,8 @@ function Footer() {
               </p>
             </div>
 
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
+            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto">
+              <h6 className="text-uppercase fw-bold mb-3">
                 Useful links
               </h6>
               <p>
@@ -81,8 +81,8 @@ function Footer() {
               </p>
             </div>
 
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0">
+              <h6 className="text-uppercase fw-bold mb-3">Contact</h6>
               <p><i className="bi bi-house-door-fill"></i> New York, NY 10012, US</p>
               <p><i className="bi bi-envelope-fill"></i> info@lostinthesauce.com</p>
               <p><i className="bi bi-telephone-fill"></i> + 01 234 567 88</p>
