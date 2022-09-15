@@ -25,7 +25,7 @@ class RestaurantQueries:
                     , end_
                     , day
                     , picture
-                    FROM restaurants
+                    FROM public.restaurants
                     """
                 )
 
