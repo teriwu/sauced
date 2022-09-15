@@ -39,7 +39,7 @@ class RestaurantForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data= {...this.state};
-        const restaurantUrl = 'http://localhost:8000/api/restaurants/';
+        const restaurantUrl = `${process.env.REACT_APP_FASTAPI_SERVICE}/api/restaurants`;
         console.log(data, "adfasdfasd")
         const fetchConfig = {
             method: "post",

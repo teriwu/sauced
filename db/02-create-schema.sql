@@ -55,12 +55,13 @@ CREATE TABLE public.restaurants (
 
 
 CREATE TABLE users (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     password VARCHAR NOT NULL,
     first TEXT NOT NULL, 
     last TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    username TEXT NOT NULL UNIQUE
+    username TEXT NOT NULL UNIQUE,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE public.reviews (

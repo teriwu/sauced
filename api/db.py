@@ -25,7 +25,7 @@ class RestaurantQueries:
                     , end_
                     , day
                     , picture
-                    FROM restaurants
+                    FROM public.restaurants
                     """
                 )
 
@@ -891,6 +891,156 @@ class CategoriesQueries:
 #                         record[column.name] = row[i]
 #                 return record
 
+    def delete_hour(self, hour_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM hours
+                    WHERE id = %s
+                    """,
+                    [hour_id],
+                )
+
+class UserQueries:
+    def user_list(self):
+        print("Gotcha Users")
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, password, first_name, last_name, email, username FROM users
+                    """
+                )
+
+                results = []
+                for row in cur.fetchall():
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                    results.append(record)
+
+                return results
+
+    def get_user(self, username):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, password, first_name, last_name, email, username FROM users
+                    WHERE username = %s
+                    """,
+                    [username],
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+    def create_user(self, user):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO users (
+                        password, first, last, email, username
+                    )
+                    VALUES (%s, %s, %s, %s, %s)
+                    RETURNING id
+                    """,
+                    [
+                        user.password,
+                        user.first,
+                        user.last,
+                        user.email,
+                        user.username,
+                    ],
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                response = {
+                    "id": record["id"],
+                    "password": user.password,
+                    "first": user.first,
+                    "last": user.last,
+                    "email": user.email,
+                    "username": user.username,
+                }
+                return response
+
+    def login(self, user, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT id, password, first_name, last_name, email, username FROM users
+                    WHERE id = %s
+                    """,
+                    [id],
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
+
+
+    def update_user(self, user, data):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE users
+                    SET password = %s
+                      , first_name = %s
+                      , last_name = %s
+                      , email = %s
+                      , username = %s
+                      WHERE id = %s
+                      RETURNING id, password, first_name, last_name, email, username
+                    """,
+                    [
+                        data.password,
+                        data.first_name,
+                        data.last_name,
+                        data.email,
+                        data.username,
+                        user
+                    ]
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column, in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
+
+#    def delete_user(self, user_id):
+#        with pool.connection() as conn:
+#            with conn.cursor() as cur:
+#                cur.execute(
+#                    """
+#                    DELETE FROM users
+#                    WHERE id = %s
+#                    """,
+#                    [user_id],
+#                )
 #     def delete_hour(self, hour_id):
 #         with pool.connection() as conn:
 #             with conn.cursor() as cur:

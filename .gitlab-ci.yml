@@ -19,10 +19,16 @@ lint-job:
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
+  variables:
+    PUBLIC_URL: https://lost-in-the-sauce.gitlab.io/mod-3-group-11
   script:
-    - cd ghi
+    - cd ghi  # CHANGE THIS TO THE DIRECTORY THAT HAS package.json
     - npm install
     - npm run build
+    - cp build/index.html build/404.html  # Make this a SPA
+  artifacts:
+    paths:
+      - ghi/build/  # Save all of the files in the build path
 
 restaurant-unit-test-job:
   image: python:3-bullseye
@@ -31,3 +37,86 @@ restaurant-unit-test-job:
     - cd api
     - pip install -r requirements.txt
     - python -m pytest
+
+build-fastapi-api-image-job:  # RENAME THIS
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    # CHANGE THIS TO THE DIRECTORY THAT HAS YOUR Dockerfile
+    - cd api
+
+    # EVERYWHERE IT SHOWS fastapi_api BELOW, CHANGE THOSE
+    # TO A MORE MEANINGFUL SERVICE NAME (5 PLACES)
+    - docker build -t ${CI_REGISTRY_IMAGE}/restaurant_api:latest .
+    - docker tag ${CI_REGISTRY_IMAGE}/restaurant_api:latest ${CI_REGISTRY_IMAGE}/restaurant_api:$CI_JOB_ID
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push ${CI_REGISTRY_IMAGE}/restaurant_api:$CI_JOB_ID
+    - docker push ${CI_REGISTRY_IMAGE}/restaurant_api:latest
+
+deploy-fastapi-api-image-job:  # RENAME THIS
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  stage: deploy
+  image: docker:20.10.16
+  needs:
+    # CHANGE THIS TO THE JOB NAME FROM THE LAST STEP
+    - build-fastapi-api-image-job
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+
+    # EVERYWHERE IT SHOWS fastapi_api BELOW, CHANGE THOSE
+    # TO THE NAME YOU CHOSE FOR THE BUILD STEP (2 PLACES)
+
+    # EVERYWHERE IT SHOWS HEROKU_SERVICE_APP BELOW, CHANGE
+    # THOSE TO THE VARIABLE NAME YOU CREATED FOR THE CI/CD
+    # SETTINGS (2 PLACES)
+
+    # IF THIS IS FOR A BACKGROUND SERVICE LIKE A POLLER,
+    # CHANGE /web TO /worker (2 PLACES)
+    - docker pull ${CI_REGISTRY_IMAGE}/restaurant_api:latest
+    - docker tag ${CI_REGISTRY_IMAGE}/restaurant_api:latest registry.heroku.com/$HEROKU_ACCOUNT_API_APP/web:latest
+    - docker push registry.heroku.com/$HEROKU_ACCOUNT_API_APP/web:latest
+
+release-fastapi-api-image-job:  # RENAME THIS
+  stage: deploy
+  image: node:10.17-alpine
+  needs:
+    # CHANGE THIS TO THE JOB NAME FROM THE LAST STEP
+    - deploy-fastapi-api-image-job
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add curl bash
+    - curl https://cli-assets.heroku.com/install.sh | sh
+  script:
+    # EVERYWHERE IT SHOWS HEROKU_SERVICE_APP BELOW, CHANGE
+    # THOSE TO THE VARIABLE NAME YOU CREATED FOR THE CI/CD
+    # SETTINGS (1 PLACE)
+
+    # IF THIS IS FOR A BACKGROUND SERVICE LIKE A POLLER,
+    # CHANGE web TO worker (1 PLACE)
+    - heroku container:release web --app $HEROKU_ACCOUNT_API_APP
+
+pages:  # THIS STEP MUST BE NAME PAGES
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  dependencies:
+    - build-front-end-job
+  needs:
+    - build-front-end-job
+  script:
+     # THE FIRST PART OF THIS COMMAND MUST BE THE DIRECTORY
+     # THAT YOU cd INTO TO BUILD IT PLUS THE build/ AT THE
+     # END
+    - mv ghi/build/ public
+  artifacts:
+    paths:
+      - public

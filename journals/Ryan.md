@@ -1,5 +1,14 @@
 
 
+## 9/13/22
+* 
+
+## 9/8/22 - 9/12/22
+* Finished back end work for the user form. Completed the user form react page.
+
+## 9/7/22
+* I worked on the model and router for the users section. Completed the user section of the db.py file. Started on a UserForm.js file in ghi/src.
+
 ## 9/1/22
 * I began working on the user side of the project. Created models and routers for User.
 
