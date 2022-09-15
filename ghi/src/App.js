@@ -39,7 +39,7 @@ function App() {
     <BrowserRouter>
       <div id="outer-div" className="d-flex flex-column vh-100 vw-96">
         <Nav />
-        <div className="container pb-5">
+        <div className="container my-5">
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/restaurants" element={<RestaurantList />} />
