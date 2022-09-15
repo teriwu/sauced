@@ -12,7 +12,6 @@ services:
     environment:
       - POSTGRES_MULTIPLE_DATABASES=  # List databases we want
       - POSTGRES_PASSWORD=abcd # Formerly test-databases
-      - SIGNING_KEY: 07a6ae692680d41be75b2a789ca2095ca80cd97618fdda9bc8f694aec0eaa15b
     ports:
       - 15432:5432
   api:
@@ -26,7 +25,7 @@ services:
     environment:
       DATABASE_URL: postgresql://sauce_user:abcd@postgres/sauce_db
       WAIT_HOSTS: postgres:5432
-      SIGNING_KEY: 07a6ae692680d41be75b2a789ca2095ca80cd97618fdda9bc8f694aec0eaa15b
+      SIGNING_KEY: ${SIGNING_KEY}
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
@@ -40,4 +39,3 @@ services:
         NODE_ENV: development
         HOST: "0.0.0.0"
         REACT_APP_FASTAPI_SERVICE: http://localhost:8000
-        SIGNING_KEY: 07a6ae692680d41be75b2a789ca2095ca80cd97618fdda9bc8f694aec0eaa15b
