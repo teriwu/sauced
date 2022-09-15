@@ -13,6 +13,7 @@ import Credits from './Credits';
 import UserForm from './UserForm';
 import LogIn from './LogIn';
 import RestaurantDetail from './RestaurantDetail';
+import About from './About';
 
 
 function App() {
@@ -20,8 +21,6 @@ function App() {
   const [matchingResults, setMatchingResults] = useState([]);
   const [dataArr, setDataArr] = useState([]);
   const [currentRestaurant, setRestaurant] = useState({});
-  
-
   
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/restaurants")
@@ -39,9 +38,9 @@ function App() {
       currentRestaurant, setRestaurant,
     }}>
     <BrowserRouter>
-      <div className="cover-container d-flex w-100 h-100 mx-auto flex-column">
+      <div id="outer-div" className="d-flex flex-column vh-100 vw-96">
         <Nav />
-        <div className="container">
+        <div className="container pb-5">
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/restaurants" element={<RestaurantList />} />
@@ -51,13 +50,12 @@ function App() {
             <Route path="/reviews/new" element={<ReviewForm />} />
             <Route path="/users/new" element={<UserForm />} />
             <Route path="/api/users/login" element={<LogIn />} />
-            <Route path="/credits" element={<Credits />} />
             <Route path="/map" element={<Map />} />
-        </Routes>
+            <Route path="/credits" element={<Credits />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </div>
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </BrowserRouter>
     </MainContext.Provider>
