@@ -30,7 +30,8 @@ class ReviewForm extends React.Component {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json', 
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
         },
     };
         const response = await fetch(reviewUrl, fetchConfig);
