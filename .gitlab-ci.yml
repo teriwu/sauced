@@ -7,6 +7,7 @@ stages:          # List of stages for jobs, and their order of execution
 variables:
   DATABASE_URL: ""
 
+
 lint-job:
   image: python:3-bullseye
   stage: test
@@ -43,6 +44,8 @@ build-fastapi-api-image-job:  # RENAME THIS
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   stage: build
   image: docker:20.10.16
+  variables:
+    CORS_HOST: https://lost-in-the-sauce.gitlab.io/
   services:
     - docker:20.10.16-dind
   script:
