@@ -54,29 +54,38 @@ function LogIn() {
 
   // JSX code for login form
   const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
+    <div className="row d-flex justify-content-center align-items-center">
+
+      <div className="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          className="img-fluid" alt="Sample image" />
+      </div>
+      
+      <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form onSubmit={handleSubmit}>
+          <div>
+          </div>
+          <div className="form-floating mb-3">
+            <input placeholder="Username" type="text" name="uname" required className="form-control" />
+            <label>Username</label>
+            {renderErrorMessage("uname")}
+          </div>
+          <div className="form-floating mb-3">
+            <input placeholder="Password" type="password" name="pass" required className="form-control" />
+            <label>Password </label>
+            {renderErrorMessage("pass")}
+          </div>
+          <div className="col text-center">
+            <button className="btn btn-primary btn-lg">Log in</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>
