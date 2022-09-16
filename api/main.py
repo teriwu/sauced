@@ -147,7 +147,7 @@ async def read_items(token: str = Depends(oauth2_scheme)):
 
 origins = [
     "http://localhost:3000",
-    os.environ.get("CORS_HOST", None),
+    os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
 
 app.add_middleware(
