@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from models.restaurants import RestaurantOut
 
 
 class ReviewIn(BaseModel):
