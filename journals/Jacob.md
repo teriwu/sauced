@@ -1,3 +1,10 @@
+## Thursday, September 15, 2022
+* Created a code where it averaged all the ratings and posted to the detail page
+* Finished the detail page
+
+## Wednesday, September 14, 2022
+* Connected the review form to the detail page so the reviews show up on the detail page
+
 ## Tuesday, September 13, 2022
 * Started designing the detail page
 * Created a feature on the review form where It lists all the restaurants with their exact addresses.

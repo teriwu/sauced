@@ -17,7 +17,7 @@ function RestaurantDetail(){
 
     
     
-    useEffect(() => {
+    useEffect((reviews) => {
     fetch(`http://localhost:8000/api/reviews/restaurants/${currentRestaurant.id}`)
     .then(res => res.json())
     .then(data => {

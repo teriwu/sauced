@@ -77,7 +77,7 @@ function Nav() {
           <div className="d-flex text-end">
             <div className="input-group my-auto">
               <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-              <button onClick={handleClick} type="button" className="btn rounded btn-outline-light me-3"><i class="bi bi-search"></i></button>
+              <button onClick={handleClick} type="button" className="btn rounded btn-outline-light me-3"><i className="bi bi-search"></i></button>
 
               <Link to="/api/users/login" className="btn rounded btn-outline-light me-2">Log in</Link>
               <Link to="/users/new" className="btn rounded btn-warning">Sign up</Link>
