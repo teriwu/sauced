@@ -70,7 +70,7 @@ function Nav() {
               {/* <li className="nav-item"> */}
                 <div className="input-group">
                   <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
-                  <button onClick={handleClick} type="button" className="btn btn-outline-light"><i class="bi bi-search"></i></button>
+                  <button onClick={handleClick} type="button" className="btn btn-outline-light"><i className="bi bi-search"></i></button>
                 </div>
               {/* </li> */}
               {/* <li className="nav-item"> */}
