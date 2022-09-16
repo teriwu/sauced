@@ -10,18 +10,7 @@ function RestaurantDetail(){
     
     const [reviews, setReviews] = useState([]);
    
-<<<<<<< HEAD
 
-    
-    
-    useEffect((reviews) => {
-    fetch(`http://localhost:8000/api/reviews/restaurants/${currentRestaurant.id}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log("DATA:", data)
-      setReviews(data.reviews)
-      console.log(reviews, "REVIEWS")
-=======
     useEffect((reviews) => {
     fetch(`${process.env.REACT_APP_FASTAPI_SERVICE}/api/reviews/restaurants/${currentRestaurant.id}`)
         .then(res => res.json())
@@ -29,7 +18,6 @@ function RestaurantDetail(){
             console.log("DATA:", data)
             setReviews(data.reviews)
             console.log(reviews, "REVIEWS")
->>>>>>> 9c606efa1e7b7d742358fdbba80017f394e20c54
       
         })
     }, [currentRestaurant])

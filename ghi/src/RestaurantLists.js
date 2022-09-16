@@ -15,11 +15,8 @@ function RestaurantList() {
         pageLoaded !== false ? handleRefresh() 
         : setPageLoaded(true)
         setPageLoaded(false)
-<<<<<<< HEAD
-    })
-=======
+   
     }, [pageLoaded])
->>>>>>> 9c606efa1e7b7d742358fdbba80017f394e20c54
 
     return (
         <>
