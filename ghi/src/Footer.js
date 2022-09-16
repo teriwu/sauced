@@ -4,29 +4,7 @@ function Footer() {
 
   return(
     <footer className="text-center text-lg-start bg-light text-muted mt-auto">
-      <section className="d-flex justify-content-between p-4 border-bottom">
-        <div className="me-5 d-lg-block">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <div>
-          <a href="/" className="me-4 text-reset">
-            <i className="bi bi-facebook"></i>
-          </a>
-          <a href="/" className="me-4 text-reset">
-            <i className="bi bi-twitter"></i>
-          </a>
-          <a href="/" className="me-4 text-reset">
-            <i className="bi bi-google"></i>
-          </a>
-          <a href="/" className="me-4 text-reset">
-            <i className="bi bi-instagram"></i>
-          </a>
-          <a href="/" className="me-4 text-reset">
-            <i className="bi bi-linkedin"></i>
-          </a>
-        </div>
-      </section>
-
+      
       <section className="">
         <div className="container text-center text-md-start my-5">
           <div className="row">
