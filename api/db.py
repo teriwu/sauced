@@ -336,6 +336,8 @@ class ReviewQueries:
                 id = row[0]
         if id is not None:
             return self.get_review(id)
+        else:
+            return {}
             # record = None
             # row = cur.fetchone()
             # if row is not None:

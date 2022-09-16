@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends, Response
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from db import ReviewQueries
 from models.reviews import (
     ReviewIn,
@@ -31,7 +33,8 @@ def get_review(
 
 @router.post("/api/reviews", response_model=ReviewOut, tags=["Reviews"])
 def create_review(review: ReviewIn, queries: ReviewQueries = Depends()):
-    return queries.create_review(review)
+    json_compatible_item_data = jsonable_encoder(queries.create_review(review))
+    return JSONResponse(content=json_compatible_item_data)
 
 
 @router.put("/api/reviews/{id}", response_model=ReviewOut, tags=["Reviews"])
