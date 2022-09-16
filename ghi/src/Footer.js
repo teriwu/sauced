@@ -34,9 +34,8 @@ function Footer() {
               <h6 className="text-uppercase fw-bold mb-3">
                 Lost In The Sauce
               </h6>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </p>
+              <p>What's that sauce?</p>
+              <Link to="/"><i class="bi bi-egg-fried"></i></Link>
             </div>
 
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
@@ -90,7 +89,9 @@ function Footer() {
         </div>
       </section>
       <div className="text-center p-4" style={{backgroundColor: '#e6e6e6'}}>
-        <a className="text-reset fw-bold" href="https://gitlab.com/lost-in-the-sauce/mod-3-group-11">&copy; 2022 Lost In The Sauce</a>
+        <p><a className="text-reset fw-bold" href="https://gitlab.com/lost-in-the-sauce/mod-3-group-11">&copy; 2022 Lost In The Sauce</a></p>
+        <p><a href="https://www.flaticon.com/free-icons/sauces" target="_blank" rel="noreferrer" title="sauces icons">Sauces icons created by iconixar - Flaticon</a></p>
+        <p><a href="https://www.flaticon.com/free-icons/teamwork" target="_blank" rel="noreferrer" title="teamwork icons">Teamwork icons created by Freepik - Flaticon</a></p>
       </div>
     </footer>
     
