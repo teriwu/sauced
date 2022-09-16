@@ -246,7 +246,6 @@ class ReviewQueries:
                 cur.execute(
                     """
                     SELECT rev.id
-                    
                     , rev.title
                     , rev.content
                     , rev.post_date
@@ -888,7 +887,7 @@ class UserQueries:
                     , first_name
                     , last_name
                     , email
-                    , username 
+                    , username
                     FROM users
                     """
                 )
@@ -912,7 +911,7 @@ class UserQueries:
                     , first_name
                     , last_name
                     , email
-                    , username 
+                    , username
                     FROM users
                     WHERE username = %s
                     """,
