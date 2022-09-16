@@ -25,7 +25,7 @@ class ReviewForm extends React.Component {
         delete data.restaurant_ids
         console.log(data, "DATA")
         // const reviewUrl = 'http://localhost:8000/api/reviews/';
-        const reviewUrl = `${process.env.REACT_APP_FASTAPI_SERVICE}/api/reviews/`;
+        const reviewUrl = `${process.env.REACT_APP_FASTAPI_SERVICE}/api/reviews`;
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(data),
