@@ -1,3 +1,9 @@
+## Wednesday, September 14, 2022 - Thursday, September 15, 2022
+
+I worked on:
+* More CSS
+* Merging branches into main branch
+
 ## Tuesday, September 13, 2022
 
 I worked on:
