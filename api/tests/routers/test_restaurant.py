@@ -16,6 +16,12 @@ class NormalRestaurantQueries:
         return [id, "OUR RESTAURANT", True]
 
 
+def test_get_restaurant_list():
+    response = client.get("/api/restaurants")
+    assert response.status_code == 200
+    assert response.json() == {"List of": "restaurants"}
+
+
 def test_get_restaurant_returns_404():
     # ARRANGE
     # Use our fake database

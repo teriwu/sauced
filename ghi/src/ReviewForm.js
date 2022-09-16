@@ -83,20 +83,20 @@ class ReviewForm extends React.Component {
         <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4">
-                <h1>Create a Review</h1>
+                <h3 className="h3 text-center">Create a Review</h3>
                 <form onSubmit={this.handleSubmit} id="create-review-form">
-                <div className="mb-3">
-                                <select onChange={this.handleRestaurantIdChange} value={this.state.restaurant_id} required name="restaurant_id" id="restaurant_id" className="form-select">
-                                <option value="">Choose a restaurant</option>
-                                {this.state.restaurants.map(restaurant => {
-                                    return (
-                                        <option key={restaurant.id} value={restaurant.id}>
-                                        {restaurant.name} / {restaurant.address}, {restaurant.city}, {restaurant.state}, {restaurant.zip_code}
-                                        </option>
-                                    )
-                                })}
-                                </select>
-                            </div>
+                  <div className="mb-3">
+                    <select onChange={this.handleRestaurantIdChange} value={this.state.restaurant_id} required name="restaurant_id" id="restaurant_id" className="form-select">
+                    <option value="">Choose a restaurant</option>
+                    {this.state.restaurants.map(restaurant => {
+                      return (
+                        <option key={restaurant.id} value={restaurant.id}>
+                        {restaurant.name} / {restaurant.address}, {restaurant.city}, {restaurant.state}, {restaurant.zip_code}
+                        </option>
+                      )
+                    })}
+                    </select>
+                  </div>
                   
                   <div className= "mb-3">
                     <input onChange={this.handleTitleChange} value={this.state.title} placeholder="Title" required type="text" name="title" id="title" className="form-control" />

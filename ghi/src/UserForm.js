@@ -78,7 +78,7 @@ class UserForm extends React.Component {
           <div className="row">
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
-                <h1>Create an Account</h1>
+                <h3 className="h3 text-center">Create an Account</h3>
                 <form onSubmit={this.handleSubmitChange} id="create-user-form">
                   <div className="form-floating mb-3">
                     <input onChange={this.handleEmailChange} value={this.state.email} placeholder="email" required type="email" name="email" id="email" className="form-control" />

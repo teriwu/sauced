@@ -21,7 +21,7 @@ function RestaurantList() {
     return (
         <>
         <div className="container">
-            <h1>Restaurants</h1>
+            <h1 className="h1">Restaurants</h1>
             <table className="table table-striped">
                 <thead>
                     <tr>
