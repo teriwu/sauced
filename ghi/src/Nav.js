@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { MainContext } from './MainContext';
 
 
@@ -31,14 +31,6 @@ function Nav() {
       }
       navigate("/restaurants");
     }
-  }
-
-  const toLogIn = () => {
-    navigate("/api/users/login");
-  }
-
-  const toSignUp = () => {
-    navigate("/users/new");
   }
 
   const delay = ms => new Promise(
@@ -87,8 +79,8 @@ function Nav() {
               <input value={search} onChange={e => setSearch(e.target.value)} onKeyPress={handleEnter} type="search" className="form-control rounded" placeholder="Find sauce" aria-label="Search" aria-describedby="search-addon" />
               <button onClick={handleClick} type="button" className="btn rounded btn-outline-light me-3"><i class="bi bi-search"></i></button>
 
-              <button onClick={toLogIn} type="button" className="btn rounded btn-outline-light me-2">Log in</button>
-              <button onClick={toSignUp} type="button" className="btn rounded btn-warning">Sign up</button>
+              <Link to="/api/users/login" className="btn rounded btn-outline-light me-2">Log in</Link>
+              <Link to="/users/new" className="btn rounded btn-warning">Sign up</Link>
             </div>
           </div>
           
