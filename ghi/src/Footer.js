@@ -80,7 +80,7 @@ function Footer() {
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0">
               <h6 className="text-uppercase fw-bold mb-3">Contact</h6>
-              <p><i className="bi bi-house-door-fill"></i> New York, NY 10012, US</p>
+              <p><i className="bi bi-house-door-fill"></i> Lost, Sauce 72823, US</p>
               <p><i className="bi bi-envelope-fill"></i> info@lostinthesauce.com</p>
               <p><i className="bi bi-telephone-fill"></i> + 01 234 567 88</p>
               <p><i className="bi bi-printer-fill"></i> + 01 234 567 89</p>
@@ -89,7 +89,7 @@ function Footer() {
           </div>
         </div>
       </section>
-      <div className="text-center p-4" style={{backgroundColor: '#eeeeee'}}>
+      <div className="text-center p-4" style={{backgroundColor: '#e6e6e6'}}>
         <a className="text-reset fw-bold" href="https://gitlab.com/lost-in-the-sauce/mod-3-group-11">&copy; 2022 Lost In The Sauce</a>
       </div>
     </footer>

@@ -1,19 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
 import { MainContext } from "./MainContext"; 
 
-import { Link } from 'react-router-dom';
-
-
-
-
 
 function RestaurantDetail(){    
 
     const {dataArr, currentRestaurant} = useContext(MainContext);
     console.log(currentRestaurant, "asdfasdf")
+    console.log(dataArr)
     
     const [reviews, setReviews] = useState([]);
    
+<<<<<<< HEAD
 
     
     
@@ -24,11 +21,18 @@ function RestaurantDetail(){
       console.log("DATA:", data)
       setReviews(data.reviews)
       console.log(reviews, "REVIEWS")
+=======
+    useEffect((reviews) => {
+    fetch(`${process.env.REACT_APP_FASTAPI_SERVICE}/api/reviews/restaurants/${currentRestaurant.id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log("DATA:", data)
+            setReviews(data.reviews)
+            console.log(reviews, "REVIEWS")
+>>>>>>> 9c606efa1e7b7d742358fdbba80017f394e20c54
       
-    })
-  }, [currentRestaurant])
-
-    
+        })
+    }, [currentRestaurant])
 
     let length = reviews.length
     let total = 0
@@ -37,61 +41,70 @@ function RestaurantDetail(){
     })
     let result = total / length
 
+    return (
+        <>
+        <div className="row mb-4">
+            <div className="align-self-center col-md-2">
+                <img src={currentRestaurant.picture} alt="restaurant" width="150" className="rounded" />
+            </div>
+            <div className="col-md-10">
+                <h3 className="h3">{currentRestaurant.name}</h3>
+                <h4 className="h4 text-secondary"> Rating {result} </h4>
+                <h6 className="h6 text-secondary">Price: {currentRestaurant.price}</h6>
+            </div>
+        </div>
 
-        return (
-            <>
-            <h1>{currentRestaurant.name}</h1>
-            
-    
-            <h4> Rating {result} </h4>
-            <h6>Price:{currentRestaurant.price}</h6>
-            <img src={currentRestaurant.picture}  width="150"/>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Days</th>
-                        <th>Open</th>
-                        <th>Close</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                        <tr key={currentRestaurant.id}>
-                            <td>{currentRestaurant.day }</td>
-                            <td>{currentRestaurant.start_}</td>
-                            <td>{currentRestaurant.end_}</td>
-                            
-                        </tr>
-                        
-                </tbody>
-            </table>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>rating</th>
-                        <th>title</th>
-                        <th>content</th>
-                        
-                    </tr>
-                </thead>
-                {console.log(reviews, "YYYYY")}
+        <div className="row">
+            <div className="col-md-6">
+                <div className="col-md-12">
+                    <table className="table table-striped border border-secondary">
+                        <thead>
+                            <tr>
+                                <th>Days</th>
+                                <th>Open</th>
+                                <th>Close</th>
+                            </tr>
+                        </thead>
 
-                    
-                <tbody>
-                {reviews ? reviews.map(review => (
-                    <tr key={review.id}>
-                        <td>{review.rating }</td>
-                        <td>{review.title}</td>
-                        <td>{review.content}</td>
-                        
-                    </tr>
-                )):null}
-                </tbody>
-            </table>
-            </>
-        )
-            }
+                        <tbody>
+                            <tr key={currentRestaurant.id} className="align-middle">
+                                <td>{currentRestaurant.day}</td>
+                                <td>{currentRestaurant.start_}</td>
+                                <td>{currentRestaurant.end_}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>                    
+        
+            <div className="col-md-6">
+                <div className="col-md-12">
+                    <table className="table table-striped border border-secondary">
+                        <thead>
+                            <tr>
+                                <th>Rating</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        {console.log(reviews, "YYYYY")}
+
+                        <tbody>
+                            {reviews ? reviews.map(review => (
+                                <tr key={review.id} className="align-middle">
+                                    <td className="text-center">{review.rating}</td>
+                                    <td>{review.title}</td>
+                                    <td>{review.content}</td>
+                                </tr>
+                            )) : null}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+        </>
+    )
+}
 
 
 export default RestaurantDetail
