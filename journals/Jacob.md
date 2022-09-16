@@ -1,3 +1,8 @@
+## Friday, September 16
+* Created an unit test
+* Fixed an error on the review form
+* Made sure everything was working
+
 ## Thursday, September 15, 2022
 * Created a code where it averaged all the ratings and posted to the detail page
 * Finished the detail page
