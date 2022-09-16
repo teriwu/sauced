@@ -41,6 +41,15 @@ function Nav() {
     navigate("/users/new");
   }
 
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
+  const handleRefresh = async event => {
+    await delay(300);
+    window.location.reload();
+  }
+
   return (
     <>
       {/* Navbar */}
@@ -61,7 +70,7 @@ function Nav() {
             {/* Left links */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/restaurants">Restaurants</NavLink>
+                <NavLink onClick={handleRefresh} className="nav-link" aria-current="page" to="/restaurants">Restaurants</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="restaurants/new">New Restaurant</NavLink>
