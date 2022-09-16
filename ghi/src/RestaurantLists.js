@@ -60,8 +60,8 @@ function RestaurantList() {
                                 </td>    
                                 <td>{ restaurant.city }</td>
                                 <td>{ restaurant.price }</td>
-                                <td><Link to="/map" className="btn btn-info btn-sm px-4 gap-3">Get directions</Link></td>
-                                <td><Link to="/reviews/new" className="btn btn-info btn-sm px-4 gap-3">Write a Review</Link></td>
+                                <td><Link to="/map" className="btn btn-dark btn-sm px-4 gap-3">Get directions</Link></td>
+                                <td><Link to="/reviews/new" className="btn btn-dark btn-sm px-4 gap-3">Write a Review</Link></td>
                             </tr>
                         )
                         })
