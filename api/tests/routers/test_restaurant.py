@@ -16,10 +16,19 @@ class NormalRestaurantQueries:
         return [id, "OUR RESTAURANT", True]
 
 
-def test_get_restaurant_list():
-    response = client.get("/api/restaurants")
+# Teri's test 😊
+def test_get_main():
+    response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"List of": "restaurants"}
+    assert response.json() == {"Lost":"sauce"}
+
+
+# Works with the default dummy data
+def test_get_restaurant():
+    response = client.get("/api/restaurants/1", headers={"Content-Type": "application/json"})
+    assert response.status_code == 200
+    assert response.json() == {"id":1,"price":"string","rating":0.0,"name":"string","phone":"string","address":"string","city":"string","zip_code":0,"country":"string","state":"string","start_":"string","end_":"string","day":"string","picture":"string"}
+# End of Teri's test
 
 
 def test_get_restaurant_returns_404():

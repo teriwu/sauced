@@ -9,6 +9,11 @@ from models.restaurants import (
 router = APIRouter()
 
 
+@router.get("/")
+def read_root():
+    return {"Lost": "sauce"}
+
+
 @router.get(
     "/api/restaurants", response_model=RestaurantList, tags=["Restaurants"])
 def restaurants_list(queries: RestaurantQueries = Depends()):
