@@ -16,7 +16,7 @@ function RestaurantList() {
         pageLoaded !== false ? handleRefresh() 
         : setPageLoaded(true)
         setPageLoaded(false)
-    }, [])
+    } )
 
     return (
         <>
@@ -37,7 +37,7 @@ function RestaurantList() {
                     {matchingResults.length !==0 ? matchingResults.map(restaurant => {
                         return (
                             <tr onClick={() => {setRestaurant(restaurant)}} key={restaurant.id}>
-                                <td><Link to="/restaurants/detail"><img src={restaurant.picture}  width="150"/></Link></td>
+                                <td><Link to="/restaurants/detail"><img src={restaurant.picture} alt='details' width="150"/></Link></td>
                                 <td>
                                 <Link to="/restaurants/detail">
                                     { restaurant.name }
@@ -52,7 +52,7 @@ function RestaurantList() {
                     }) : dataArr.map(restaurant => {
                         return (
                             <tr onClick={() => {setRestaurant(restaurant)}} key={restaurant.id}>
-                                <td><Link to="/restaurants/detail"><img src={restaurant.picture}  width="150"/></Link></td>
+                                <td><Link to="/restaurants/detail"><img src={restaurant.picture} alt="details" width="150"/></Link></td>
                                 <td>
                                 <Link to="/restaurants/detail">
                                     { restaurant.name }

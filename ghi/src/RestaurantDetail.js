@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import { MainContext } from "./MainContext"; 
 
-import { Link } from 'react-router-dom';
+
 
 
 
@@ -11,14 +11,15 @@ function RestaurantDetail(){
 
     const {dataArr, currentRestaurant} = useContext(MainContext);
     console.log(currentRestaurant, "asdfasdf")
+    console.log(dataArr)
     
     const [reviews, setReviews] = useState([]);
    
 
     
     
-    useEffect(() => {
-    fetch(`http://localhost:8000/api/reviews/restaurants/${currentRestaurant.id}`)
+    useEffect((reviews) => {
+    fetch(`${process.env.REACT_APP_FASTAPI_SERVICE}/api/reviews/restaurants/${currentRestaurant.id}`)
     .then(res => res.json())
     .then(data => {
       console.log("DATA:", data)
@@ -45,7 +46,7 @@ function RestaurantDetail(){
     
             <h4> Rating {result} </h4>
             <h6>Price:{currentRestaurant.price}</h6>
-            <img src={currentRestaurant.picture}  width="150"/>
+            <img src={currentRestaurant.picture} alt="restaurant" width="150"/>
             <table className="table table-striped">
                 <thead>
                     <tr>
