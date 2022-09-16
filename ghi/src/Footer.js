@@ -93,9 +93,9 @@ function Footer() {
             </div>
           </div>
         </section>
-        <div class="text-center p-4" style={{backgroundColor: '#eeeeee'}}>
+        <div className="text-center p-4" style={{backgroundColor: '#eeeeee'}}>
           &copy; 2021 Copyright:
-          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
         </div>
       </footer>
     </>

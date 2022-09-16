@@ -26,7 +26,7 @@ function App() {
     fetch("http://127.0.0.1:8000/api/restaurants")
     .then(res => res.json())
     .then(data => {
-      console.log("DATA:", data)
+      console.log("DATAREST:", data)
       setDataArr(data.restaurants);
     })
   }, [])

@@ -130,7 +130,7 @@ function Map() {
             <button id="mode" value="DRIVING">Driving</button>
             <button id="mode" value="BICYCLING">Bicycling</button>
             <button id="mode" value="TRANSIT">Transit</button> */}
-            <select class="form-control" id="mode">
+            <select className="form-control" id="mode">
               <option value="">Select Mode</option>
               <option value="WALKING">Walking</option>
               <option value="DRIVING">Driving</option>
