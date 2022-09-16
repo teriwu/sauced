@@ -1,3 +1,9 @@
+## Sept 16, 2022
+* Worked on getting the reviews forms to work correctly. Now fully deployed, with all pages working as intended and wrote unit tests.
+
+## Sept 15, 2022
+* Continued to work on deployment. Got most of the pages working and posting. The review form doesnt work yet.
+
 ## Sept 14, 2022
 * Got the app deployed on heroku but not every page works.
 
