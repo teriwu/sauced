@@ -126,7 +126,7 @@ function Map() {
             />
           </HStack>
           <HStack mt={1}>
-            <select class="form-control" id="mode">
+            <select className="form-control" id="mode">
               <option value="">Select Mode</option>
               <option value="WALKING">Walking</option>
               <option value="DRIVING">Driving</option>
