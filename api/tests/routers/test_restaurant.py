@@ -26,31 +26,6 @@ def test_get_main():
     assert response.status_code == 200
     assert response.json() == {"Lost": "sauce"}
 
-
-# Works with the default dummy data
-def test_get_restaurant():
-    response = client.get(
-        "/api/restaurants/1", headers={"Content-Type": "application/json"}
-    )
-    assert response.status_code == 200
-    assert response.json() == {
-        "id": 1,
-        "price": "string",
-        "rating": 0.0,
-        "name": "string",
-        "phone": "string",
-        "address": "string",
-        "city": "string",
-        "zip_code": 0,
-        "country": "string",
-        "state": "string",
-        "start_": "string",
-        "end_": "string",
-        "day": "string",
-        "picture": "string",
-    }
-
-
 # End of Teri's test
 
 
