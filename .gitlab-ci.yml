@@ -6,6 +6,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 variables:
   DATABASE_URL: ""
+  SIGNING_KEY: ""
 
 
 lint-job:
