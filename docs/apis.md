@@ -3,11 +3,11 @@
 * Rapid API https://rapidapi.com/blog/best-travel-apis-guide/
 * https://openweathermap.org/current#geo
 * https://www.yelp.com/developers/documentation/v3/get_started
+* https://developers.google.com/maps/documentation/javascript/get-api-key
 
 ## Potential add list
-* Flight info
 * Restaurant info
-* Hotel info
+
 
 ## Search a restaurant 
 

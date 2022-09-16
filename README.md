@@ -26,11 +26,16 @@ People who enjoy discovering new and exciting restaurants at a specific location
         * business owners can register their restaurants (!!respond to reviews!!)
 * Users can view the details of each restaurants
     * Restaurants (provide info about restaurant) - cuisine type, pricing(?), about
-* search bar for locating restaurants
+* Locating restaurants using Google Maps
     * users can search by location(zip code, city, *near by, tags)
+    * autocomplete feature helps users find exact locations
+    * start and end point that can calculate the distance and travel time
+    * select different travel modes to their preferred method of transportation
 
 ## Getting Started
 ```
+clone the repository
+cd into the new project directory
 docker volume create postgres-data
 docker-compose build
 docker-compose up
@@ -43,6 +48,7 @@ docker-compose up
     * https://devdevshow.com/javascript-api-project-ideas-for-beginners-with-source-code/
 * https://openweathermap.org/current#
 * https://www.yelp.com/developers/documentation/v3/get_started
+* https://developers.google.com/maps/documentation/javascript/get-api-key
 
 ## Design
 
@@ -58,5 +64,4 @@ docker-compose up
 
 ## Stretch 
 
-* Navigation to business
 * Bookmarks/Collections
