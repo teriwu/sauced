@@ -1,3 +1,10 @@
+## Friday, Septermber 16, 2022
+
+I worked on:
+* Pytest and more CSS formatting
+We worked on:
+* Deployment with Lucky
+
 ## Wednesday, September 14, 2022 - Thursday, September 15, 2022
 
 I worked on:
