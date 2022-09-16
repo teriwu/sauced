@@ -1,3 +1,9 @@
+## Sept 14, 2022
+* Got the app deployed on heroku but not every page works.
+
+## Sept 13, 2022
+* Working on deployment, passes some of the CI tests stuck on the pytest
+
 ## Sept 12, 2022
 * Today I started working on deployment by using the CI/CD cookbook. Wasnt able to fully deploy yet.
 

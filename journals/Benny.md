@@ -1,3 +1,13 @@
+## Thursday, September 15, 2022
+--
+* Updated map ui
+* Working on writing unit tests
+
+## Wednesday, September 14, 2022
+--
+* Working on FaIcons for map travel modes
+* Editing map options
+
 ## Tuesday, September 13, 2022
 --
 * Added Travel time and Distance calculation

@@ -5,13 +5,12 @@ import {
   ButtonGroup,
   Flex,
   HStack,
-  Icon,
   IconButton,
   Input,
   Text,
   } from '@chakra-ui/react'
 import { GoogleMap, useJsApiLoader, DirectionsRenderer, Marker, Autocomplete } from "@react-google-maps/api";
-import { FaLocationArrow, FaBusAlt, FaWalking, FaCar, FaBiking } from 'react-icons/fa'
+import { FaLocationArrow } from 'react-icons/fa'
 import { useState, useRef } from "react";
 
 const center = {
@@ -26,6 +25,7 @@ function Map() {
     })
 
     const [map, setMap] = React.useState( /** @type google.maps.Map */ (null))
+
     const [directionsResponse, setDirectionsResponse] = useState('')
     const [distance, setDistance] = useState('')
     const [duration, setDuration] = useState('')
@@ -110,7 +110,7 @@ function Map() {
             </Box>
             <ButtonGroup>
               <Button bgColor={'skyblue'} type="submit" onClick={calculateRoute}>
-                Get directions
+                Calculate Route
               </Button>
               <Button bgColor={'red.500'} type="submit" onClick={clearRoute}>
                 Cancel
@@ -126,11 +126,7 @@ function Map() {
             />
           </HStack>
           <HStack mt={1}>
-            {/* <Iconbutton icon={<FaWalking />} id="mode" value="WALKING"/>
-            <button id="mode" value="DRIVING">Driving</button>
-            <button id="mode" value="BICYCLING">Bicycling</button>
-            <button id="mode" value="TRANSIT">Transit</button> */}
-            <select className="form-control" id="mode">
+            <select class="form-control" id="mode">
               <option value="">Select Mode</option>
               <option value="WALKING">Walking</option>
               <option value="DRIVING">Driving</option>

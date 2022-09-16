@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { MainContext } from './MainContext';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ function RestaurantList() {
 
     return (
         <>
-        <div className="container mt-5">
+        <div className="container">
             <h1>Restaurants</h1>
             <table className="table table-striped">
                 <thead>

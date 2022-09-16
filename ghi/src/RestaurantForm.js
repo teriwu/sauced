@@ -39,7 +39,7 @@ class RestaurantForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data= {...this.state};
-        const restaurantUrl = 'http://localhost:8000/api/restaurants/';
+        const restaurantUrl = `${process.env.REACT_APP_FASTAPI_SERVICE}/api/restaurants`;
         console.log(data, "adfasdfasd")
         const fetchConfig = {
             method: "post",
@@ -128,7 +128,7 @@ class RestaurantForm extends React.Component {
         return (
           <div className="row">
             <div className="offset-3 col-6">
-              <div className="shadow p-4 mt-4">
+              <div className="shadow p-4">
                 <h1>Create a Restaurant</h1>
                 <form onSubmit={this.handleSubmit} id="create-restaurant-form">
                   <div className="form-floating mb-3">
