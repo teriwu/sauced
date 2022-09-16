@@ -35,7 +35,7 @@ function Footer() {
                 Lost In The Sauce
               </h6>
               <p>What's that sauce?</p>
-              <Link to="/"><i class="bi bi-egg-fried"></i></Link>
+              <Link to="/"><i className="bi bi-egg-fried"></i></Link>
             </div>
 
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
