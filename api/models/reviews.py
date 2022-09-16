@@ -5,7 +5,7 @@ from models.restaurants import RestaurantOut
 class ReviewIn(BaseModel):
     title: str
     content: str
-    post_date: str
+    # post_date: str
     rating: int
     restaurant_id: int
 
@@ -16,7 +16,7 @@ class ReviewOut(BaseModel):
     content: str
     post_date: str
     rating: int
-    restaurant: RestaurantOut
+    # restaurant: RestaurantOut
 
 
 class ReviewList(BaseModel):

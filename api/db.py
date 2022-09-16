@@ -239,35 +239,23 @@ class RestaurantQueries:
 
 
 class ReviewQueries:
-    def get_reviews(self):
+    def get_reviews(self, restaurants_id):
         print("Got Reviews")
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT res.id
-                    , res.price
-                    , res.rating
-                    , res.name
-                    , res.phone
-                    , res.address
-                    , res.city
-                    , res.zip_code
-                    , res.country
-                    , res.state
-                    , res.start_
-                    , res.end_
-                    , res.day
-                    , res.picture
-                    , rev.id
+                    SELECT rev.id
+                    
                     , rev.title
                     , rev.content
                     , rev.post_date
                     , rev.rating
-                    FROM restaurants res
-                    JOIN reviews rev ON(res.id = rev.restaurant_id)
-
-                    """
+                    FROM reviews rev
+                    JOIN restaurants res ON(res.id = rev.restaurant_id)
+                    WHERE res.id = %s
+                    """,
+                    [restaurants_id],
                 )
 
                 reviews = []
@@ -302,27 +290,12 @@ class ReviewQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT res.id
-                    , res.price
-                    , res.rating
-                    , res.name
-                    , res.phone
-                    , res.address
-                    , res.city
-                    , res.zip_code
-                    , res.country
-                    , res.state
-                    , res.start_
-                    , res.end_
-                    , res.day
-                    , res.picture
-                    , rev.id
+                    SELECT rev.id
                     , rev.title
                     , rev.content
                     , rev.post_date
                     , rev.rating
-                    FROM restaurants res
-                    JOIN reviews rev ON(res.id = rev.restaurant_id)
+                    FROM reviews rev
                     WHERE rev.id = %s
                     """,
                     [id],

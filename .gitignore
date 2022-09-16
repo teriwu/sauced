@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 .gitlab-ci.yml
+.node_modules

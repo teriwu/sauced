@@ -14,16 +14,19 @@ class ReviewForm extends React.Component {
         this.handleTitleChange = this.handleTitleChange.bind(this)
         this.handleContentChange = this.handleContentChange.bind(this)
         this.handleRatingChange = this.handleRatingChange.bind(this)
-        this.handleSubmit = this.handleSubmitChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
 
     }
 
-    async handleSubmitChange(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
+        delete data.restaurants
+        delete data.restaurant_ids
+        console.log(data, "DATA")
         const reviewUrl = 'http://localhost:8000/api/reviews/';
         const fetchConfig = {
-            method: "post",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json', 
@@ -34,6 +37,7 @@ class ReviewForm extends React.Component {
             const newReview = await response.json();
             console.log(newReview);
             const cleared = {
+                restaurant_id: '',
                 title: '',
                 content: '',
                 rating: '',
@@ -95,7 +99,7 @@ class ReviewForm extends React.Component {
                             </div>
                   
                   <div className= "mb-3">
-                    <input onChange={this.handleTitleChange} value={this.state.price} placeholder="Title" required type="text" name="title" id="title" className="form-control" />
+                    <input onChange={this.handleTitleChange} value={this.state.title} placeholder="Title" required type="text" name="title" id="title" className="form-control" />
                   </div>
                   <div className="mb-3">
                     <textarea rows= "5" onChange={this.handleContentChange} value={this.state.content} placeholder="Leave a Review" required type="text" name="content" id="content" className="form-control" />

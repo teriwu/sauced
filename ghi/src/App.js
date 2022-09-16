@@ -27,7 +27,7 @@ function App() {
     fetch(`${process.env.REACT_APP_FASTAPI_SERVICE}/api/restaurants`)
     .then(res => res.json())
     .then(data => {
-      console.log("DATA:", data)
+      console.log("DATAREST:", data)
       setDataArr(data.restaurants);
     })
   }, [])

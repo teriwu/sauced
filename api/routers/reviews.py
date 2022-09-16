@@ -9,10 +9,10 @@ from models.reviews import (
 router = APIRouter()
 
 
-@router.get("/api/reviews", response_model=ReviewList, tags=["Reviews"])
-def reviews_list(queries: ReviewQueries = Depends()):
+@router.get("/api/reviews/restaurants/{id}", response_model=ReviewList, tags=["Reviews"])
+def reviews_list(id: int, queries: ReviewQueries = Depends()):
     return {
-        "reviews": queries.get_reviews(),
+        "reviews": queries.get_reviews(id),
     }
 
 
@@ -25,6 +25,7 @@ def get_review(
     if record is None:
         response.status_code = 404
     else:
+        print("🚀 ~ file: reviews.py ~ line 28 ~ record", record)
         return record
 
 

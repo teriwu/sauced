@@ -133,7 +133,7 @@ class RestaurantForm extends React.Component {
                 <form onSubmit={this.handleSubmit} id="create-restaurant-form">
                   <div className="form-floating mb-3">
                     <input onChange={this.handlePriceChange} value={this.state.price} placeholder="Price" required type="text" name="price" id="price" className="form-control" />
-                    <label htmlFor="price">Price</label>
+                    <label htmlFor="price">Price (Use $ - $$$$)</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
