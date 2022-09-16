@@ -865,17 +865,16 @@ class CategoriesQueries:
 #                     for i, column in enumerate(cur.description):
 #                         record[column.name] = row[i]
 #                 return record
-
-    def delete_hour(self, hour_id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    DELETE FROM hours
-                    WHERE id = %s
-                    """,
-                    [hour_id],
-                )
+    # def delete_hour(self, hour_id):
+    #     with pool.connection() as conn:
+    #         with conn.cursor() as cur:
+    #             cur.execute(
+    #                 """
+    #                 DELETE FROM hours
+    #                 WHERE id = %s
+    #                 """,
+    #                 [hour_id],
+    #             )
 
 class UserQueries:
     def user_list(self):
@@ -884,7 +883,13 @@ class UserQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, password, first_name, last_name, email, username FROM users
+                    SELECT id
+                    , password
+                    , first_name
+                    , last_name
+                    , email
+                    , username 
+                    FROM users
                     """
                 )
 
@@ -902,7 +907,13 @@ class UserQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, password, first_name, last_name, email, username FROM users
+                    SELECT id
+                    , password
+                    , first_name
+                    , last_name
+                    , email
+                    , username 
+                    FROM users
                     WHERE username = %s
                     """,
                     [username],
@@ -958,7 +969,13 @@ class UserQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT id, password, first_name, last_name, email, username FROM users
+                    SELECT id
+                    , password
+                    , first_name
+                    , last_name
+                    , email
+                    , username
+                    FROM users
                     WHERE id = %s
                     """,
                     [id],
@@ -973,7 +990,6 @@ class UserQueries:
 
                 return record
 
-
     def update_user(self, user, data):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -986,7 +1002,12 @@ class UserQueries:
                       , email = %s
                       , username = %s
                       WHERE id = %s
-                      RETURNING id, password, first_name, last_name, email, username
+                      RETURNING id
+                      , password
+                      , first_name
+                      , last_name
+                      , email
+                      , username
                     """,
                     [
                         data.password,
