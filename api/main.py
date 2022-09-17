@@ -54,15 +54,16 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
 
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+def verify_password(plain_password):
+    return pwd_context.verify(plain_password)
 
 
 def authenticate_user(repo: UserQueries, username: str, password: str):
     user = repo.get_user(username)
     if not user:
         return False
-    if not verify_password(password, user["hashed_password"]):
+    if user["password"] != password:
+    # if not verify_password(password, user["hashed_password"]):
         return False
     return user
 
@@ -115,8 +116,9 @@ async def login_for_access_token(
             detail="Invalid authentication credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    print(user)
     access_token = create_access_token(
-        data={"sub": user[1]},
+        data={"sub": user[username]},
     )
     token = {"access_token": access_token, "token_type": "bearer"}
     headers = request.headers
@@ -147,6 +149,7 @@ async def read_items(token: str = Depends(oauth2_scheme)):
 
 origins = [
     "http://localhost:3000",
+    "http://localhost:8000",
     os.environ.get("CORS_HOST", "http://localhost:3001"),
 ]
 

@@ -32,8 +32,8 @@ class User(UserIn):
 class UserOut(BaseModel): #GET
     id: int
     password: str
-    first_name: str
-    last_name: str
+    first: str
+    last: str
     email: str
     username: str
     roles: List[str]

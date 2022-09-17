@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import login from "./LogIn";
 
 
@@ -9,7 +8,7 @@ function LogInPage(){
     const [password, setPassword] = useState("")
 
     function handleSubmit(event){
-        event.preventDefault()
+        event.preventDefault();
         login(username, password)
         const fetchConfig = {
           method: "post",

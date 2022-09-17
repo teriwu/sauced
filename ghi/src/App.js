@@ -10,7 +10,7 @@ import ReviewForm from './ReviewForm';
 import Map from './map';
 import Footer from './Footer';
 import UserForm from './UserForm';
-import LogIn from './LogIn';
+import LogInPage from './LoginPage';
 import RestaurantDetail from './RestaurantDetail';
 import About from './About';
 
@@ -50,7 +50,7 @@ function App() {
             <Route path="/restaurants/new" element={<RestaurantForm />} />
             <Route path="/reviews/new" element={<ReviewForm />} />
             <Route path="/users/new" element={<UserForm />} />
-            <Route path="/api/users/login" element={<LogIn />} />
+            <Route path="/api/users/login" element={<LogInPage />} />
             <Route path="/map" element={<Map />} />
             <Route path="/about" element={<About />} />
           </Routes>
