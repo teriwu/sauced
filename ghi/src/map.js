@@ -14,8 +14,8 @@ import { FaLocationArrow } from 'react-icons/fa'
 import { useState, useRef } from "react";
 
 const center = {
-    lat: 37.820132,
-    lng: -122.478137,
+    lat: 37.0902,
+    lng: -95.7129,
 };
 
 function Map() {
@@ -76,7 +76,7 @@ function Map() {
         {/* Google Map Box */}
           <GoogleMap
             center={center}
-            zoom={10}
+            zoom={5}
             mapContainerStyle={{ width: '100%', height: '100%' }}
             options={{
               mapTypeControl: false,
@@ -122,7 +122,7 @@ function Map() {
             <Text>Duration: {duration}</Text>
             <IconButton 
             icon={<FaLocationArrow />} 
-            onClick={() => {map.panTo(center); map.setZoom(10)}}
+            onClick={() => {map.panTo(center); map.setZoom(5)}}
             />
           </HStack>
           <HStack mt={1}>

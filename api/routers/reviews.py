@@ -3,15 +3,16 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from db import ReviewQueries
 from models.reviews import (
-    ReviewIn,
-    ReviewOut,
-    ReviewList,
-    ReviewDeleteOperation)
+    ReviewIn, ReviewOut, ReviewList, ReviewDeleteOperation
+)
 
 router = APIRouter()
 
 
-@router.get("/api/reviews/restaurants/{id}", response_model=ReviewList, tags=["Reviews"])
+@router.get(
+    "/api/reviews/restaurants/{id}", response_model=ReviewList,
+    tags=["Reviews"]
+)
 def reviews_list(id: int, queries: ReviewQueries = Depends()):
     return {
         "reviews": queries.get_reviews(id),
@@ -21,7 +22,8 @@ def reviews_list(id: int, queries: ReviewQueries = Depends()):
 @router.get("/api/reviews/{id}", response_model=ReviewOut, tags=["Reviews"])
 def get_review(
     id: int,
-    response: Response, queries: ReviewQueries = Depends()
+    response: Response,
+    queries: ReviewQueries = Depends()
 ):
     record = queries.get_review(id)
     if record is None:
@@ -33,7 +35,9 @@ def get_review(
 
 @router.post("/api/reviews", response_model=ReviewOut, tags=["Reviews"])
 def create_review(review: ReviewIn, queries: ReviewQueries = Depends()):
-    json_compatible_item_data = jsonable_encoder(queries.create_review(review))
+    json_compatible_item_data = jsonable_encoder(
+        queries.create_review(review)
+    )
     return JSONResponse(content=json_compatible_item_data)
 
 
@@ -52,9 +56,14 @@ def update_review(
 
 
 @router.delete(
-    "/api/reviews/{id}", response_model=ReviewDeleteOperation, tags=["Reviews"]
+    "/api/reviews/{id}",
+    response_model=ReviewDeleteOperation,
+    tags=["Reviews"]
 )
-def delete_review(review_id: int, queries: ReviewQueries = Depends()):
+def delete_review(
+    review_id: int,
+    queries: ReviewQueries = Depends()
+):
     try:
         queries.delete_review(review_id)
         return {"result": True}
