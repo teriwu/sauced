@@ -35,7 +35,6 @@ class UserForm extends React.Component {
         const response = await fetch(userUrl, fetchConfig);
         if (response.ok){
             const newUser = await response.json();
-            console.log(newUser)
             const cleared = {
                 email: '',
                 username: '',

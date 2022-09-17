@@ -116,7 +116,6 @@ async def login_for_access_token(
             detail="Invalid authentication credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    print(user)
     access_token = create_access_token(
         data={"sub": user[username]},
     )
