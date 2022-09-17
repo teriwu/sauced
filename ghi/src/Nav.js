@@ -57,7 +57,8 @@ function Nav() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             {/* Navbar logo */}
             <NavLink to="/">
-              <img className="my-1 me-1" src="../sauce_nav.png" alt="Home" width="50" />
+              <img className="my-1 me-1" src="https://cdn-icons-png.flaticon.com/512/3082/3082037.png
+" alt="Home" width="50" />
             </NavLink>
             {/* Left links */}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
