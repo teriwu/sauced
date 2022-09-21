@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, Response #, status
+from fastapi import APIRouter, Depends, Response  # , status
+
 # from fastapi.middleware.cors import CORSMiddleware
 from db import UserQueries
-from models.users import UserIn, UserOut # UserList, UserDeleteOperation
+from models.users import UserIn, UserOut  # UserList, UserDeleteOperation
 
 router = APIRouter()
 
@@ -35,6 +36,7 @@ def get_user(id: int, response: Response, queries: UserQueries = Depends()):
 def create_user(user: UserIn, queries: UserQueries = Depends()):
     return queries.create_user(user)
 
+
 @router.post("/api/users/login", response_model=UserIn, tags=["Users"])
 def login(user: UserIn, queries: UserQueries = Depends()):
     return queries.login(user)
@@ -52,6 +54,7 @@ def update_user(
         response.status_code = 404
     else:
         return record
+
 
 # @router.delete("/api/users/{id}", response_model=UserDeleteOperation, tags=["Users"])
 # def delete_user(user_id: int, queries: UserQueries = Depends()):

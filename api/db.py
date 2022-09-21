@@ -864,16 +864,17 @@ class CategoriesQueries:
 #                     for i, column in enumerate(cur.description):
 #                         record[column.name] = row[i]
 #                 return record
-    # def delete_hour(self, hour_id):
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as cur:
-    #             cur.execute(
-    #                 """
-    #                 DELETE FROM hours
-    #                 WHERE id = %s
-    #                 """,
-    #                 [hour_id],
-    #             )
+# def delete_hour(self, hour_id):
+#     with pool.connection() as conn:
+#         with conn.cursor() as cur:
+#             cur.execute(
+#                 """
+#                 DELETE FROM hours
+#                 WHERE id = %s
+#                 """,
+#                 [hour_id],
+#             )
+
 
 class UserQueries:
     def user_list(self):
@@ -1014,17 +1015,21 @@ class UserQueries:
                         data.last_name,
                         data.email,
                         data.username,
-                        user
-                    ]
+                        user,
+                    ],
                 )
 
                 record = None
                 row = cur.fetchone()
                 if row is not None:
                     record = {}
-                    for i, column, in enumerate(cur.description):
+                    for (
+                        i,
+                        column,
+                    ) in enumerate(cur.description):
                         record[column.name] = row[i]
                 return record
+
 
 #    def delete_user(self, user_id):
 #        with pool.connection() as conn:

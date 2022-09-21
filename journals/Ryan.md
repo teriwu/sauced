@@ -1,7 +1,13 @@
 
 
+## 9/15/22
+* Fixed front and back end together. Getting a token upon log in. Only thing left is to make some pages exclusive to being logged in.
+
+## 9/14/22
+* Implemented some backend stuff onto front end. Worked on authentication and tokens.
+
 ## 9/13/22
-* 
+* Ran into an issue with my backend having different names for "first" and "last" began fixing that.
 
 ## 9/8/22 - 9/12/22
 * Finished back end work for the user form. Completed the user form react page.

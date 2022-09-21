@@ -2,7 +2,16 @@ from datetime import datetime, timedelta
 from typing import Union, Optional
 from db import UserQueries
 
-from fastapi import FastAPI, Depends, HTTPException, status, Response, Cookie, APIRouter, Request
+from fastapi import (
+    FastAPI,
+    Depends,
+    HTTPException,
+    status,
+    Response,
+    Cookie,
+    APIRouter,
+    Request,
+)
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt, jws, JWSError
@@ -23,11 +32,10 @@ from routers import (
 )
 
 
-SIGNING_KEY = os.environ["SIGNING_KEY"] 
+SIGNING_KEY = os.environ["SIGNING_KEY"]
 ALGORITHM = "HS256"
 COOKIE_NAME = "fastapi_access_token"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
 
 
 class HttpError(BaseModel):
@@ -48,11 +56,13 @@ class User(BaseModel):
     password: str
     email: str
 
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
+
 
 def verify_password(plain_password):
     return pwd_context.verify(plain_password)
@@ -63,7 +73,7 @@ def authenticate_user(repo: UserQueries, username: str, password: str):
     if not user:
         return False
     if user["password"] != password:
-    # if not verify_password(password, user["hashed_password"]):
+        # if not verify_password(password, user["hashed_password"]):
         return False
     return user
 
@@ -76,9 +86,7 @@ def create_access_token(data: dict):
 
 async def get_current_user(
     bearer_token: Optional[str] = Depends(oauth2_scheme),
-    cookie_token: Optional[str] | None = (
-        Cookie(default=None, alias=COOKIE_NAME)
-    ),
+    cookie_token: Optional[str] | None = (Cookie(default=None, alias=COOKIE_NAME)),
     repo: UserQueries = Depends(),
 ):
     credentials_exception = HTTPException(
@@ -145,6 +153,7 @@ async def get_token(request: Request):
 @app.get("/items/")
 async def read_items(token: str = Depends(oauth2_scheme)):
     return {"token": token}
+
 
 origins = [
     "http://localhost:3000",

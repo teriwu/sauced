@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from bson.objectid import ObjectId
 from typing import List
 
+
 class PydanticObjectId(ObjectId):
     @classmethod
     def __get_validators__(cls):
@@ -17,19 +18,20 @@ class PydanticObjectId(ObjectId):
         return value
 
 
-
-class UserIn(BaseModel): #POST
+class UserIn(BaseModel):  # POST
     password: str
     first: str
     last: str
     email: str
     username: str
 
+
 class User(UserIn):
     id: PydanticObjectId
     roles: List[str]
 
-class UserOut(BaseModel): #GET
+
+class UserOut(BaseModel):  # GET
     id: int
     password: str
     first: str
@@ -37,6 +39,7 @@ class UserOut(BaseModel): #GET
     email: str
     username: str
     roles: List[str]
+
 
 # class UserList(BaseModel):
 #    users: list[UserOut]
